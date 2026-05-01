@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>University Rankings - UCU External Office</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+      tailwind.config = {
+          theme: {
+              extend: {
+                  colors: {
+                      'ucu-blue': '#394a8a',
+                      'ucu-blue-dark': '#24305e',
+                      'ucu-yellow': '#fbef4b',
+                      'ucu-red': '#c43643',
+                      'ucu-white': '#ffffff',
+                      'dark-red': '#912020', /* This restores the header */
+                      'canvas': '#f4f7fa',
+                      'muted': '#555555',
+                      'main2': '#1f1f1f'
+                  },
+                  fontFamily: { sans: ['Montserrat', 'sans-serif'] }
+              }
+          }
+      }
+  </script>
+  
+  <script src="./js/global-components.js" defer></script>
+</head>
+
+<body class="bg-canvas text-main2 font-sans antialiased min-h-screen flex flex-col relative z-0 overflow-x-hidden">
+  
+  <ucu-header base-path="./"></ucu-header>
+
+  <ucu-hero-banner 
+    bg-color="bg-ucu-blue-dark" 
+    eyebrow="A Network of Excellence"
+    headline="Connecting UCU"
+    highlight="Globally"
+    description="Forging high-impact relationships with global academic institutions and premier industry leaders to elevate the educational standard of Urdaneta City University.">
+  </ucu-hero-banner>
+
+  <main class="w-full flex-grow relative z-10 flex flex-col bg-canvas">
+
+    <section class="max-w-[1280px] w-full mx-auto px-4 sm:px-6 lg:px-8 relative z-20 pt-12 mb-24 reveal opacity-0 translate-y-8 transition-all duration-[800ms] ease-[cubic-bezier(0.16,1,0.3,1)] delay-100">      
+      <div class="flex items-center justify-between mb-8">
+        <h2 class="text-xs font-black uppercase tracking-[0.2em] text-muted">Current Standing</h2>
+        <div class="h-px flex-1 ml-6 bg-gray-300/60 hidden sm:block"></div>
+      </div>
+      
+      <div class="flex gap-6 overflow-x-auto snap-x snap-mandatory pb-8 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden -mx-4 px-4 sm:mx-0 sm:px-0">
+        
+        <div class="flex-none w-[320px] md:w-[380px] snap-center group/card cursor-pointer">
+          <div class="h-full bg-white/60 backdrop-blur-xl border border-white/80 p-8 rounded-[1.5rem] flex flex-col justify-between transition-all duration-500 hover:border-white hover:bg-white/90 shadow-[0_8px_20px_rgba(36,48,94,0.04)] hover:shadow-[0_15px_40px_rgba(36,48,94,0.08)]">
+            <div>
+              <div class="flex justify-between items-start mb-6">
+                <span class="text-[10px] font-bold px-2.5 py-1 border rounded uppercase tracking-widest bg-white" style="color: #00993d; border-color: #00993d;">UI GreenMetric</span>
+                <span class="text-muted text-sm font-bold">2025</span>
+              </div>
+              <h3 class="text-4xl font-black mb-2 text-ucu-blue-dark group-hover/card:translate-x-1 transition-transform">#361</h3>
+              <p class="text-main2 text-sm font-bold mb-4 uppercase tracking-wider">World Rankings</p>
+            </div>
+            <div class="mt-8 border-t border-black/5 pt-5">
+              <p class="text-muted text-xs font-medium leading-relaxed">
+                Global recognition for excellence and innovation in environmental sustainability and green campus management.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex-none w-[320px] md:w-[380px] snap-center group/card cursor-pointer">
+          <div class="h-full bg-white/60 backdrop-blur-xl border border-white/80 p-8 rounded-[1.5rem] flex flex-col justify-between transition-all duration-500 hover:border-white hover:bg-white/90 shadow-[0_8px_20px_rgba(36,48,94,0.04)] hover:shadow-[0_15px_40px_rgba(36,48,94,0.08)]">
+            <div>
+              <div class="flex justify-between items-start mb-6">
+                <span class="text-[10px] font-bold px-2.5 py-1 border rounded uppercase tracking-widest text-ucu-red border-ucu-red/50 bg-ucu-red/5">THE</span>
+                <span class="text-muted text-sm font-bold">2025</span>
+              </div>
+              <h3 class="text-4xl font-black mb-2 text-ucu-blue-dark group-hover/card:translate-x-1 transition-transform">1001+</h3>
+              <p class="text-main2 text-sm font-bold mb-4 uppercase tracking-wider">Impact Rankings</p>
+            </div>
+            <div class="mt-8 border-t border-black/5 pt-5">
+              <p class="text-muted text-xs font-medium leading-relaxed">
+                Evaluated against the United Nations' Sustainable Development Goals (SDGs) for global institutional impact.
+              </p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="reveal opacity-0 translate-y-8 transition-all duration-[800ms] ease-[cubic-bezier(0.16,1,0.3,1)] delay-200">
+      <div class="max-w-5xl mx-auto w-full">
+        
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8">
+          <div>
+            <h2 class="text-xs font-black uppercase tracking-[0.2em] text-muted mb-3">Historical Performance</h2>
+            <h3 class="text-3xl md:text-4xl font-black text-ucu-blue-dark">The Timeline</h3>
+          </div>
+
+          <div class="flex flex-wrap gap-2.5" id="filter-group">
+            <button data-filter="all" class="filter-btn px-4 py-2 rounded-full text-xs font-bold border border-white/50 bg-white/60 transition-all hover:bg-white hover:shadow-sm data-[active=true]:bg-ucu-blue-dark data-[active=true]:text-white data-[active=true]:border-ucu-blue-dark text-main2" data-active="true">All Rankings</button>
+            <button data-filter="UI GreenMetric" class="filter-btn px-4 py-2 rounded-full text-xs font-bold border border-white/50 bg-white/60 transition-all hover:bg-white hover:shadow-sm data-[active=true]:bg-ucu-blue-dark data-[active=true]:text-white data-[active=true]:border-ucu-blue-dark text-main2" data-active="false">UI GreenMetric</button>
+            <button data-filter="THE" class="filter-btn px-4 py-2 rounded-full text-xs font-bold border border-white/50 bg-white/60 transition-all hover:bg-white hover:shadow-sm data-[active=true]:bg-ucu-blue-dark data-[active=true]:text-white data-[active=true]:border-ucu-blue-dark text-main2" data-active="false">THE</button>
+            <button data-filter="WURI" class="filter-btn px-4 py-2 rounded-full text-xs font-bold border border-white/50 bg-white/60 transition-all hover:bg-white hover:shadow-sm data-[active=true]:bg-ucu-blue-dark data-[active=true]:text-white data-[active=true]:border-ucu-blue-dark text-main2" data-active="false">WURI</button>
+            <button data-filter="AppliedHE" class="filter-btn px-4 py-2 rounded-full text-xs font-bold border border-white/50 bg-white/60 transition-all hover:bg-white hover:shadow-sm data-[active=true]:bg-ucu-blue-dark data-[active=true]:text-white data-[active=true]:border-ucu-blue-dark text-main2" data-active="false">AppliedHE</button>
+          </div>
+        </div>
+
+        <div class="relative pl-8 md:pl-0">
+          
+          <div class="absolute left-8 md:left-1/2 top-4 bottom-4 w-px bg-gray-300 -translate-x-1/2"></div>
+
+          <div class="space-y-10 relative" id="timeline-list">
+            
+            <div class="timeline-item group relative flex flex-col md:flex-row items-center transition-all duration-500 origin-bottom" data-org="UI GreenMetric">
+              <div class="absolute left-0 md:left-1/2 -translate-x-1/2 flex items-center justify-center z-10 top-6 md:top-1/2 md:-translate-y-1/2">
+                <div class="w-4 h-4 rounded-full bg-white border-4 border-ucu-blue-dark group-hover:scale-125 group-hover:bg-ucu-yellow transition-all duration-300 shadow-sm"></div>
+              </div>
+
+              <div class="w-full md:w-1/2 md:pr-14 md:text-right">
+                <div class="bg-white/70 backdrop-blur-md border border-white p-6 md:p-7 rounded-2xl hover:border-ucu-blue-dark/20 transition-all shadow-[0_4px_15px_rgba(36,48,94,0.03)] hover:shadow-[0_8px_25px_rgba(36,48,94,0.08)] relative md:before:content-[''] md:before:absolute md:before:top-1/2 md:before:-translate-y-1/2 md:before:-right-2 md:before:w-4 md:before:h-4 md:before:bg-white/70 md:before:rotate-45 md:before:border-r md:before:border-t md:before:border-white">
+                  
+                  <div class="flex items-center gap-3 mb-3 md:justify-end justify-start">
+                    <span class="text-main2 text-sm font-black">2025</span>
+                    <span class="text-[10px] font-bold px-2 py-0.5 border rounded uppercase tracking-widest bg-white" style="color: #00993d; border-color: #00993d;">UI GreenMetric</span>
+                  </div>
+                  
+                  <h4 class="text-2xl font-black mb-1 text-ucu-blue-dark">#361 Worldwide</h4>
+                  <p class="text-muted text-xs font-bold mb-4 uppercase tracking-wider">World University Rankings</p>
+                  
+                  <a href="#" class="text-[10px] uppercase tracking-widest text-ucu-blue-dark font-extrabold hover:text-ucu-red transition-colors flex items-center gap-1.5 group/link md:inline-flex md:justify-end w-full md:w-auto">
+                    View Certificate
+                    <svg class="w-3.5 h-3.5 group-hover/link:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                    </svg>
+                  </a>
+                </div>
+              </div>
+              <div class="hidden md:block w-1/2"></div>
+            </div>
+
+            <div class="timeline-item group relative flex flex-col md:flex-row items-center transition-all duration-500 origin-bottom" data-org="THE">
+              <div class="absolute left-0 md:left-1/2 -translate-x-1/2 flex items-center justify-center z-10 top-6 md:top-1/2 md:-translate-y-1/2">
+                <div class="w-4 h-4 rounded-full bg-white border-4 border-ucu-blue-dark group-hover:scale-125 group-hover:bg-ucu-yellow transition-all duration-300 shadow-sm"></div>
+              </div>
+              <div class="w-full md:w-1/2 md:pl-14 md:order-last text-left">
+                <div class="bg-white/70 backdrop-blur-md border border-white p-6 md:p-7 rounded-2xl hover:border-ucu-blue-dark/20 transition-all shadow-[0_4px_15px_rgba(36,48,94,0.03)] hover:shadow-[0_8px_25px_rgba(36,48,94,0.08)] relative before:content-[''] before:absolute before:top-6 md:before:top-1/2 before:-translate-y-1/2 before:-left-2 before:w-4 before:h-4 before:bg-white/70 before:rotate-45 before:border-l before:border-b before:border-white">
+                  
+                  <div class="flex items-center gap-3 mb-3 justify-start">
+                    <span class="text-main2 text-sm font-black">2025</span>
+                    <span class="text-[10px] font-bold px-2 py-0.5 border rounded uppercase tracking-widest text-ucu-red border-ucu-red/50 bg-ucu-red/5">THE</span>
+                  </div>
+                  
+                  <h4 class="text-2xl font-black mb-1 text-ucu-blue-dark">1001+ Rank</h4>
+                  <p class="text-muted text-xs font-bold mb-4 uppercase tracking-wider">Times Higher Education Impact</p>
+                </div>
+              </div>
+              <div class="hidden md:block w-1/2"></div>
+            </div>
+
+            <div class="timeline-item group relative flex flex-col md:flex-row items-center transition-all duration-500 origin-bottom" data-org="WURI">
+              <div class="absolute left-0 md:left-1/2 -translate-x-1/2 flex items-center justify-center z-10 top-6 md:top-1/2 md:-translate-y-1/2">
+                <div class="w-4 h-4 rounded-full bg-white border-4 border-ucu-blue-dark group-hover:scale-125 group-hover:bg-ucu-yellow transition-all duration-300 shadow-sm"></div>
+              </div>
+              <div class="w-full md:w-1/2 md:pr-14 md:text-right">
+                <div class="bg-white/70 backdrop-blur-md border border-white p-6 md:p-7 rounded-2xl hover:border-ucu-blue-dark/20 transition-all shadow-[0_4px_15px_rgba(36,48,94,0.03)] hover:shadow-[0_8px_25px_rgba(36,48,94,0.08)] relative md:before:content-[''] md:before:absolute md:before:top-1/2 md:before:-translate-y-1/2 md:before:-right-2 md:before:w-4 md:before:h-4 md:before:bg-white/70 md:before:rotate-45 md:before:border-r md:before:border-t md:before:border-white">
+                  
+                  <div class="flex items-center gap-3 mb-3 md:justify-end justify-start">
+                    <span class="text-main2 text-sm font-black">2024</span>
+                    <span class="text-[10px] font-bold px-2 py-0.5 border rounded uppercase tracking-widest text-ucu-blue-dark border-ucu-blue-dark/50 bg-ucu-blue-dark/10">WURI</span>
+                  </div>
+                  
+                  <h4 class="text-2xl font-black mb-1 text-ucu-blue-dark">Top 100</h4>
+                  <p class="text-muted text-xs font-bold mb-4 uppercase tracking-wider">Global Innovation Rankings</p>
+                </div>
+              </div>
+              <div class="hidden md:block w-1/2"></div>
+            </div>
+
+            <div class="timeline-item group relative flex flex-col md:flex-row items-center transition-all duration-500 origin-bottom" data-org="AppliedHE">
+              <div class="absolute left-0 md:left-1/2 -translate-x-1/2 flex items-center justify-center z-10 top-6 md:top-1/2 md:-translate-y-1/2">
+                <div class="w-4 h-4 rounded-full bg-white border-4 border-ucu-blue-dark group-hover:scale-125 group-hover:bg-ucu-yellow transition-all duration-300 shadow-sm"></div>
+              </div>
+              <div class="w-full md:w-1/2 md:pl-14 md:order-last text-left">
+                <div class="bg-white/70 backdrop-blur-md border border-white p-6 md:p-7 rounded-2xl hover:border-ucu-blue-dark/20 transition-all shadow-[0_4px_15px_rgba(36,48,94,0.03)] hover:shadow-[0_8px_25px_rgba(36,48,94,0.08)] relative before:content-[''] before:absolute before:top-6 md:before:top-1/2 before:-translate-y-1/2 before:-left-2 before:w-4 before:h-4 before:bg-white/70 before:rotate-45 before:border-l before:border-b before:border-white">
+                  
+                  <div class="flex items-center gap-3 mb-3 justify-start">
+                    <span class="text-main2 text-sm font-black">2023</span>
+                    <span class="text-[10px] font-bold px-2 py-0.5 border rounded uppercase tracking-widest text-main2 border-ucu-yellow/50 bg-ucu-yellow/30">AppliedHE</span>
+                  </div>
+                  
+                  <h4 class="text-2xl font-black mb-1 text-ucu-blue-dark">Top 50 ASEAN</h4>
+                  <p class="text-muted text-xs font-bold mb-4 uppercase tracking-wider">Private & Local Universities</p>
+                </div>
+              </div>
+              <div class="hidden md:block w-1/2"></div>
+            </div>
+
+          </div>
+
+          <div id="empty-state" class="hidden py-16 text-center w-full">
+            <p class="text-muted text-sm font-black uppercase tracking-[0.2em] bg-white/50 border border-white inline-block px-6 py-3 rounded-xl shadow-sm">No rankings found for this category.</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <ucu-footer base-path="./"></ucu-footer>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      // 1. Scroll Reveal Observer
+      const revealTargets = document.querySelectorAll(".reveal");
+      if (revealTargets.length > 0) {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.remove("opacity-0", "translate-y-8");
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
+        revealTargets.forEach((el) => observer.observe(el));
+      }
+
+      // 2. Timeline Filtering Logic
+      const buttons = document.querySelectorAll('.filter-btn');
+      const items = document.querySelectorAll('.timeline-item');
+      const emptyState = document.getElementById('empty-state');
+
+      buttons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const filter = btn.getAttribute('data-filter');
+          
+          buttons.forEach(b => b.setAttribute('data-active', 'false'));
+          btn.setAttribute('data-active', 'true');
+
+          let visibleCount = 0;
+
+          items.forEach(item => {
+            const org = item.getAttribute('data-org');
+            if (filter === 'all' || org === filter) {
+              item.style.display = 'flex';
+              item.classList.add('opacity-0', 'scale-95');
+              setTimeout(() => {
+                item.classList.remove('opacity-0', 'scale-95');
+              }, 50);
+              visibleCount++;
+            } else {
+              item.style.display = 'none';
+            }
+          });
+
+          if (emptyState) {
+            emptyState.style.display = visibleCount === 0 ? 'block' : 'none';
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>

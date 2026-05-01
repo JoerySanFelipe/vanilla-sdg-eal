@@ -1,0 +1,100 @@
+@import "tailwindcss";
+
+/* 1. TELL TAILWIND WHERE TO LOOK FOR YOUR CLASSES */
+@source "../"; 
+
+/* 2. DEFINE YOUR UCU BRAND VARIABLES */
+@theme {
+  --color-ucu-blue: #394a8a;
+  --color-ucu-blue-dark: #24305e;
+  --color-ucu-yellow: #fbef4b;
+  --color-ucu-red: #c43643;
+  --color-ucu-white: #ffffff;
+
+  --color-dark-red: #912020;
+  --color-main2: #1f1f1f; 
+
+  --color-canvas: #f4f7fa; 
+  --color-muted: #555555; 
+
+  --font-sans: "Montserrat", system-ui, sans-serif;
+}
+
+/* 3. YOUR CUSTOM UTILITIES */
+@layer utilities {
+  /* ── Native FOUC Prevention ── */
+  :not(:defined) { opacity: 0; visibility: hidden; }
+  .custom-scrollbar::-webkit-scrollbar { width: 8px; }
+  .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+  .custom-scrollbar::-webkit-scrollbar-thumb { background-color: #cbd5e1; border-radius: 20px; }
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover { background-color: var(--color-ucu-blue-dark); }
+
+  /* ── Unified Evidence Content Styling ── */
+  .ucu-prose-evidence h2 { 
+    color: var(--color-ucu-blue-dark); 
+    font-size: 1.35rem; 
+    font-weight: 900; 
+    margin-top: 2rem; 
+    margin-bottom: 0.75rem; 
+    letter-spacing: -0.02em; 
+    line-height: 1.2; 
+  }
+  .ucu-prose-evidence h3 { 
+    color: var(--color-ucu-red); 
+    font-size: 1.05rem; 
+    font-weight: 800; 
+    margin-top: 1.5rem; 
+    margin-bottom: 0.5rem; 
+  }
+  .ucu-prose-evidence img { 
+    border-radius: 0.75rem; 
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1); 
+    margin: 1.75rem auto; 
+    max-height: 300px; 
+    width: 100%; 
+    object-fit: cover; 
+    background-color: var(--color-canvas); 
+    padding: 0.2rem; 
+    cursor: zoom-in; 
+    display: block; 
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease; 
+  }
+  .ucu-prose-evidence img:hover { 
+    transform: translateY(-4px) scale(1.01); 
+    box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.15); 
+  }
+  .ucu-prose-evidence table { 
+    width: 100%; 
+    border-collapse: separate; 
+    border-spacing: 0; 
+    margin: 1.75rem 0; 
+    border-radius: 0.6rem; 
+    overflow: hidden; 
+    border: 1px solid #e5e7eb; 
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); 
+  }
+  .ucu-prose-evidence th { 
+    background-color: var(--color-ucu-blue-dark); 
+    color: var(--color-ucu-white); 
+    font-weight: 700; 
+    text-align: left; 
+    padding: 0.85rem; 
+    font-size: 0.75rem; 
+    text-transform: uppercase; 
+    letter-spacing: 0.1em; 
+  }
+  .ucu-prose-evidence td { 
+    padding: 0.75rem 0.85rem; 
+    border-top: 1px solid #e5e7eb; 
+    color: var(--color-muted); 
+    font-size: 0.82rem; 
+  }
+  .ucu-prose-evidence tr:hover td { 
+    background-color: #f8fafc; 
+  }
+
+  @keyframes pop-in {
+    0%   { opacity: 0; transform: scale(0.95) translateY(10px); }
+    100% { opacity: 1; transform: scale(1) translateY(0); }
+  }
+}
