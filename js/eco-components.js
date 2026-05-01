@@ -36,25 +36,34 @@ class UcuIndicatorLayout extends HTMLElement {
       `;
     }).join("");
 
-    // 2. Generate Evidence Cards dynamically
-    const cardsHtml = evidenceManifest.map(ev => `
+    // 2. Generate Evidence Cards dynamically (now passing data-sdgs)
+    const cardsHtml = evidenceManifest.map(ev => {
+      // Safely serialize the array or pass empty string if missing
+      const sdgsString = ev.relatedSdgs ? JSON.stringify(ev.relatedSdgs) : '';
+      return `
       <ucu-evidence-card 
         title="${ev.title}" 
         meta="UI GreenMetric" 
         img="${ev.img || base + 'images/smart-eco-assets/ui-green-seal.png'}" 
-        evidence-id="${ev.id}">
+        evidence-id="${ev.id}"
+        data-sdgs='${sdgsString}'>
       </ucu-evidence-card>
-    `).join("");
+      `;
+    }).join("");
 
-    // 3. Generate Modal Shells dynamically
-    const modalsHtml = evidenceManifest.map(ev => `
+    // 3. Generate Modal Shells dynamically (now passing data-sdgs)
+    const modalsHtml = evidenceManifest.map(ev => {
+      const sdgsString = ev.relatedSdgs ? JSON.stringify(ev.relatedSdgs) : '';
+      return `
       <ucu-modal-shell 
         modal-id="${ev.id}" 
         title="${ev.title}" 
         badge="${ev.badge}" 
-        content-src="${ev.src}">
+        content-src="${ev.src}"
+        data-sdgs='${sdgsString}'>
       </ucu-modal-shell>
-    `).join("");
+      `;
+    }).join("");
 
     this.innerHTML = `
       <div class="flex w-full flex-col items-center py-12 bg-canvas min-h-screen font-sans">
@@ -111,33 +120,58 @@ class UcuIndicatorLayout extends HTMLElement {
   }
 }
 
+// Replace this class in js/eco-components.js
+
 class UcuEvidenceCard extends HTMLElement {
   connectedCallback() {
     const title = this.getAttribute('title') || '';
     const meta = this.getAttribute('meta') || '';
     const img = this.getAttribute('img') || '';
     const evidenceId = this.getAttribute('evidence-id');
+    const sdgsData = this.getAttribute('data-sdgs'); 
+
+    let tagsHtml = '';
+
+    if (sdgsData && sdgsData !== '[]') {
+      try {
+        const sdgs = JSON.parse(sdgsData).sort((a, b) => a - b);
+        const SDG_COLORS = ['#E5243B', '#DDA63A', '#4C9F38', '#C5192D', '#FF3A21', '#26BDE2', '#FCC30B', '#A21942', '#FD6925', '#DD1367', '#FD9D24', '#BF8B2E', '#3F7E44', '#0A97D9', '#56C02B', '#00689D', '#19486A'];
+        
+        const tags = sdgs.map(num => `
+          <div class="flex items-center justify-center w-5 h-5 rounded-[3px] text-white text-[9px] font-black shadow-sm transition-transform hover:-translate-y-0.5 duration-300" style="background-color: ${SDG_COLORS[num-1] || '#24305e'};" title="SDG ${num}">
+            ${num}
+          </div>
+        `).join('');
+
+        // 2. EVIDENCE CARD POLISH: Added justify-end and pushed it to the bottom
+        tagsHtml = `
+          <div class="mt-auto pt-2 flex flex-wrap gap-1 justify-end w-full">
+            ${tags}
+          </div>
+        `;
+      } catch (e) {
+        console.error("Invalid SDG array on evidence card.");
+      }
+    }
 
     this.innerHTML = `
-      <button class="ucu-evidence-trigger group relative w-full text-left flex items-center gap-4 bg-white p-4 rounded-2xl border border-black/5 overflow-hidden transition-all duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] hover:bg-gray-50 hover:-translate-y-1 hover:translate-x-1 hover:shadow-[0_8px_20px_rgba(0,0,0,0.06)]">
+      <button class="ucu-evidence-trigger group relative w-full text-left flex items-stretch gap-4 bg-white p-4 rounded-2xl border border-black/5 overflow-hidden transition-all duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] hover:bg-gray-50 hover:-translate-y-1 hover:translate-x-1 hover:shadow-[0_8px_20px_rgba(0,0,0,0.06)]">
         <span class="absolute left-0 top-0 h-full w-[4px] bg-gradient-to-b from-ucu-blue-dark to-ucu-red origin-bottom scale-y-0 transition-transform duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-y-100"></span>
         <div class="h-[52px] w-[52px] shrink-0 overflow-hidden rounded-xl border-2 border-white shadow-[0_4px_10px_rgba(0,0,0,0.1)]">
           <img src="${img}" alt="${title} Documentation" loading="lazy" decoding="async" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110" />
         </div>
-        <div class="flex flex-col gap-1 overflow-hidden">
+        <div class="flex flex-col flex-1 overflow-hidden h-full">
           <span class="text-[0.8rem] font-extrabold leading-[1.3] tracking-[-0.01em] text-ucu-blue-dark transition-colors duration-300 group-hover:text-ucu-red line-clamp-2">${title}</span>
-          <span class="flex items-center gap-1.5 text-[0.65rem] font-bold uppercase tracking-[0.1em] text-muted whitespace-nowrap">
+          <span class="flex items-center gap-1.5 mt-1 text-[0.65rem] font-bold uppercase tracking-[0.1em] text-muted whitespace-nowrap">
             <span class="block h-1 w-1 shrink-0 rounded-full bg-ucu-red"></span>${meta}
           </span>
+          ${tagsHtml}
         </div>
       </button>
     `;
 
-    // 4. Update the URL instead of just opening the modal directly
     this.querySelector('.ucu-evidence-trigger').addEventListener('click', () => {
-      // Update the URL without reloading the page
       window.history.pushState({}, '', '?evidence=' + evidenceId);
-      // Manually trigger the popstate event so our router opens the modal
       window.dispatchEvent(new Event('popstate'));
     });
   }
