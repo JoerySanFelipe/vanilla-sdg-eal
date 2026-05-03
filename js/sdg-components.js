@@ -288,7 +288,7 @@ class UcuSdgLayout extends HTMLElement {
     if (this.hasRendered) return;
     this.hasRendered = true;
 
-    const narrativeContent = this.querySelector('[slot="narrative"]')?.innerHTML || "";
+    const narrativeContent = this.querySelector('[slot="description"]')?.innerHTML || "";
     const activeSdg = parseInt(this.getAttribute("sdg") || "1");
     const year = this.getAttribute("year") || "2025";
     

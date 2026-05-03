@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,32 +9,99 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   
-  <link rel="stylesheet" href="../css/style.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+      tailwind.config = {
+          theme: {
+              extend: {
+                  colors: {
+                      'ucu-blue': '#394a8a',
+                      'ucu-blue-dark': '#24305e',
+                      'ucu-yellow': '#fbef4b',
+                      'ucu-red': '#c43643',
+                      'canvas': '#f4f7fa',
+                      'muted': '#555555',
+                      'main2': '#1f1f1f',
+                  },
+                  fontFamily: { sans: ['Montserrat', 'sans-serif'] }
+              }
+          }
+      }
+  </script>
+
+  <style>
+    /* Base styles for the scroll reveal animation */
+    .reveal-on-scroll {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: opacity, transform;
+    }
+    .reveal-on-scroll.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+  
+  <!-- Critical Data & Modal Dependencies -->
+  <script src="../js/events-data.js" defer></script>
+  <script src="../js/modals.js" defer></script>
   <script src="../js/global-components.js" defer></script>
+  <link rel="stylesheet" href="../css/style.css"> <!-- For the modal animations -->
 </head>
 
 <body class="bg-canvas text-main2 font-sans antialiased min-h-screen flex flex-col relative z-0 overflow-x-hidden">
   
   <ucu-header base-path="../"></ucu-header>
 
+  <!-- Added reveal-on-scroll to the Hero Banner -->
   <ucu-hero-banner 
+    class="block w-full min-h-[320px] md:min-h-[360px] reveal-on-scroll"
     bg-color="bg-ucu-blue-dark" 
-    title="Impact & Events" 
-    subtitle="Documenting UCU's institutional milestones, community engagements, and sustainable development initiatives throughout 2025.">
+    eyebrow="News & Documentation"
+    headline="Impact & Events"
+    highlight="2025."
+    description="Documenting UCU's institutional milestones, community engagements, and sustainable development initiatives.">
   </ucu-hero-banner>
 
   <main class="w-full flex-grow relative z-10 flex flex-col bg-canvas">
+    <!-- Added reveal-on-scroll to the main content container -->
+    <div class="max-w-[1280px] w-full mx-auto px-4 sm:px-6 lg:px-8 relative z-20 pt-16 pb-24 flex-grow reveal-on-scroll" style="transition-delay: 200ms;">
+        
+        <!-- The Google News Asymmetric Engine -->
+        <ucu-impact-feed year="2025"></ucu-impact-feed>
 
-    <div class="max-w-[1280px] w-full mx-auto px-4 sm:px-6 lg:px-8 relative z-20 pt-12 flex-grow flex items-center justify-center min-h-[300px] border-2 border-dashed border-gray-300 rounded-3xl bg-white/50 backdrop-blur-sm mb-24">
-        <div class="text-center">
-            <h2 class="text-2xl font-black text-ucu-blue-dark uppercase tracking-tight mb-2">Event Architecture Pending</h2>
-            <p class="text-muted text-sm font-medium">Ready to receive the timeline and gallery components.</p>
-        </div>
     </div>
-
   </main>
 
-  <ucu-footer base-path="../"></ucu-footer>
+  <!-- Added reveal-on-scroll to the Footer -->
+  <ucu-footer base-path="../" class="reveal-on-scroll"></ucu-footer>
+
+  <!-- Scroll Animation Observer Script -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const revealElements = document.querySelectorAll(".reveal-on-scroll");
+
+      const revealObserver = new IntersectionObserver(
+        (entries, observer) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("is-visible");
+              // Optional: Stop observing once revealed if you only want the animation to happen once per page load
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        {
+          root: null,
+          rootMargin: "0px 0px -50px 0px", // Triggers slightly before the element fully enters the viewport
+          threshold: 0.1, // Triggers when 10% of the element is visible
+        }
+      );
+
+      revealElements.forEach((el) => revealObserver.observe(el));
+    });
+  </script>
 
 </body>
 </html>

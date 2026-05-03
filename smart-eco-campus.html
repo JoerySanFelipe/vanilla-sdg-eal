@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 
 <head>
   <meta charset="UTF-8">
@@ -11,31 +11,70 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap"
     rel="stylesheet">
 
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+      tailwind.config = {
+          theme: {
+              extend: {
+                  colors: {
+                      'ucu-blue': '#394a8a',
+                      'ucu-blue-dark': '#24305e',
+                      'ucu-yellow': '#fbef4b',
+                      'ucu-red': '#c43643',
+                      'ucu-white': '#ffffff',
+                      'dark-red': '#912020',
+                      'canvas': '#f4f7fa',
+                      'muted': '#555555',
+                      'main2': '#1f1f1f',
+                  },
+                  fontFamily: { sans: ['Montserrat', 'sans-serif'] }
+              }
+          }
+      }
+  </script>
+
   <link rel="stylesheet" href="./css/style.css">
+
+  <style>
+    /* Base styles for the standardized scroll reveal animation */
+    .reveal-on-scroll {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: opacity, transform;
+    }
+    .reveal-on-scroll.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
 
   <script src="./js/global-components.js" defer></script>
 </head>
 
-<body class="bg-canvas text-main2 font-sans antialiased min-h-screen flex flex-col relative z-0">
+<body class="bg-canvas text-muted font-sans antialiased min-h-screen flex flex-col relative z-0">
 
   <ucu-header base-path="./"></ucu-header>
 
-  <ucu-hero-banner bg-color="bg-ucu-blue-dark" eyebrow="Innovation Powered by Sustainability" headline="Smart Eco"
+  <ucu-hero-banner 
+    class="block w-full min-h-[320px] md:min-h-[360px] reveal-on-scroll"
+    bg-color="bg-ucu-blue-dark" 
+    eyebrow="Innovation Powered by Sustainability" 
+    headline="Smart Eco"
     highlight="Campus"
     description="Creating a campus where innovation, sustainability, and responsible growth work together to elevate institutional performance and environmental impact.">
   </ucu-hero-banner>
-  <!-- carousel='["Pioneering Green Technology", "Ranked #1 in Water Management", "Harmony Between Science and Nature"]' -->
+
   <main class="w-full flex-grow relative z-10 flex flex-col bg-canvas">
 
-    <section
-      class="max-w-[1280px] w-full mx-auto px-4 sm:px-6 lg:px-8 relative z-20 pt-12 mb-24 reveal opacity-0 translate-y-8 transition-all duration-[800ms] ease-[cubic-bezier(0.16,1,0.3,1)] delay-100">
+    <section class="max-w-[1280px] w-full mx-auto px-4 sm:px-6 lg:px-8 relative z-20 pt-12 mb-24 reveal-on-scroll" style="transition-delay: 100ms;">
 
       <section class="metrics-section">
         <div class="mb-12 grid grid-cols-1 items-start gap-8 lg:grid-cols-2 lg:gap-12">
 
-          <div class="reveal translate-y-8 opacity-0 transition-all duration-[800ms] ease-out">
-            <div
-              class="relative mx-auto aspect-[3/4] w-full max-w-lg overflow-hidden rounded-xl bg-canvas shadow-md lg:aspect-[4/5] lg:max-w-none">
+          <!-- Left Column Image Slider with Scroll Reveal -->
+          <div class="reveal-on-scroll" style="transition-delay: 200ms;">
+            <div class="relative mx-auto aspect-[3/4] w-full max-w-lg overflow-hidden rounded-xl bg-canvas shadow-md lg:aspect-[4/5] lg:max-w-none">
               <img src="./images/smart-eco-assets/ui-gm2.jpg" alt="UI GreenMetric Award" loading="lazy"
                 class="slider-img absolute inset-0 h-full w-full object-contain p-2 opacity-100 transition-opacity duration-1000 ease-in-out" />
               <img src="./images/smart-eco-assets/ui-gm.jpg" alt="UI GreenMetric Metrics" loading="lazy"
@@ -43,24 +82,21 @@
             </div>
           </div>
 
-          <div class="reveal translate-y-8 opacity-0 transition-all duration-[800ms] ease-out">
+          <!-- Right Column Text with Staggered Scroll Reveal -->
+          <div class="reveal-on-scroll ucu-prose-narrative" style="transition-delay: 300ms;">
             <h3 class="mb-1.5 text-xs font-bold uppercase tracking-[0.15rem] text-ucu-red">Global Recognition</h3>
-            <h2 class="mb-5 text-3xl font-extrabold leading-tight text-ucu-blue-dark md:text-4xl">An Academic Milestone
-            </h2>
-            <p class="mb-3 text-lg font-medium leading-relaxed text-muted">
-              The UI GreenMetric World University Rankings evaluates green campuses and environmental sustainability
-              across 39 indicators in 6 criteria.
+            <h2 class="mb-5 text-3xl font-extrabold leading-tight text-ucu-blue-dark md:text-4xl">An Academic Milestone</h2>
+            <p>The UI GreenMetric World University Rankings evaluates green campuses and environmental sustainability
+              across 39 indicators in 6 criteria.</p>
+            <p>As a first try for UCU in this global ranking, it is an academic milestone worthy of celebration.</p>
+            <p style="color: var(--color-ucu-red); font-weight: 500; font-style: italic;">
+              Congratulations, UCUians! Mabuhay ang Unibersidad ng Urdaneta!
             </p>
-            <p class="mb-3 text-lg font-medium leading-relaxed text-muted">
-              As a first try for UCU in this global ranking, it is an academic milestone worthy of celebration.
-            </p>
-            <p class="mb-3 text-lg font-medium leading-relaxed text-ucu-red">
-              Congratulations, UCUians! Mabuhay ang Unibersidad ng Urdaneta!</p>
           </div>
         </div>
 
-        <div
-          class="reveal w-full translate-y-8 rounded-2xl bg-white/60 px-5 py-12 opacity-0 shadow-lg border border-white/50 transition-all duration-[800ms] ease-out md:px-6 lg:px-10">
+        <!-- Metrics Grid Container with Scroll Reveal -->
+        <div class="w-full rounded-2xl bg-white/60 px-5 py-12 shadow-lg border border-white/50 md:px-6 lg:px-10 reveal-on-scroll" style="transition-delay: 200ms;">
           <h4 class="mb-8 text-center text-base font-semibold uppercase tracking-widest text-muted">
             Out of 1,477 universities worldwide in 2025, WE ARE:
           </h4>
@@ -69,55 +105,47 @@
 
             <div
               class="group relative flex flex-col items-center justify-center overflow-hidden rounded-2xl border-2 border-ucu-yellow/30 bg-ucu-blue-dark p-8 text-center shadow-sm transition-all duration-[400ms] ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-2 hover:shadow-xl md:col-span-2 lg:col-span-1 lg:row-span-2 lg:p-10">
-              <span
-                class="mb-3 bg-gradient-to-br from-ucu-yellow to-[#d4c51e] bg-clip-text text-6xl font-extrabold leading-none text-transparent md:text-7xl">#1</span>
+              <span class="mb-3 bg-gradient-to-br from-ucu-yellow to-[#d4c51e] bg-clip-text text-6xl font-extrabold leading-none text-ucu-yellow md:text-7xl">#1</span>
               <span class="text-base font-bold uppercase tracking-wide text-white">Local Universities & Colleges (LUC)
                 in the Philippines</span>
             </div>
 
-            <div
-              class="group relative flex flex-col justify-center overflow-hidden rounded-2xl border border-black/5 bg-white p-6 shadow-sm transition-all duration-[400ms] ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-2 hover:shadow-lg">
+            <div class="group relative flex flex-col justify-center overflow-hidden rounded-2xl border border-black/5 bg-white p-6 shadow-sm transition-all duration-[400ms] ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-2 hover:shadow-lg">
               <span class="mb-1.5 text-4xl font-extrabold leading-none text-ucu-red">#1</span>
-              <span class="text-xs font-semibold uppercase leading-snug text-muted">HEI in Water Management
-                Category</span>
+              <span class="text-xs font-semibold uppercase leading-snug text-muted">HEI in Water Management Category</span>
             </div>
 
-            <div
-              class="group relative flex flex-col justify-center overflow-hidden rounded-2xl border border-black/5 bg-white p-6 shadow-sm transition-all duration-[400ms] ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-2 hover:shadow-lg">
+            <div class="group relative flex flex-col justify-center overflow-hidden rounded-2xl border border-black/5 bg-white p-6 shadow-sm transition-all duration-[400ms] ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-2 hover:shadow-lg">
               <span class="mb-1.5 text-4xl font-extrabold leading-none text-ucu-red">#1</span>
               <span class="text-xs font-semibold uppercase leading-snug text-muted">in the Province of Pangasinan</span>
             </div>
 
-            <div
-              class="group relative flex flex-col justify-center overflow-hidden rounded-2xl border border-black/5 bg-white p-6 shadow-sm transition-all duration-[400ms] ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-2 hover:shadow-lg">
+            <div class="group relative flex flex-col justify-center overflow-hidden rounded-2xl border border-black/5 bg-white p-6 shadow-sm transition-all duration-[400ms] ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-2 hover:shadow-lg">
               <span class="mb-1.5 text-4xl font-extrabold leading-none text-ucu-red">#3</span>
-              <span class="text-xs font-semibold uppercase leading-snug ttext-muted">in Region 1</span>
+              <span class="text-xs font-semibold uppercase leading-snug text-muted">in Region 1</span>
             </div>
 
-            <div
-              class="group relative flex flex-col justify-center overflow-hidden rounded-2xl border border-black/5 bg-white p-6 shadow-sm transition-all duration-[400ms] ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-2 hover:shadow-lg">
+            <div class="group relative flex flex-col justify-center overflow-hidden rounded-2xl border border-black/5 bg-white p-6 shadow-sm transition-all duration-[400ms] ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-2 hover:shadow-lg">
               <span class="mb-1.5 text-4xl font-extrabold leading-none text-ucu-red">#8</span>
               <span class="text-xs font-semibold uppercase leading-snug text-muted">in the Entire Philippines</span>
             </div>
 
-            <div
-              class="group relative flex flex-col justify-center overflow-hidden rounded-2xl border border-black/5 bg-white p-6 shadow-sm transition-all duration-[400ms] ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-2 hover:shadow-lg">
+            <div class="group relative flex flex-col justify-center overflow-hidden rounded-2xl border border-black/5 bg-white p-6 shadow-sm transition-all duration-[400ms] ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-2 hover:shadow-lg">
               <span class="mb-1.5 text-4xl font-extrabold leading-none text-ucu-red">#189</span>
               <span class="text-xs font-semibold uppercase leading-snug text-muted">in Asia</span>
             </div>
 
-            <div
-              class="group relative flex flex-col justify-center overflow-hidden rounded-2xl border border-black/5 bg-ucu-red p-6 shadow-sm transition-all duration-[400ms] ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-2 hover:shadow-lg">
+            <div class="group relative flex flex-col justify-center overflow-hidden rounded-2xl border border-black/5 bg-ucu-red p-6 shadow-sm transition-all duration-[400ms] ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-2 hover:shadow-lg">
               <span class="mb-1.5 text-4xl font-extrabold leading-none text-white">#361</span>
-              <span class="text-xs font-extrabold uppercase leading-snug tracking-wide text-ucu-yellow">IN THE
-                WORLD</span>
+              <span class="text-xs font-extrabold uppercase leading-snug tracking-wide text-ucu-yellow">IN THE WORLD</span>
             </div>
 
           </div>
         </div>
       </section>
 
-      <section class="reveal mt-12 translate-y-8 opacity-0 transition-all duration-[800ms] ease-out">
+      <!-- Interactive Gallery with Scroll Reveal -->
+      <section class="mt-12 reveal-on-scroll" style="transition-delay: 200ms;">
         <h2 class="mb-10 text-center text-3xl font-extrabold tracking-widest text-ucu-red">
           SUSTAINABILITY INDICATORS
         </h2>
@@ -129,12 +157,9 @@
             <img src="./images/smart-eco-assets/setting_and_infrastructure.jpg" alt="Setting and Infrastructure Pillar"
               loading="lazy"
               class="h-full w-full scale-100 object-cover opacity-60 transition-all duration-[600ms] group-hover:scale-105 group-hover:opacity-100 group-focus-within:scale-105 group-focus-within:opacity-100" />
-            <div
-              class="pointer-events-none absolute inset-0 flex items-end bg-gradient-to-t from-black/90 via-black/30 to-transparent p-5">
-              <span
-                class="absolute left-5 top-5 z-10 rounded-md bg-black/40 px-2.5 py-1 text-base font-extrabold text-ucu-yellow backdrop-blur-sm">01</span>
-              <h4
-                class="z-10 translate-x-4 whitespace-nowrap text-xl md:text-2xl font-bold text-white opacity-0 transition-all duration-[400ms] delay-100 group-hover:translate-x-0 group-hover:opacity-100 group-focus-within:translate-x-0 group-focus-within:opacity-100">
+            <div class="pointer-events-none absolute inset-0 flex items-end bg-gradient-to-t from-black/90 via-black/30 to-transparent p-5">
+              <span class="absolute left-5 top-5 z-10 rounded-md bg-black/40 px-2.5 py-1 text-base font-extrabold text-ucu-yellow backdrop-blur-sm">01</span>
+              <h4 class="z-10 translate-x-4 whitespace-nowrap text-xl md:text-2xl font-bold text-white opacity-0 transition-all duration-[400ms] delay-100 group-hover:translate-x-0 group-hover:opacity-100 group-focus-within:translate-x-0 group-focus-within:opacity-100">
                 Setting and Infrastructure</h4>
             </div>
           </a>
@@ -144,12 +169,9 @@
             <img src="./images/smart-eco-assets/energy_and_climate_change.jpg" alt="Energy and Climate Change Pillar"
               loading="lazy"
               class="h-full w-full scale-100 object-cover opacity-60 transition-all duration-[600ms] group-hover:scale-105 group-hover:opacity-100 group-focus-within:scale-105 group-focus-within:opacity-100" />
-            <div
-              class="pointer-events-none absolute inset-0 flex items-end bg-gradient-to-t from-black/90 via-black/30 to-transparent p-5">
-              <span
-                class="absolute left-5 top-5 z-10 rounded-md bg-black/40 px-2.5 py-1 text-base font-extrabold text-ucu-yellow backdrop-blur-sm">02</span>
-              <h4
-                class="z-10 translate-x-4 whitespace-nowrap text-xl md:text-2xl font-bold text-white opacity-0 transition-all duration-[400ms] delay-100 group-hover:translate-x-0 group-hover:opacity-100 group-focus-within:translate-x-0 group-focus-within:opacity-100">
+            <div class="pointer-events-none absolute inset-0 flex items-end bg-gradient-to-t from-black/90 via-black/30 to-transparent p-5">
+              <span class="absolute left-5 top-5 z-10 rounded-md bg-black/40 px-2.5 py-1 text-base font-extrabold text-ucu-yellow backdrop-blur-sm">02</span>
+              <h4 class="z-10 translate-x-4 whitespace-nowrap text-xl md:text-2xl font-bold text-white opacity-0 transition-all duration-[400ms] delay-100 group-hover:translate-x-0 group-hover:opacity-100 group-focus-within:translate-x-0 group-focus-within:opacity-100">
                 Energy and Climate Change</h4>
             </div>
           </a>
@@ -158,12 +180,9 @@
             class="group relative flex-1 cursor-pointer overflow-hidden rounded-2xl transition-all duration-[600ms] ease-[cubic-bezier(0.16,1,0.3,1)] hover:flex-[6_1_0%] focus-within:flex-[6_1_0%] bg-black">
             <img src="./images/smart-eco-assets/waste.jpg" alt="Waste Pillar" loading="lazy"
               class="h-full w-full scale-100 object-cover opacity-60 transition-all duration-[600ms] group-hover:scale-105 group-hover:opacity-100 group-focus-within:scale-105 group-focus-within:opacity-100" />
-            <div
-              class="pointer-events-none absolute inset-0 flex items-end bg-gradient-to-t from-black/90 via-black/30 to-transparent p-5">
-              <span
-                class="absolute left-5 top-5 z-10 rounded-md bg-black/40 px-2.5 py-1 text-base font-extrabold text-ucu-yellow backdrop-blur-sm">03</span>
-              <h4
-                class="z-10 translate-x-4 whitespace-nowrap text-xl md:text-2xl font-bold text-white opacity-0 transition-all duration-[400ms] delay-100 group-hover:translate-x-0 group-hover:opacity-100 group-focus-within:translate-x-0 group-focus-within:opacity-100">
+            <div class="pointer-events-none absolute inset-0 flex items-end bg-gradient-to-t from-black/90 via-black/30 to-transparent p-5">
+              <span class="absolute left-5 top-5 z-10 rounded-md bg-black/40 px-2.5 py-1 text-base font-extrabold text-ucu-yellow backdrop-blur-sm">03</span>
+              <h4 class="z-10 translate-x-4 whitespace-nowrap text-xl md:text-2xl font-bold text-white opacity-0 transition-all duration-[400ms] delay-100 group-hover:translate-x-0 group-hover:opacity-100 group-focus-within:translate-x-0 group-focus-within:opacity-100">
                 Waste</h4>
             </div>
           </a>
@@ -172,12 +191,9 @@
             class="group relative flex-1 cursor-pointer overflow-hidden rounded-2xl transition-all duration-[600ms] ease-[cubic-bezier(0.16,1,0.3,1)] hover:flex-[6_1_0%] focus-within:flex-[6_1_0%] bg-black">
             <img src="./images/smart-eco-assets/water.jpg" alt="Water Pillar" loading="lazy"
               class="h-full w-full scale-100 object-cover opacity-60 transition-all duration-[600ms] group-hover:scale-105 group-hover:opacity-100 group-focus-within:scale-105 group-focus-within:opacity-100" />
-            <div
-              class="pointer-events-none absolute inset-0 flex items-end bg-gradient-to-t from-black/90 via-black/30 to-transparent p-5">
-              <span
-                class="absolute left-5 top-5 z-10 rounded-md bg-black/40 px-2.5 py-1 text-base font-extrabold text-ucu-yellow backdrop-blur-sm">04</span>
-              <h4
-                class="z-10 translate-x-4 whitespace-nowrap text-xl md:text-2xl font-bold text-white opacity-0 transition-all duration-[400ms] delay-100 group-hover:translate-x-0 group-hover:opacity-100 group-focus-within:translate-x-0 group-focus-within:opacity-100">
+            <div class="pointer-events-none absolute inset-0 flex items-end bg-gradient-to-t from-black/90 via-black/30 to-transparent p-5">
+              <span class="absolute left-5 top-5 z-10 rounded-md bg-black/40 px-2.5 py-1 text-base font-extrabold text-ucu-yellow backdrop-blur-sm">04</span>
+              <h4 class="z-10 translate-x-4 whitespace-nowrap text-xl md:text-2xl font-bold text-white opacity-0 transition-all duration-[400ms] delay-100 group-hover:translate-x-0 group-hover:opacity-100 group-focus-within:translate-x-0 group-focus-within:opacity-100">
                 Water</h4>
             </div>
           </a>
@@ -186,12 +202,9 @@
             class="group relative flex-1 cursor-pointer overflow-hidden rounded-2xl transition-all duration-[600ms] ease-[cubic-bezier(0.16,1,0.3,1)] hover:flex-[6_1_0%] focus-within:flex-[6_1_0%] bg-black">
             <img src="./images/smart-eco-assets/transportation.jpg" alt="Transportation Pillar" loading="lazy"
               class="h-full w-full scale-100 object-cover opacity-60 transition-all duration-[600ms] group-hover:scale-105 group-hover:opacity-100 group-focus-within:scale-105 group-focus-within:opacity-100" />
-            <div
-              class="pointer-events-none absolute inset-0 flex items-end bg-gradient-to-t from-black/90 via-black/30 to-transparent p-5">
-              <span
-                class="absolute left-5 top-5 z-10 rounded-md bg-black/40 px-2.5 py-1 text-base font-extrabold text-ucu-yellow backdrop-blur-sm">05</span>
-              <h4
-                class="z-10 translate-x-4 whitespace-nowrap text-xl md:text-2xl font-bold text-white opacity-0 transition-all duration-[400ms] delay-100 group-hover:translate-x-0 group-hover:opacity-100 group-focus-within:translate-x-0 group-focus-within:opacity-100">
+            <div class="pointer-events-none absolute inset-0 flex items-end bg-gradient-to-t from-black/90 via-black/30 to-transparent p-5">
+              <span class="absolute left-5 top-5 z-10 rounded-md bg-black/40 px-2.5 py-1 text-base font-extrabold text-ucu-yellow backdrop-blur-sm">05</span>
+              <h4 class="z-10 translate-x-4 whitespace-nowrap text-xl md:text-2xl font-bold text-white opacity-0 transition-all duration-[400ms] delay-100 group-hover:translate-x-0 group-hover:opacity-100 group-focus-within:translate-x-0 group-focus-within:opacity-100">
                 Transportation</h4>
             </div>
           </a>
@@ -201,12 +214,9 @@
             <img src="./images/smart-eco-assets/education_and_research.jpg" alt="Education and Research Pillar"
               loading="lazy"
               class="h-full w-full scale-100 object-cover opacity-60 transition-all duration-[600ms] group-hover:scale-105 group-hover:opacity-100 group-focus-within:scale-105 group-focus-within:opacity-100" />
-            <div
-              class="pointer-events-none absolute inset-0 flex items-end bg-gradient-to-t from-black/90 via-black/30 to-transparent p-5">
-              <span
-                class="absolute left-5 top-5 z-10 rounded-md bg-black/40 px-2.5 py-1 text-base font-extrabold text-ucu-yellow backdrop-blur-sm">06</span>
-              <h4
-                class="z-10 translate-x-4 whitespace-nowrap text-xl md:text-2xl font-bold text-white opacity-0 transition-all duration-[400ms] delay-100 group-hover:translate-x-0 group-hover:opacity-100 group-focus-within:translate-x-0 group-focus-within:opacity-100">
+            <div class="pointer-events-none absolute inset-0 flex items-end bg-gradient-to-t from-black/90 via-black/30 to-transparent p-5">
+              <span class="absolute left-5 top-5 z-10 rounded-md bg-black/40 px-2.5 py-1 text-base font-extrabold text-ucu-yellow backdrop-blur-sm">06</span>
+              <h4 class="z-10 translate-x-4 whitespace-nowrap text-xl md:text-2xl font-bold text-white opacity-0 transition-all duration-[400ms] delay-100 group-hover:translate-x-0 group-hover:opacity-100 group-focus-within:translate-x-0 group-focus-within:opacity-100">
                 Education and Research</h4>
             </div>
           </a>
@@ -215,20 +225,17 @@
             class="group relative flex-1 cursor-pointer overflow-hidden rounded-2xl transition-all duration-[600ms] ease-[cubic-bezier(0.16,1,0.3,1)] hover:flex-[6_1_0%] focus-within:flex-[6_1_0%] bg-black">
             <img src="./images/smart-eco-assets/digitalization.jpg" alt="Digitalization Pillar" loading="lazy"
               class="h-full w-full scale-100 object-cover opacity-60 transition-all duration-[600ms] group-hover:scale-105 group-hover:opacity-100 group-focus-within:scale-105 group-focus-within:opacity-100" />
-            <div
-              class="pointer-events-none absolute inset-0 flex items-end bg-gradient-to-t from-black/90 via-black/30 to-transparent p-5">
-              <span
-                class="absolute left-5 top-5 z-10 rounded-md bg-black/40 px-2.5 py-1 text-base font-extrabold text-ucu-yellow backdrop-blur-sm">07</span>
-              <h4
-                class="z-10 translate-x-4 whitespace-nowrap text-xl md:text-2xl font-bold text-white opacity-0 transition-all duration-[400ms] delay-100 group-hover:translate-x-0 group-hover:opacity-100 group-focus-within:translate-x-0 group-focus-within:opacity-100">
+            <div class="pointer-events-none absolute inset-0 flex items-end bg-gradient-to-t from-black/90 via-black/30 to-transparent p-5">
+              <span class="absolute left-5 top-5 z-10 rounded-md bg-black/40 px-2.5 py-1 text-base font-extrabold text-ucu-yellow backdrop-blur-sm">07</span>
+              <h4 class="z-10 translate-x-4 whitespace-nowrap text-xl md:text-2xl font-bold text-white opacity-0 transition-all duration-[400ms] delay-100 group-hover:translate-x-0 group-hover:opacity-100 group-focus-within:translate-x-0 group-focus-within:opacity-100">
                 Digitalization</h4>
             </div>
           </a>
 
         </div>
 
-        <div class="mt-10 w-full text-left">
-          <p class="mb-3 text-lg font-medium leading-relaxed text-muted">
+        <div class="mt-10 w-full text-left ucu-prose-narrative full-width reveal-on-scroll" style="transition-delay: 300ms;">
+          <p>
             These seven sustainability indicators form the strategic framework of Urdaneta City University’s Smart Eco
             Campus initiative. By aggressively aligning our institutional metrics with global environmental
             standards—such as the UI GreenMetric framework—we do more than cultivate a green learning environment. We
@@ -238,28 +245,35 @@
         </div>
       </section>
 
-      </div>
+    </section>
   </main>
 
-  <ucu-footer base-path="./"></ucu-footer>
+  <ucu-footer base-path="./" class="reveal-on-scroll"></ucu-footer>
 
   <script>
     document.addEventListener("DOMContentLoaded", () => {
-      // 1. Intersection Observer for Scroll Reveals
-      const revealTargets = document.querySelectorAll(".reveal");
-      if (revealTargets.length > 0) {
-        const observer = new IntersectionObserver((entries) => {
+      // 1. Standardized Intersection Observer for Scroll Reveals
+      const revealElements = document.querySelectorAll(".reveal-on-scroll");
+
+      const revealObserver = new IntersectionObserver(
+        (entries, observer) => {
           entries.forEach((entry) => {
             if (entry.isIntersecting) {
-              entry.target.classList.remove("opacity-0", "translate-y-8");
+              entry.target.classList.add("is-visible");
               observer.unobserve(entry.target);
             }
           });
-        }, { threshold: 0.15, rootMargin: "0px 0px -50px 0px" });
-        revealTargets.forEach((el) => observer.observe(el));
-      }
+        },
+        {
+          root: null,
+          rootMargin: "0px 0px -50px 0px",
+          threshold: 0.1, 
+        }
+      );
 
-      // 2. UI GreenMetric Image Crossfade
+      revealElements.forEach((el) => revealObserver.observe(el));
+
+      // 2. UI GreenMetric Image Crossfade (Preserved)
       const sliderImages = document.querySelectorAll(".slider-img");
       if (sliderImages.length > 1) {
         let currentSlide = 0;

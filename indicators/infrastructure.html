@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -14,6 +14,20 @@
 
     <link rel="stylesheet" href="../css/style.css" />
 
+    <style>
+      /* Base styles for the standardized scroll reveal animation */
+      .reveal-on-scroll {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        will-change: opacity, transform;
+      }
+      .reveal-on-scroll.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    </style>
+
     <!-- Scripts ordered correctly -->
     <script src="../js/global-components.js" defer></script>
     <script src="../js/metric-cards.js" defer></script>
@@ -22,13 +36,14 @@
   </head>
 
   <body
-    class="bg-canvas text-main2 font-sans antialiased min-h-screen flex flex-col relative z-0"
+    class="bg-canvas text-muted font-sans antialiased min-h-screen flex flex-col relative z-0"
   >
     <ucu-header base-path="../"></ucu-header>
 
     <main class="w-full flex-grow relative z-10 flex flex-col">
-      <!-- THE JSON MANIFEST IS PLACED HERE -->
+      <!-- Added reveal-on-scroll to the Indicator Layout component -->
 <ucu-indicator-layout 
+      class="block reveal-on-scroll" style="transition-delay: 100ms;"
       active-num="01" 
       pillar-title="Setting & Infrastructure" 
       base-path="../"
@@ -57,8 +72,9 @@
       ]'
     >
         <!-- MAIN DESCRIPTION CONTENT -->
-        <div slot="description">
+        <div slot="description" class="flex flex-col gap-2">
           <ucu-metric-cards
+            class="block w-full"
             data-metrics='[
           {"value": "3", "label": "Campus Sites", "theme": "navy", "svgIcon": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"28\" height=\"28\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z\"/><circle cx=\"12\" cy=\"10\" r=\"3\"/></svg>"},
           {"value": "8.5", "label": "Hectares Total Area", "theme": "red", "svgIcon": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"28\" height=\"28\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M15 3h6v6\"/><path d=\"M9 21H3v-6\"/><path d=\"M21 3l-7 7\"/><path d=\"M3 21l7-7\"/></svg>"},
@@ -66,36 +82,65 @@
         ]'
           ></ucu-metric-cards>
 
-          <p class="mb-3 text-lg font-medium leading-relaxed text-muted">
-            Urdaneta City University (UCU) remains steadfast in its commitment
-            to campus greenery, ensuring that the physical development of the
-            institution harmonizes with the natural environment. By maintaining
-            extensive open spaces and preserving the local ecosystem, the
-            university creates a conducive atmosphere for learning while
-            actively expanding its facilities to meet the needs of a growing
-            academic community.
-          </p>
-          <p class="mb-3 text-lg font-medium leading-relaxed text-muted">
-            The university prioritizes sustainability through energy-efficient
-            building designs and the integration of smart architecture. These
-            initiatives are specifically aimed at reducing the campus's spatial
-            footprint and minimizing environmental impact. Each new
-            infrastructure project is evaluated for its ecological contribution,
-            ensuring that modern facilities do not come at the expense of
-            environmental integrity.
-          </p>
-          <p class="mb-3 text-lg font-medium leading-relaxed text-muted">
-            Through "Forest Campus" initiatives, UCU continues to increase its
-            total area covered in vegetation. The university rigorously monitors
-            its green spaces, recognizing them as vital components of a
-            sustainable campus. This proactive approach to land use management
-            ensures that UCU remains a leader in environmental stewardship
-            within the region.
-          </p>
+          <div class="ucu-prose-narrative mt-6">
+            <p>
+              Urdaneta City University (UCU) remains steadfast in its commitment
+              to campus greenery, ensuring that the physical development of the
+              institution harmonizes with the natural environment. By maintaining
+              extensive open spaces and preserving the local ecosystem, the
+              university creates a conducive atmosphere for learning while
+              actively expanding its facilities to meet the needs of a growing
+              academic community.
+            </p>
+            <p>
+              The university prioritizes sustainability through energy-efficient
+              building designs and the integration of smart architecture. These
+              initiatives are specifically aimed at reducing the campus's spatial
+              footprint and minimizing environmental impact. Each new
+              infrastructure project is evaluated for its ecological contribution,
+              ensuring that modern facilities do not come at the expense of
+              environmental integrity.
+            </p>
+            <p>
+              Through "Forest Campus" initiatives, UCU continues to increase its
+              total area covered in vegetation. The university rigorously monitors
+              its green spaces, recognizing them as vital components of a
+              sustainable campus. This proactive approach to land use management
+              ensures that UCU remains a leader in environmental stewardship
+              within the region.
+            </p>
+          </div>
         </div>
       </ucu-indicator-layout>
     </main>
 
-    <ucu-footer base-path="../"></ucu-footer>
+    <!-- Added reveal-on-scroll to the Footer -->
+    <ucu-footer base-path="../" class="reveal-on-scroll"></ucu-footer>
+
+    <!-- Scroll Animation Observer Script -->
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const revealElements = document.querySelectorAll(".reveal-on-scroll");
+
+        const revealObserver = new IntersectionObserver(
+          (entries, observer) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("is-visible");
+                // Optional: Stop observing once revealed
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          {
+            root: null,
+            rootMargin: "0px 0px -50px 0px", // Triggers slightly before the element fully enters the viewport
+            threshold: 0.1, // Triggers when 10% of the element is visible
+          }
+        );
+
+        revealElements.forEach((el) => revealObserver.observe(el));
+      });
+    </script>
   </body>
 </html>

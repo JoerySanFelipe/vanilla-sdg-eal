@@ -1,17 +1,19 @@
 // js/modals.js
 
 class UcuModalShell extends HTMLElement {
-  async connectedCallback() {
+  connectedCallback() {
     if (this.hasRendered) return;
     this.hasRendered = true;
     
-    const id = this.getAttribute('modal-id'); 
+    this.modalId = this.getAttribute('modal-id'); 
     const title = this.getAttribute('title');
     const badge = this.getAttribute('badge');
-    const contentSrc = this.getAttribute('content-src');
+    this.contentSrc = this.getAttribute('content-src');
     const sdgsData = this.getAttribute('data-sdgs'); 
     
-    let contentHtml = this.innerHTML; 
+    // NEW: Track if the content has been fetched to prevent duplicate network calls
+    this.isLoaded = false; 
+    
     let footerHtml = '';
 
     if (sdgsData && sdgsData !== '[]') {
@@ -35,7 +37,7 @@ class UcuModalShell extends HTMLElement {
     }
 
     this.innerHTML = `
-      <dialog id="modal-${id}" class="main-evidence-modal backdrop:bg-black/40 backdrop:backdrop-blur-sm bg-transparent w-full max-w-5xl m-auto p-0 rounded-3xl shadow-2xl open:animate-[pop-in_0.3s_ease-out_forwards]">
+      <dialog id="modal-${this.modalId}" class="main-evidence-modal backdrop:bg-black/40 backdrop:backdrop-blur-sm bg-transparent w-full max-w-3xl m-auto p-0 rounded-3xl shadow-2xl open:animate-[pop-in_0.3s_ease-out_forwards]">
         <div class="bg-white rounded-3xl overflow-hidden flex flex-col max-h-[90vh] w-full relative">
           <header class="flex items-start justify-between px-6 py-4 border-b border-black/5 sticky top-0 z-20 bg-white/90">
             <div class="flex flex-col gap-2">
@@ -57,37 +59,46 @@ class UcuModalShell extends HTMLElement {
             </form>
           </header>
           <article class="p-6 md:p-8 overflow-y-auto custom-scrollbar flex-1 min-h-0">
-            <div class="ucu-prose-evidence evidence-content-container">
-              <!-- Content injected here -->
-            </div>
+            <!-- Content is injected here dynamically ONLY when opened -->
+            <div class="ucu-prose-evidence evidence-content-container flex flex-col"></div>
           </article>
           ${footerHtml}
         </div>
       </dialog>
       
-      <dialog id="lightbox-${id}" class="lightbox-dialog backdrop:bg-black/90 backdrop:backdrop-blur-sm bg-transparent border-0 p-0 m-auto max-w-[95vw] max-h-[95vh] cursor-zoom-out shadow-2xl open:animate-[pop-in_0.2s_ease-out_forwards]">
+      <dialog id="lightbox-${this.modalId}" class="lightbox-dialog backdrop:bg-black/90 backdrop:backdrop-blur-sm bg-transparent border-0 p-0 m-auto max-w-[95vw] max-h-[95vh] cursor-zoom-out shadow-2xl open:animate-[pop-in_0.2s_ease-out_forwards]">
         <img src="" alt="Expanded Media View" class="lightbox-img w-auto h-auto max-w-[95vw] max-h-[95vh] object-contain rounded-xl" />
       </dialog>
     `;
 
+    setTimeout(() => this.initEvents(this.modalId), 50);
+  }
+
+  // NEW: Dedicated fetch method called by the router
+  async loadContent() {
+    if (this.isLoaded || !this.contentSrc) return;
+
     const container = this.querySelector('.evidence-content-container');
+    
+    // Show a sleek loading spinner while fetching
+    container.innerHTML = `
+      <div class="w-full flex flex-col items-center justify-center py-16 gap-4">
+        <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-ucu-blue-dark"></div>
+        <p class="text-xs font-bold text-muted uppercase tracking-widest">Loading Document...</p>
+      </div>
+    `;
 
-    if (contentSrc) {
-      container.innerHTML = `<p class="text-muted font-medium text-sm animate-pulse">Loading document...</p>`;
-      try {
-        const response = await fetch(contentSrc);
-        if (response.ok) {
-          contentHtml = await response.text();
-        } else {
-          contentHtml = `<p class="text-ucu-red font-bold">Failed to load documentation (HTTP ${response.status}).</p>`;
-        }
-      } catch (error) {
-        contentHtml = `<p class="text-ucu-red font-bold">Fetch Error. Local server required.</p>`;
+    try {
+      const response = await fetch(this.contentSrc);
+      if (response.ok) {
+        container.innerHTML = await response.text();
+        this.isLoaded = true; // Mark as loaded so it never fetches again
+      } else {
+        container.innerHTML = `<p class="text-ucu-red font-bold">Failed to load documentation (HTTP ${response.status}).</p>`;
       }
+    } catch (error) {
+      container.innerHTML = `<p class="text-ucu-red font-bold">Fetch Error. Local server required.</p>`;
     }
-
-    container.innerHTML = contentHtml;
-    setTimeout(() => this.initEvents(id), 50);
   }
 
   initEvents(id) {
@@ -95,21 +106,20 @@ class UcuModalShell extends HTMLElement {
     const lightbox = document.getElementById(`lightbox-${id}`);
     const lightboxImg = lightbox.querySelector('.lightbox-img');
 
-    // Helper: Safely unlock body scroll only if NO dialogs are open
     const unlockBodyScroll = () => {
       if (document.querySelectorAll('dialog[open]').length === 0) {
         document.body.style.overflow = '';
       }
     };
 
-    // 1. Image Click -> Lightbox
+    // Event Delegation handles clicks perfectly even on dynamically loaded content
     dialog.addEventListener('click', (e) => {
       const img = e.target.closest('.ucu-prose-evidence img');
       if (img) {
         lightboxImg.src = img.src;
         lightboxImg.alt = img.alt;
         lightbox.showModal();
-        document.body.style.overflow = 'hidden'; // Lock scroll for lightbox
+        document.body.style.overflow = 'hidden'; 
       }
       if (e.target === dialog) dialog.close();
     });
@@ -118,12 +128,10 @@ class UcuModalShell extends HTMLElement {
       if (e.target === lightbox || e.target === lightboxImg) lightbox.close();
     });
 
-    // 2. Cleanup events when modals close
     lightbox.addEventListener('close', unlockBodyScroll);
 
     dialog.addEventListener('close', () => {
-      unlockBodyScroll(); // Unlock scroll for main modal
-      
+      unlockBodyScroll(); 
       const params = new URLSearchParams(window.location.search);
       if (params.has('evidence') || params.has('event')) {
         window.history.pushState({}, '', window.location.pathname);
@@ -134,20 +142,26 @@ class UcuModalShell extends HTMLElement {
 
 if (!customElements.get("ucu-modal-shell")) customElements.define("ucu-modal-shell", UcuModalShell);
 
+
 /* =========================================
-   GLOBAL ROUTER
+   GLOBAL ROUTER & INTERCEPTOR
    ========================================= */
 document.addEventListener("DOMContentLoaded", () => {
+  
   const checkUrlForModals = () => {
     const params = new URLSearchParams(window.location.search);
     const targetId = params.get('evidence') || params.get('event');
     
     if (targetId) {
       setTimeout(() => {
+        // NEW: Trigger the fetch before showing the modal
+        const targetShell = document.querySelector(`ucu-modal-shell[modal-id="${targetId}"]`);
+        if (targetShell) targetShell.loadContent();
+
         const targetModal = document.getElementById(`modal-${targetId}`);
         if (targetModal && !targetModal.open) {
           targetModal.showModal();
-          document.body.style.overflow = 'hidden'; // Lock scroll on auto-open
+          document.body.style.overflow = 'hidden'; 
         }
       }, 100);
     }
@@ -158,5 +172,30 @@ document.addEventListener("DOMContentLoaded", () => {
   window.addEventListener('popstate', () => {
     document.querySelectorAll('.main-evidence-modal[open]').forEach(dialog => dialog.close());
     checkUrlForModals();
+  });
+
+  document.addEventListener('click', (e) => {
+    const trigger = e.target.closest('[data-modal-trigger]');
+    if (!trigger) return;
+
+    e.preventDefault();
+    const targetId = trigger.getAttribute('data-modal-trigger');
+    
+    // NEW: Trigger the fetch
+    const targetShell = document.querySelector(`ucu-modal-shell[modal-id="${targetId}"]`);
+    if (targetShell) targetShell.loadContent();
+
+    const targetModal = document.getElementById(`modal-${targetId}`);
+
+    if (targetModal) {
+      const url = new URL(window.location);
+      url.searchParams.set('event', targetId);
+      window.history.pushState({}, '', url);
+
+      targetModal.showModal();
+      document.body.style.overflow = 'hidden'; 
+    } else {
+      console.warn(`Modal Element ID 'modal-${targetId}' not found in the DOM.`);
+    }
   });
 });

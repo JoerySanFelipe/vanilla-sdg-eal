@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,225 +9,107 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   
-  <link rel="stylesheet" href="../css/style.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+      tailwind.config = {
+          theme: {
+              extend: {
+                  colors: {
+                      'ucu-blue': '#394a8a',
+                      'ucu-blue-dark': '#24305e',
+                      'ucu-yellow': '#fbef4b',
+                      'ucu-red': '#c43643',
+                      'ucu-white': '#ffffff',
+                      'dark-red': '#912020',
+                      'canvas': '#f4f7fa',
+                      'muted': '#555555',
+                      'main2': '#1f1f1f',
+                      // SDG Official Brand Colors for Exception Use Only
+                      'sdg-1': '#E5243B',
+                      'sdg-3': '#4C9F38',
+                      'sdg-4': '#C5192D',
+                      'sdg-5': '#FF3A21',
+                      'sdg-16': '#00689D',
+                      'sdg-17': '#19486A',
+                  },
+                  fontFamily: { sans: ['Montserrat', 'sans-serif'] }
+              }
+          }
+      }
+  </script>
+
+  <style>
+    /* Base styles for the scroll reveal animation */
+    .reveal-on-scroll {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: opacity, transform;
+    }
+    .reveal-on-scroll.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
   
+  <!-- Data Store loaded before components -->
+  <script src="../js/research-data.js" defer></script>
   <script src="../js/global-components.js" defer></script>
 </head>
 
 <body class="bg-canvas text-main2 font-sans antialiased min-h-screen flex flex-col relative z-0 overflow-x-hidden">
   
-  <div class="absolute top-0 left-0 w-full h-[320px] md:h-[400px] bg-gradient-to-b from-ucu-blue-dark/90 via-ucu-blue-dark/30 to-transparent -z-10 pointer-events-none"></div>
-  
   <ucu-header base-path="../"></ucu-header>
 
-  <main class="max-w-[1280px] w-full mx-auto px-4 sm:px-6 lg:px-8 mt-10 flex-grow relative z-10 flex flex-col pb-24">
+  <!-- Global Uniform Hero Banner with CLS Prevention and Scroll Animation -->
+  <ucu-hero-banner 
+    class="block w-full min-h-[320px] md:min-h-[360px] reveal-on-scroll"
+    bg-color="bg-ucu-blue-dark" 
+    eyebrow="Institutional Archive"
+    headline="SDG Research"
+    highlight="2025."
+    description="An open-access archive of Urdaneta City University's academic contributions. Explore peer-reviewed publications, institutional studies, and localized research directly aligned with the United Nations' Sustainable Development Goals.">
+  </ucu-hero-banner>
+
+  <!-- Standardized layout block matching the Rankings page -->
+  <main class="w-full flex-grow relative z-10 flex flex-col bg-canvas">
     
-    <section class="relative pt-8 pb-10 overflow-hidden reveal opacity-0 translate-y-8 transition-all duration-[800ms] ease-[cubic-bezier(0.16,1,0.3,1)]">
-      <div class="max-w-3xl">
-        <h1 class="text-4xl md:text-5xl lg:text-6xl font-black tracking-tighter mb-4 text-ucu-blue-dark uppercase drop-shadow-sm">
-          SDG Research <span class="text-muted">2025.</span>
-        </h1>
-        <p class="text-base md:text-lg text-main2 font-medium leading-relaxed">
-          An open-access archive of Urdaneta City University's academic contributions. Explore peer-reviewed publications, institutional studies, and localized research directly aligned with the United Nations' Sustainable Development Goals.
-        </p>
-      </div>
-    </section>
-
-    <section class="mb-10 reveal opacity-0 translate-y-8 transition-all duration-[800ms] ease-[cubic-bezier(0.16,1,0.3,1)] delay-100">
-      <div class="flex items-center justify-between mb-4">
-        <h2 class="text-xs font-black uppercase tracking-[0.2em] text-muted">Filter by Alignment</h2>
-      </div>
-      
-      <div class="flex gap-2.5 overflow-x-auto pb-4 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden -mx-4 px-4 sm:mx-0 sm:px-0" id="filter-group">
-        <button data-filter="all" class="filter-btn shrink-0 px-5 py-2.5 rounded-full text-xs font-bold border border-ucu-blue-dark/20 bg-white shadow-sm transition-all hover:bg-gray-50 data-[active=true]:bg-ucu-blue-dark data-[active=true]:text-white data-[active=true]:border-ucu-blue-dark text-main2" data-active="true">
-          All Research
-        </button>
-        <button data-filter="1" class="filter-btn shrink-0 px-4 py-2.5 rounded-full text-xs font-bold border border-white/50 bg-white/60 transition-all hover:bg-white hover:shadow-sm data-[active=true]:bg-ucu-blue-dark data-[active=true]:text-white text-main2" data-active="false">SDG 1</button>
-        <button data-filter="2" class="filter-btn shrink-0 px-4 py-2.5 rounded-full text-xs font-bold border border-white/50 bg-white/60 transition-all hover:bg-white hover:shadow-sm data-[active=true]:bg-ucu-blue-dark data-[active=true]:text-white text-main2" data-active="false">SDG 2</button>
-        <button data-filter="3" class="filter-btn shrink-0 px-4 py-2.5 rounded-full text-xs font-bold border border-white/50 bg-white/60 transition-all hover:bg-white hover:shadow-sm data-[active=true]:bg-ucu-blue-dark data-[active=true]:text-white text-main2" data-active="false">SDG 3</button>
-        <button data-filter="4" class="filter-btn shrink-0 px-4 py-2.5 rounded-full text-xs font-bold border border-white/50 bg-white/60 transition-all hover:bg-white hover:shadow-sm data-[active=true]:bg-ucu-blue-dark data-[active=true]:text-white text-main2" data-active="false">SDG 4</button>
-        <button data-filter="5" class="filter-btn shrink-0 px-4 py-2.5 rounded-full text-xs font-bold border border-white/50 bg-white/60 transition-all hover:bg-white hover:shadow-sm data-[active=true]:bg-ucu-blue-dark data-[active=true]:text-white text-main2" data-active="false">SDG 5</button>
-        <button data-filter="6" class="filter-btn shrink-0 px-4 py-2.5 rounded-full text-xs font-bold border border-white/50 bg-white/60 transition-all hover:bg-white hover:shadow-sm data-[active=true]:bg-ucu-blue-dark data-[active=true]:text-white text-main2" data-active="false">SDG 6</button>
-        <button data-filter="7" class="filter-btn shrink-0 px-4 py-2.5 rounded-full text-xs font-bold border border-white/50 bg-white/60 transition-all hover:bg-white hover:shadow-sm data-[active=true]:bg-ucu-blue-dark data-[active=true]:text-white text-main2" data-active="false">SDG 7</button>
-        <button data-filter="8" class="filter-btn shrink-0 px-4 py-2.5 rounded-full text-xs font-bold border border-white/50 bg-white/60 transition-all hover:bg-white hover:shadow-sm data-[active=true]:bg-ucu-blue-dark data-[active=true]:text-white text-main2" data-active="false">SDG 8</button>
-        <button data-filter="9" class="filter-btn shrink-0 px-4 py-2.5 rounded-full text-xs font-bold border border-white/50 bg-white/60 transition-all hover:bg-white hover:shadow-sm data-[active=true]:bg-ucu-blue-dark data-[active=true]:text-white text-main2" data-active="false">SDG 9</button>
-        <button data-filter="10" class="filter-btn shrink-0 px-4 py-2.5 rounded-full text-xs font-bold border border-white/50 bg-white/60 transition-all hover:bg-white hover:shadow-sm data-[active=true]:bg-ucu-blue-dark data-[active=true]:text-white text-main2" data-active="false">SDG 10</button>
-        <button data-filter="11" class="filter-btn shrink-0 px-4 py-2.5 rounded-full text-xs font-bold border border-white/50 bg-white/60 transition-all hover:bg-white hover:shadow-sm data-[active=true]:bg-ucu-blue-dark data-[active=true]:text-white text-main2" data-active="false">SDG 11</button>
-        <button data-filter="12" class="filter-btn shrink-0 px-4 py-2.5 rounded-full text-xs font-bold border border-white/50 bg-white/60 transition-all hover:bg-white hover:shadow-sm data-[active=true]:bg-ucu-blue-dark data-[active=true]:text-white text-main2" data-active="false">SDG 12</button>
-        <button data-filter="13" class="filter-btn shrink-0 px-4 py-2.5 rounded-full text-xs font-bold border border-white/50 bg-white/60 transition-all hover:bg-white hover:shadow-sm data-[active=true]:bg-ucu-blue-dark data-[active=true]:text-white text-main2" data-active="false">SDG 13</button>
-        <button data-filter="14" class="filter-btn shrink-0 px-4 py-2.5 rounded-full text-xs font-bold border border-white/50 bg-white/60 transition-all hover:bg-white hover:shadow-sm data-[active=true]:bg-ucu-blue-dark data-[active=true]:text-white text-main2" data-active="false">SDG 14</button>
-        <button data-filter="15" class="filter-btn shrink-0 px-4 py-2.5 rounded-full text-xs font-bold border border-white/50 bg-white/60 transition-all hover:bg-white hover:shadow-sm data-[active=true]:bg-ucu-blue-dark data-[active=true]:text-white text-main2" data-active="false">SDG 15</button>
-        <button data-filter="16" class="filter-btn shrink-0 px-4 py-2.5 rounded-full text-xs font-bold border border-white/50 bg-white/60 transition-all hover:bg-white hover:shadow-sm data-[active=true]:bg-ucu-blue-dark data-[active=true]:text-white text-main2" data-active="false">SDG 16</button>
-        <button data-filter="17" class="filter-btn shrink-0 px-4 py-2.5 rounded-full text-xs font-bold border border-white/50 bg-white/60 transition-all hover:bg-white hover:shadow-sm data-[active=true]:bg-ucu-blue-dark data-[active=true]:text-white text-main2" data-active="false">SDG 17</button>
-      </div>
-    </section>
-
-    <section class="max-w-4xl w-full reveal opacity-0 translate-y-8 transition-all duration-[800ms] ease-[cubic-bezier(0.16,1,0.3,1)] delay-200">
-      
-      <div class="flex flex-col gap-6" id="research-feed">
-        
-        <article class="research-card bg-white rounded-2xl border border-gray-200 p-6 md:p-8 shadow-sm transition-all duration-300 hover:shadow-lg flex flex-col" data-sdgs="3 4">
-          <h3 class="text-xl md:text-2xl font-black text-ucu-blue-dark mb-2 leading-tight">
-            Impact of Digital Health Interventions on Rural Education Outcomes
-          </h3>
-          <div class="flex flex-wrap items-center gap-3 md:gap-4 mb-4">
-            <span class="text-sm font-semibold text-main2 flex items-center gap-1.5">
-              <svg class="w-4 h-4 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" /></svg>
-              Dr. Maria Santos, et al.
-            </span>
-            <span class="w-1 h-1 rounded-full bg-gray-300"></span>
-            <span class="text-xs font-mono font-bold text-muted uppercase tracking-widest">Oct 2025</span>
-          </div>
-          <p class="text-sm text-muted leading-relaxed line-clamp-3 mb-8 flex-grow font-medium">
-            This study evaluates the intersection of adolescent health and academic performance in Northern Luzon. By deploying targeted digital health tracking within the localized curriculum, the research demonstrates a significant correlation between well-being interventions and improved scholastic retention rates among marginalized communities.
-          </p>
-          
-          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-6 border-t border-gray-100 pt-5 mt-auto">
-            <div>
-              <span class="text-[0.55rem] font-black text-muted uppercase tracking-[0.2em] mb-2 block">SDG Alignment</span>
-              <div class="flex flex-wrap gap-1.5">
-                <div class="flex items-center justify-center w-7 h-7 rounded text-white text-xs font-black shadow-sm" style="background-color: #4C9F38;" title="SDG 3">3</div>
-                <div class="flex items-center justify-center w-7 h-7 rounded text-white text-xs font-black shadow-sm" style="background-color: #C5192D;" title="SDG 4">4</div>
-              </div>
-            </div>
-            <a href="#" class="inline-flex items-center justify-center border border-ucu-blue-dark text-ucu-blue-dark px-5 py-2.5 rounded-lg text-xs font-black uppercase tracking-widest hover:bg-ucu-blue-dark hover:text-white transition-all duration-300 focus:ring-2 focus:ring-offset-2 focus:ring-ucu-blue-dark shrink-0">
-              View PDF
-            </a>
-          </div>
-        </article>
-
-        <article class="research-card bg-white rounded-2xl border border-gray-200 p-6 md:p-8 shadow-sm transition-all duration-300 hover:shadow-lg flex flex-col" data-sdgs="1 8 10">
-          <h3 class="text-xl md:text-2xl font-black text-ucu-blue-dark mb-2 leading-tight">
-            Economic Efficacy of Cash-for-Work Programs in Pangasinan
-          </h3>
-          <div class="flex flex-wrap items-center gap-3 md:gap-4 mb-4">
-            <span class="text-sm font-semibold text-main2 flex items-center gap-1.5">
-              <svg class="w-4 h-4 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" /></svg>
-              Prof. Juan dela Cruz
-            </span>
-            <span class="w-1 h-1 rounded-full bg-gray-300"></span>
-            <span class="text-xs font-mono font-bold text-muted uppercase tracking-widest">Mar 2025</span>
-          </div>
-          <p class="text-sm text-muted leading-relaxed line-clamp-3 mb-8 flex-grow font-medium">
-            An analysis of the DSWD's KALAHI-CIDSS initiative. This paper examines the short-term economic stabilization provided by cash-for-work frameworks in highly vulnerable sectors of Urdaneta City, establishing metrics for sustainable inclusive growth and the reduction of regional income inequalities.
-          </p>
-          
-          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-6 border-t border-gray-100 pt-5 mt-auto">
-            <div>
-              <span class="text-[0.55rem] font-black text-muted uppercase tracking-[0.2em] mb-2 block">SDG Alignment</span>
-              <div class="flex flex-wrap gap-1.5">
-                <div class="flex items-center justify-center w-7 h-7 rounded text-white text-xs font-black shadow-sm" style="background-color: #E5243B;" title="SDG 1">1</div>
-                <div class="flex items-center justify-center w-7 h-7 rounded text-white text-xs font-black shadow-sm" style="background-color: #A21942;" title="SDG 8">8</div>
-                <div class="flex items-center justify-center w-7 h-7 rounded text-white text-xs font-black shadow-sm" style="background-color: #DD1367;" title="SDG 10">10</div>
-              </div>
-            </div>
-            <a href="#" class="inline-flex items-center justify-center border border-ucu-blue-dark text-ucu-blue-dark px-5 py-2.5 rounded-lg text-xs font-black uppercase tracking-widest hover:bg-ucu-blue-dark hover:text-white transition-all duration-300 focus:ring-2 focus:ring-offset-2 focus:ring-ucu-blue-dark shrink-0">
-              View PDF
-            </a>
-          </div>
-        </article>
-
-        <article class="research-card bg-white rounded-2xl border border-gray-200 p-6 md:p-8 shadow-sm transition-all duration-300 hover:shadow-lg flex flex-col" data-sdgs="13 15">
-          <h3 class="text-xl md:text-2xl font-black text-ucu-blue-dark mb-2 leading-tight">
-            Climate Resilience of Indigenous Flora in Northern Agno Basin
-          </h3>
-          <div class="flex flex-wrap items-center gap-3 md:gap-4 mb-4">
-            <span class="text-sm font-semibold text-main2 flex items-center gap-1.5">
-              <svg class="w-4 h-4 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" /></svg>
-              College of Agriculture Research Team
-            </span>
-            <span class="w-1 h-1 rounded-full bg-gray-300"></span>
-            <span class="text-xs font-mono font-bold text-muted uppercase tracking-widest">Nov 2024</span>
-          </div>
-          <p class="text-sm text-muted leading-relaxed line-clamp-3 mb-8 flex-grow font-medium">
-            Investigating the adaptive mechanisms of local plant species against increasingly severe weather anomalies. The research outlines actionable strategies for preserving terrestrial ecosystems and reinforcing agricultural security amidst shifting climate patterns in Region I.
-          </p>
-          
-          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-6 border-t border-gray-100 pt-5 mt-auto">
-            <div>
-              <span class="text-[0.55rem] font-black text-muted uppercase tracking-[0.2em] mb-2 block">SDG Alignment</span>
-              <div class="flex flex-wrap gap-1.5">
-                <div class="flex items-center justify-center w-7 h-7 rounded text-white text-xs font-black shadow-sm" style="background-color: #3F7E44;" title="SDG 13">13</div>
-                <div class="flex items-center justify-center w-7 h-7 rounded text-white text-xs font-black shadow-sm" style="background-color: #56C02B;" title="SDG 15">15</div>
-              </div>
-            </div>
-            <a href="#" class="inline-flex items-center justify-center border border-ucu-blue-dark text-ucu-blue-dark px-5 py-2.5 rounded-lg text-xs font-black uppercase tracking-widest hover:bg-ucu-blue-dark hover:text-white transition-all duration-300 focus:ring-2 focus:ring-offset-2 focus:ring-ucu-blue-dark shrink-0">
-              View PDF
-            </a>
-          </div>
-        </article>
-
-        <div id="empty-state" class="hidden py-16 text-center w-full bg-white/50 border border-gray-200 rounded-2xl">
-          <p class="text-muted text-sm font-black uppercase tracking-[0.2em]">No research publications found for this specific goal.</p>
-        </div>
-
-      </div>
-    </section>
+    <!-- Constrain the inner content width and apply standard top/bottom spacing with Scroll Animation -->
+    <div class="max-w-[1280px] w-full mx-auto px-4 sm:px-6 lg:px-8 flex flex-col pt-12 pb-24 reveal-on-scroll" style="transition-delay: 200ms;">
+        <!-- The Web Component handles the filters and data mapping -->
+        <ucu-research-feed year="2025"></ucu-research-feed>
+    </div>
 
   </main>
 
-  <ucu-footer base-path="../"></ucu-footer>
+  <!-- Footer with Scroll Animation -->
+  <ucu-footer base-path="../" class="reveal-on-scroll"></ucu-footer>
 
+  <!-- Scroll Animation Observer Script -->
   <script>
     document.addEventListener("DOMContentLoaded", () => {
-      
-      // 1. Reveal Animation Observer
-      const revealTargets = document.querySelectorAll(".reveal");
-      if (revealTargets.length > 0) {
-        const observer = new IntersectionObserver((entries) => {
+      const revealElements = document.querySelectorAll(".reveal-on-scroll");
+
+      const revealObserver = new IntersectionObserver(
+        (entries, observer) => {
           entries.forEach((entry) => {
             if (entry.isIntersecting) {
-              entry.target.classList.remove("opacity-0", "translate-y-8");
+              entry.target.classList.add("is-visible");
+              // Optional: Stop observing once revealed if you only want the animation to happen once per page load
               observer.unobserve(entry.target);
             }
           });
-        }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
-        revealTargets.forEach((el) => observer.observe(el));
-      }
+        },
+        {
+          root: null,
+          rootMargin: "0px 0px -50px 0px", // Triggers slightly before the element fully enters the viewport
+          threshold: 0.1, // Triggers when 10% of the element is visible
+        }
+      );
 
-      // 2. High-Speed Research Feed Filtering
-      const buttons = document.querySelectorAll('.filter-btn');
-      const cards = document.querySelectorAll('.research-card');
-      const emptyState = document.getElementById('empty-state');
-
-      buttons.forEach(btn => {
-        btn.addEventListener('click', () => {
-          const selectedFilter = btn.getAttribute('data-filter');
-          
-          // Toggle Active Button Styles
-          buttons.forEach(b => b.setAttribute('data-active', 'false'));
-          btn.setAttribute('data-active', 'true');
-
-          let visibleCount = 0;
-
-          // Process the Feed
-          cards.forEach(card => {
-            // Read the space-separated string from the data attribute
-            const cardSdgs = card.getAttribute('data-sdgs').split(' ');
-            
-            if (selectedFilter === 'all' || cardSdgs.includes(selectedFilter)) {
-              card.style.display = 'flex';
-              // Trigger a micro-animation for a smooth UI refresh
-              card.style.opacity = '0';
-              card.style.transform = 'scale(0.98)';
-              setTimeout(() => {
-                card.style.opacity = '1';
-                card.style.transform = 'scale(1)';
-              }, 10);
-              visibleCount++;
-            } else {
-              card.style.display = 'none';
-            }
-          });
-
-          // Handle Empty State
-          if (emptyState) {
-            emptyState.style.display = visibleCount === 0 ? 'block' : 'none';
-          }
-        });
-      });
-      
+      revealElements.forEach((el) => revealObserver.observe(el));
     });
   </script>
+
 </body>
 </html>

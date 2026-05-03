@@ -36,9 +36,7 @@ class UcuIndicatorLayout extends HTMLElement {
       `;
     }).join("");
 
-    // 2. Generate Evidence Cards dynamically (now passing data-sdgs)
     const cardsHtml = evidenceManifest.map(ev => {
-      // Safely serialize the array or pass empty string if missing
       const sdgsString = ev.relatedSdgs ? JSON.stringify(ev.relatedSdgs) : '';
       return `
       <ucu-evidence-card 
@@ -51,7 +49,6 @@ class UcuIndicatorLayout extends HTMLElement {
       `;
     }).join("");
 
-    // 3. Generate Modal Shells dynamically (now passing data-sdgs)
     const modalsHtml = evidenceManifest.map(ev => {
       const sdgsString = ev.relatedSdgs ? JSON.stringify(ev.relatedSdgs) : '';
       return `
@@ -119,8 +116,6 @@ class UcuIndicatorLayout extends HTMLElement {
     }
   }
 }
-
-// Replace this class in js/eco-components.js
 
 class UcuEvidenceCard extends HTMLElement {
   connectedCallback() {

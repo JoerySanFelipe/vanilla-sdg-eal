@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,21 +8,35 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../../css/style.css">
+
+  <style>
+    /* Base styles for the standardized scroll reveal animation */
+    .reveal-on-scroll {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: opacity, transform;
+    }
+    .reveal-on-scroll.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
   
-  <!-- Add our new Global Events Data Store -->
   <script src="../../js/events-data.js" defer></script>
-  
   <script src="../../js/global-components.js" defer></script>
   <script src="../../js/metrics.js" defer></script>
   <script src="../../js/modals.js" defer></script>
   <script src="../../js/sdg-components.js" defer></script>
   <script src="../../js/global-charts.js" defer></script>
 </head>
-<body class="bg-slate-50 text-main2 font-sans antialiased min-h-screen flex flex-col">
+<body class="bg-slate-50 text-muted font-sans antialiased min-h-screen flex flex-col">
 
   <ucu-header base-path="../../"></ucu-header>
 
+  <!-- Added reveal-on-scroll to the Hero Banner -->
   <ucu-sdg-page-hero 
+    class="block w-full reveal-on-scroll"
     sdg="1" 
     title="No Poverty" 
     subtitle="End poverty in all its forms everywhere" 
@@ -31,65 +45,75 @@
     icon-image="../../images/sdg/sdg1.png">
   </ucu-sdg-page-hero>
 
-  <!-- The layout now auto-pulls the data based on sdg="1" -->
   <ucu-sdg-layout sdg="1" year="2025">
     
-    <div slot="narrative">
+    <div slot="description" class="flex flex-col gap-2">
       
-      <ucu-metric-cards data-metrics='[
+      <!-- Metrics Cards with Scroll Reveal -->
+      <ucu-metric-cards class="block w-full reveal-on-scroll" style="transition-delay: 100ms;" data-metrics='[
         {"value": "1,920", "label": "Beneficiaries Reached", "theme": "navy", "svgIcon": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"28\" height=\"28\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2\"/><circle cx=\"9\" cy=\"7\" r=\"4\"/><path d=\"M22 21v-2a4 4 0 0 0-3-3.87\"/><path d=\"M16 3.13a4 4 0 0 1 0 7.75\"/></svg>"},
         {"value": "45", "label": "Active Programs", "theme": "red", "svgIcon": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"28\" height=\"28\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polyline points=\"22 7 13.5 15.5 8.5 10.5 2 17\"/><polyline points=\"16 7 22 7 22 13\"/></svg>"},
         {"value": "15", "label": "Research", "theme": "navy", "svgIcon": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 7v14\"/><path d=\"M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z\"/></svg>"}
       ]'></ucu-metric-cards>
 
-      <div class="flex items-center w-full mt-8 mb-4 gap-4">
+      <!-- Headings and Prose with Scroll Reveal -->
+      <div class="flex items-center w-full mt-8 mb-4 gap-4 reveal-on-scroll">
         <div class="w-1.5 h-6 bg-ucu-red rounded-full shadow-sm flex-shrink-0"></div>
         <h2 class="flex-shrink-0 text-2xl font-bold text-ucu-blue-dark tracking-tight m-0 pr-2">Institutional Framework for Poverty Alleviation</h2>
         <div class="flex-grow h-px bg-gray-300/70 rounded-full"></div>
       </div>
 
-      <p class="mb-3 text-lg font-medium leading-relaxed text-muted">Urdaneta City University (UCU) recognizes that poverty is a multidimensional challenge that extends far beyond a simple lack of financial resources. It encompasses systemic barriers to opportunity, educational disenfranchisement, and limited access to critical community infrastructure. In alignment with the United Nations Sustainable Development Goal 1, our institution has deployed a mathematically rigorous, evidence-based approach to dismantling these barriers.</p>
-      <p class="mb-3 text-lg font-medium leading-relaxed text-muted">Our core philosophy dictates that a university must serve as an economic engine for its surrounding municipalities. By aggressively subsidizing tuition for students from bottom-quartile income brackets and systematically restructuring our outreach programs, we have transformed our External Office and Linkages division into a command center for socio-economic mobility.</p>
+      <div class="ucu-prose-narrative reveal-on-scroll">
+        <p>Urdaneta City University (UCU) recognizes that poverty is a multidimensional challenge that extends far beyond a simple lack of financial resources. It encompasses systemic barriers to opportunity, educational disenfranchisement, and limited access to critical community infrastructure. In alignment with the United Nations Sustainable Development Goal 1, our institution has deployed a mathematically rigorous, evidence-based approach to dismantling these barriers.</p>
+        <p>Our core philosophy dictates that a university must serve as an economic engine for its surrounding municipalities. By aggressively subsidizing tuition for students from bottom-quartile income brackets and systematically restructuring our outreach programs, we have transformed our External Office and Linkages division into a command center for socio-economic mobility.</p>
+      </div>
 
-      <div class="flex items-center w-full mt-10 mb-4 gap-4">
+      <div class="flex items-center w-full mt-10 mb-4 gap-4 reveal-on-scroll">
         <div class="w-1.5 h-6 bg-ucu-red rounded-full shadow-sm flex-shrink-0"></div>
         <h2 class="flex-shrink-0 text-2xl font-bold text-ucu-blue-dark tracking-tight m-0 pr-2">Community Empowerment Strategies</h2>
         <div class="flex-grow h-px bg-gray-300/70 rounded-full"></div>
       </div>
 
-      <p class="mb-3 text-lg font-medium leading-relaxed text-muted">To ensure our impact transcends the campus boundaries, the External Office and Linkages has integrated deep-rooted community action plans. These are not merely charitable exercises; they are sustainable capacity-building frameworks. By partnering directly with the Department of Social Welfare and Development (DSWD), we have synchronized our student-led extension programs with national anti-poverty directives.</p>
-      <p class="mb-3 text-lg font-medium leading-relaxed text-muted">The most prominent example of this strategic alignment is our institutional support and technical integration with the KALAHI-CIDSS initiative. Through this partnership, UCU engineering and sociology departments provided crucial data mapping and infrastructure planning to ensure localized poverty reduction funds were deployed with maximum efficiency.</p>
+      <div class="ucu-prose-narrative reveal-on-scroll">
+        <p>To ensure our impact transcends the campus boundaries, the External Office and Linkages has integrated deep-rooted community action plans. These are not merely charitable exercises; they are sustainable capacity-building frameworks. By partnering directly with the Department of Social Welfare and Development (DSWD), we have synchronized our student-led extension programs with national anti-poverty directives.</p>
+        <p>The most prominent example of this strategic alignment is our institutional support and technical integration with the <a href="?event=kalahi-cidss" data-modal-trigger="kalahi-cidss" class="text-ucu-blue-dark font-medium underline decoration-ucu-red/30 hover:decoration-ucu-red transition-colors cursor-pointer">KALAHI-CIDSS initiative</a>. Through this partnership, UCU engineering and sociology departments provided crucial data mapping and infrastructure planning to ensure localized poverty reduction funds were deployed with maximum efficiency.</p>
+      </div>
 
-      <ucu-data-viz title="Intervention Success Rates (Target vs Actual)" data-type="progress" data-payload='[
+      <!-- Data Visualizations with Scroll Reveal -->
+      <ucu-data-viz class="block w-full reveal-on-scroll" title="Intervention Success Rates (Target vs Actual)" data-type="progress" data-payload='[
         {"label": "Vocational Placement", "percentage": 92, "barColorClass": "bg-ucu-blue-dark"},
         {"label": "Micro-grant Retention", "percentage": 78, "barColorClass": "bg-ucu-red"},
         {"label": "Basic Needs Subsidies", "percentage": 100, "barColorClass": "bg-ucu-yellow"}
       ]'></ucu-data-viz>
 
-      <div class="flex items-center w-full mt-10 mb-4 gap-4">
+      <div class="flex items-center w-full mt-10 mb-4 gap-4 reveal-on-scroll">
         <div class="w-1.5 h-6 bg-ucu-red rounded-full shadow-sm flex-shrink-0"></div>
         <h2 class="flex-shrink-0 text-2xl font-bold text-ucu-blue-dark tracking-tight m-0 pr-2">Livelihood Incubation & Micro-Enterprise</h2>
         <div class="flex-grow h-px bg-gray-300/70 rounded-full"></div>
       </div>
 
-      <p class="mb-3 text-lg font-medium leading-relaxed text-muted">Eradicating poverty requires transitioning vulnerable populations from dependence to self-sufficiency. The UCU College of Business and Accountancy, operating through our External Office, established the Livelihood Incubation Hub in late 2021. This facility provides direct seed capital, accounting mentorship, and market access strategies to families residing in the lowest socio-economic deciles.</p>
+      <div class="ucu-prose-narrative reveal-on-scroll">
+        <p>Eradicating poverty requires transitioning vulnerable populations from dependence to self-sufficiency. The UCU College of Business and Accountancy, operating through our External Office, established the Livelihood Incubation Hub in late 2021. This facility provides direct seed capital, accounting mentorship, and market access strategies to families residing in the lowest socio-economic deciles.</p>
+      </div>
 
-      <ucu-data-viz title="Active Micro-Enterprises Funded" subtitle="Year Over Year Growth" data-type="vertical" data-payload='[
+      <ucu-data-viz class="block w-full reveal-on-scroll" title="Active Micro-Enterprises Funded" subtitle="Year Over Year Growth" data-type="vertical" data-payload='[
         {"year": "2022", "value": 32, "heightPercent": 20, "baseBgClass": "bg-slate-200", "hoverBgClass": "bg-ucu-yellow", "textClass": "text-slate-500"},
         {"year": "2023", "value": 68, "heightPercent": 45, "baseBgClass": "bg-slate-300", "hoverBgClass": "bg-ucu-yellow", "textClass": "text-slate-600"},
         {"year": "2024", "value": 104, "heightPercent": 70, "baseBgClass": "bg-ucu-red", "hoverBgClass": "bg-[#a10e19]", "textClass": "text-ucu-red"},
         {"year": "2025", "value": 145, "heightPercent": 95, "baseBgClass": "bg-ucu-blue-dark", "hoverBgClass": "bg-[#151f42]", "textClass": "text-ucu-blue-dark"}
       ]'></ucu-data-viz>
 
-      <div class="flex items-center w-full mt-10 mb-4 gap-4">
+      <div class="flex items-center w-full mt-10 mb-4 gap-4 reveal-on-scroll">
         <div class="w-1.5 h-6 bg-ucu-red rounded-full shadow-sm flex-shrink-0"></div>
         <h2 class="flex-shrink-0 text-2xl font-bold text-ucu-blue-dark tracking-tight m-0 pr-2">Earn-While-You-Learn Initiative</h2>
         <div class="flex-grow h-px bg-gray-300/70 rounded-full"></div>
       </div>
 
-      <p class="mb-3 text-lg font-medium leading-relaxed text-muted">True commitment to eradicating poverty starts from within the campus infrastructure. UCU recognizes that financial barriers are the primary cause of student attrition. To combat this, the university established the Earn-While-You-Learn (EWYL) initiative, a formalized student employment matrix designed to provide living wages and immediate financial relief to marginalized enrollees.</p>
+      <div class="ucu-prose-narrative reveal-on-scroll">
+        <p>True commitment to eradicating poverty starts from within the campus infrastructure. UCU recognizes that financial barriers are the primary cause of student attrition. To combat this, the university established the Earn-While-You-Learn (EWYL) initiative, a formalized student employment matrix designed to provide living wages and immediate financial relief to marginalized enrollees.</p>
+      </div>
 
-      <ucu-data-viz title="EWYL Fund Allocation & Workforce Distribution" subtitle="Total Budget Allocated (2024-2025): PHP 8.4 Million" data-type="stacked" data-payload='[
+      <ucu-data-viz class="block w-full reveal-on-scroll" title="EWYL Fund Allocation & Workforce Distribution" subtitle="Total Budget Allocated (2024-2025): PHP 8.4 Million" data-type="stacked" data-payload='[
         {"label": "Admin & Clerical Support", "percentage": 45, "bgClass": "bg-ucu-blue-dark", "textClass": "text-white", "legendLabel": "Admin Support"},
         {"label": "IT & Technical Services", "percentage": 35, "bgClass": "bg-ucu-red", "textClass": "text-white", "legendLabel": "Tech Services"},
         {"label": "Research Assistants", "percentage": 20, "bgClass": "bg-ucu-yellow", "textClass": "text-ucu-blue-dark", "legendLabel": "Research Aids"}
@@ -98,8 +122,44 @@
     </div>
   </ucu-sdg-layout>
 
-  <ucu-sdg-ribbon active="1"></ucu-sdg-ribbon>
-  <ucu-footer base-path="../../"></ucu-footer>
+  <!-- Declarative Modal Shell for the Event -->
+  <ucu-modal-shell 
+    modal-id="kalahi-cidss" 
+    title="DSWD’s Kalahi-CIDSS Cash-for-Work Program" 
+    badge="Event" 
+    content-src="../../events/2025/kalahi-cidss.html" 
+    data-sdgs="[1, 8, 10]">
+  </ucu-modal-shell>
+
+  <!-- Added reveal-on-scroll to the Ribbon and Footer -->
+  <ucu-sdg-ribbon class="block w-full reveal-on-scroll" active="1"></ucu-sdg-ribbon>
+  <ucu-footer base-path="../../" class="reveal-on-scroll"></ucu-footer>
+
+  <!-- Scroll Animation Observer Script -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const revealElements = document.querySelectorAll(".reveal-on-scroll");
+
+      const revealObserver = new IntersectionObserver(
+        (entries, observer) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("is-visible");
+              // Optional: Stop observing once revealed
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        {
+          root: null,
+          rootMargin: "0px 0px -50px 0px", // Triggers slightly before the element fully enters the viewport
+          threshold: 0.1, // Triggers when 10% of the element is visible
+        }
+      );
+
+      revealElements.forEach((el) => revealObserver.observe(el));
+    });
+  </script>
 
 </body>
 </html>

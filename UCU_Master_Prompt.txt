@@ -10,15 +10,17 @@ This project was previously built in Astro 5. I will frequently share old .astro
 1. **The Stack:** Strictly Vanilla HTML5, Native JS Web Components, and Tailwind CSS v4. ZERO frameworks (No Astro, Vite, React). 
 2. **The Layout:** Main content container is strictly 1280px. Apply mathematically equal spacing rhythm across all sections. 
 3. **Animations:** Subtle and native only. Implement the "Parallax Curtain Reveal" for the header.
-4. **Typography:** Montserrat exclusively. Paragraphs MUST use: <p class="mb-3 text-lg font-medium leading-relaxed text-muted">.
+4. **Typography:** Montserrat exclusively. All narrative text must adhere to the Biomechanical Reading Rules: max-width: 65ch, line-height: 1.65, font-weight: 400, and color var(--color-muted). Use the .ucu-prose-narrative or .ucu-prose-evidence classes to enforce this.
 5. **The "No Green" Rule:** No green in the UI, except for official SDG or UI GreenMetric branding assets.
 6. **Content Integrity:** Never summarize or edit official institutional text or SDG reports.
+7. **Modal Architecture:** All modals must implement Body-Scroll Locking upon activation. The modal width for reading content is strictly max-w-3xl..
 
 **The "Anti-Rush" Protocol (Mandatory Workflow)**
 You are FORBIDDEN from generating code immediately. 
 - **Phase 1 (Execution Plan):** Your first response must outline the Component Architecture, Layout Strategy, and a Constraint Check. 
 - **DRY Principle Advisory:** If you identify an opportunity to apply the DRY (Don't Repeat Yourself) principle through a shared utility or base component, you must flag this in your plan and ask for my approval before implementing it.
 - **Phase 2 (The Hard Stop):** Stop and ask for approval. Do not write code until I say "Proceed."
+
 
 **Output Standard**
 Once approved, the output must be Copy-Paste-Ready. Provide the entire updated code block for the file or component, not just snippets, so I can immediately update the project. Use relative pathing suitable for a strict subdirectory.

@@ -1,35 +1,118 @@
 @import "tailwindcss";
 
-/* 1. TELL TAILWIND WHERE TO LOOK FOR YOUR CLASSES */
+/* 
+ * 1. CONFIGURATION & SOURCES
+ * Tells Tailwind where to scan for class names to keep the bundle lean.
+ */
 @source "../"; 
 
-/* 2. DEFINE YOUR UCU BRAND VARIABLES */
+/* 
+ * 2. UCU BRAND DESIGN SYSTEM
+ * Centralized theme variables for consistent institutional branding.
+ */
 @theme {
+  /* Core Brand Colors */
   --color-ucu-blue: #394a8a;
   --color-ucu-blue-dark: #24305e;
   --color-ucu-yellow: #fbef4b;
   --color-ucu-red: #c43643;
   --color-ucu-white: #ffffff;
 
+  /* Supplemental UI Colors */
   --color-dark-red: #912020;
   --color-main2: #1f1f1f; 
-
   --color-canvas: #f4f7fa; 
   --color-muted: #555555; 
 
+  /* Institutional Typography */
   --font-sans: "Montserrat", system-ui, sans-serif;
 }
 
-/* 3. YOUR CUSTOM UTILITIES */
+/* 
+ * 3. CUSTOM UTILITIES & GLOBAL COMPONENTS
+ */
 @layer utilities {
-  /* ── Native FOUC Prevention ── */
-  :not(:defined) { opacity: 0; visibility: hidden; }
+  
+  /* ── Structural Essentials ── */
+  :not(:defined) { opacity: 0; visibility: hidden; } /* Prevents Flash of Unstyled Components */
+
+  /* ── Premium Scrollbar Branding ── */
   .custom-scrollbar::-webkit-scrollbar { width: 8px; }
   .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
-  .custom-scrollbar::-webkit-scrollbar-thumb { background-color: #cbd5e1; border-radius: 20px; }
-  .custom-scrollbar::-webkit-scrollbar-thumb:hover { background-color: var(--color-ucu-blue-dark); }
+  .custom-scrollbar::-webkit-scrollbar-thumb { 
+    background-color: #cbd5e1; 
+    border-radius: 20px; 
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover { 
+    background-color: var(--color-ucu-blue-dark); 
+  }
 
-  /* ── Unified Evidence Content Styling ── */
+  /* 
+   * 4. THE TYPOGRAPHY ENGINE (Biomechanical Reading Rules)
+   * Enforces 65ch line length and 1.65 line-height for optimal reading.
+   */
+     
+  /* Standard Paragraphs & Web Component Narratives */
+  .ucu-prose-evidence p,
+  ucu-sdg-layout article p,
+  ucu-indicator-layout .space-y-6 p,
+  .ucu-prose-narrative p {
+    max-width: 65ch;               
+    line-height: 1.65;             
+    color: var(--color-muted);     
+    font-size: 1.05rem;            
+    margin-bottom: 1.5rem !important;
+    font-weight: 400;   
+    display: block; 
+  }
+
+  /* Institutional Lists */
+  .ucu-prose-evidence ul, 
+  .ucu-prose-evidence ol,
+  ucu-sdg-layout article ul,
+  ucu-sdg-layout article ol,
+  ucu-indicator-layout .space-y-6 ul,
+  ucu-indicator-layout .space-y-6 ol,
+  .ucu-prose-narrative ul,
+  .ucu-prose-narrative ol {
+    max-width: 65ch;
+    line-height: 1.65;
+    color: var(--color-muted);     
+    margin-bottom: 1.5rem !important; 
+    padding-left: 1.5rem;
+    font-weight: 400;   
+  }
+  
+  .ucu-prose-evidence li,
+  ucu-sdg-layout article li,
+  ucu-indicator-layout .space-y-6 li,
+  .ucu-prose-narrative li {
+    margin-bottom: 0.5rem !important; 
+  }
+
+  /* Layout Overrides */
+  .ucu-prose-narrative.full-width p {
+    max-width: 100% !important;
+  }
+
+  /* ── Specialized Content Components ── */
+
+  /* Elegant Editorial Blockquotes */
+  .ucu-prose-evidence blockquote {
+    border-left: 4px solid var(--color-ucu-blue-dark);
+    background-color: var(--color-canvas);
+    padding: 1.25rem 1.5rem;
+    margin: 2rem 0;
+    border-radius: 0 0.75rem 0.75rem 0;
+  }
+  .ucu-prose-evidence blockquote p {
+    color: var(--color-ucu-blue-dark);
+    font-style: italic;
+    font-weight: 500;
+    margin-bottom: 0;
+  }
+
+  /* Dynamic Headings */
   .ucu-prose-evidence h2 { 
     color: var(--color-ucu-blue-dark); 
     font-size: 1.35rem; 
@@ -46,12 +129,15 @@
     margin-top: 1.5rem; 
     margin-bottom: 0.5rem; 
   }
+
+  /* Premium Image Presentation */
   .ucu-prose-evidence img { 
     border-radius: 0.75rem; 
     box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1); 
-    margin: 1.75rem auto; 
-    max-height: 300px; 
+    margin: 1.75rem 0; 
+    max-height: 400px; 
     width: 100%; 
+    max-width: 65ch; /* Aligned to reading measure */
     object-fit: cover; 
     background-color: var(--color-canvas); 
     padding: 0.2rem; 
@@ -63,6 +149,8 @@
     transform: translateY(-4px) scale(1.01); 
     box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.15); 
   }
+
+  /* Data Display Tables */
   .ucu-prose-evidence table { 
     width: 100%; 
     border-collapse: separate; 
@@ -93,6 +181,7 @@
     background-color: #f8fafc; 
   }
 
+  /* ── Motion & Interaction ── */
   @keyframes pop-in {
     0%   { opacity: 0; transform: scale(0.95) translateY(10px); }
     100% { opacity: 1; transform: scale(1) translateY(0); }
