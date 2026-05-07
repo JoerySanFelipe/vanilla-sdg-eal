@@ -6,15 +6,14 @@
   <title>UCU External Office &amp; Linkages — Urdaneta City University</title>
   <meta name="description" content="Urdaneta City University drives institutional impact through research, partnerships, and all 17 United Nations Sustainable Development Goals.">
 
-  <!-- Typography Engine -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
-  <!-- Compiled Core Stylesheet -->
   <link rel="stylesheet" href="./css/style.css">
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.0.0/css/flag-icons.min.css" />
 
-  <!-- Core Scroll Reveal Infrastructure -->
   <style>
     .reveal-on-scroll {
       opacity: 0;
@@ -29,12 +28,10 @@
     }
   </style>
 
-  <!-- Data Payloads -->
   <script src="./js/events-data.js"></script>
   <script src="./js/rankings-data.js"></script>
   <script src="./js/partners-data.js"></script>
 
-  <!-- Component Engines (Deferred) -->
   <script src="./js/core-ui.js" defer></script>
   <script src="./js/visual-media.js" defer></script>
   <script src="./js/impact-feeds.js" defer></script>
@@ -44,18 +41,14 @@
 </head>
 <body class="bg-canvas text-muted font-sans antialiased min-h-screen flex flex-col relative z-0 overflow-x-hidden">
 
-  <!-- S0: HEADER -->
   <ucu-header base-path="./"></ucu-header>
 
-  <!-- S1: HERO -->
   <ucu-home-hero base-path="./"></ucu-home-hero>
 
-  <!-- S2: INSTITUTIONAL VISION (Text + Image Slider) -->
   <section class="bg-white py-16 md:py-24 border-b border-black/5">
     <div class="max-w-[1280px] w-full mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
         
-        <!-- Left Column: Typography & Narrative -->
         <div class="flex flex-col">
           <ucu-section-header 
             eyebrow="Our Commitment" 
@@ -71,7 +64,6 @@
               By forging active partnerships across multiple continents, we subject our academic frameworks to rigorous global evaluations. This international exposure translates into cutting-edge pedagogy and facilities, empowering our External Office to drive true socio-economic mobility through evidence-based community outreach.
             </p>
             
-            <!-- Dual CTA Action Bar -->
             <div class="flex flex-wrap gap-4 mt-2">
               <a href="./sdg-reports/2025.html" class="inline-flex items-center justify-center px-8 py-3.5 bg-ucu-blue-dark text-white text-[10px] font-bold uppercase tracking-[0.2em] rounded-md hover:bg-ucu-red transition-colors duration-300 shadow-md hover:shadow-lg focus:outline-none">
                 SDG Reports 2025
@@ -83,7 +75,6 @@
           </div>
         </div>
 
-        <!-- Right Column: Upgraded Image Slider -->
         <div class="reveal-on-scroll relative w-full aspect-[4/3] rounded-[1.5rem] overflow-hidden shadow-[0_15px_40px_rgba(36,48,94,0.1)] border border-gray-100 bg-gray-50" style="transition-delay: 200ms;">
           <ucu-image-slider duration="4000" images='[
             "./images/events/Kalahi-CIDSS-Cash-for-Work/Pic1.png",
@@ -97,9 +88,7 @@
   </section>
 
   
-  <!-- S3: STRENGTH IN NUMBERS (Metrics Grid + Rankings) -->
   <section class="bg-canvas py-16 md:py-24 relative overflow-hidden">
-    <!-- Decorative background element -->
     <div class="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-[#394a8a]/5 to-transparent pointer-events-none"></div>
 
     <div class="max-w-[1280px] w-full mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -111,7 +100,6 @@
         delay="0ms">
       </ucu-section-header>
 
-      <!-- Row 1: 6-Box Responsive Metrics using your EXACT metrics.js component -->
       <div class="mb-20 reveal-on-scroll" style="transition-delay: 100ms;">
         <ucu-metric-cards data-metrics='[
           {"value": "150+", "label": "Active MOUs", "theme": "navy", "svgIcon": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"28\" height=\"28\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71\"/><path d=\"M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71\"/></svg>"},
@@ -123,7 +111,6 @@
         ]'></ucu-metric-cards>
       </div>
 
-      <!-- Row 2: Rankings Carousel -->
       <div class="reveal-on-scroll" style="transition-delay: 200ms;">
         <div class="flex items-center justify-between mb-8 border-t border-black/5 pt-12">
           <h2 class="text-2xl md:text-3xl font-black text-ucu-blue-dark tracking-tight">Global Recognition</h2>
@@ -137,7 +124,6 @@
     </div>
   </section>
 
-  <!-- S4: IMPACT & EVENTS FEED -->
   <section class="bg-white py-16 md:py-24 border-t border-black/5">
     <div class="max-w-[1280px] w-full mx-auto px-4 sm:px-6 lg:px-8">
       
@@ -149,46 +135,77 @@
         delay="0ms">
       </ucu-section-header>
 
-      <!-- Renders premium modal-trigger event cards -->
       <ucu-events-preview limit="3"></ucu-events-preview>
 
     </div>
   </section>
 
-  <!-- S5: STRATEGIC ALLIANCES & CTA -->
   <section class="bg-canvas py-16 md:py-24 overflow-hidden border-t border-black/5">
     <div class="max-w-[1280px] w-full mx-auto px-4 sm:px-6 lg:px-8 flex flex-col gap-16">
       
-      <!-- Row 1: Infinite Partner Logo Marquee -->
-      <div class="reveal-on-scroll" style="transition-delay: 0ms;">
-        <h3 class="text-center text-[10px] font-bold tracking-[0.25em] uppercase text-muted mb-8">Trusted by Global Institutions</h3>
-        <ucu-partner-carousel></ucu-partner-carousel>
-      </div>
+      <ucu-section-header 
+        eyebrow="Strategic Alliances" 
+        title="Global Network &amp; Footprint" 
+        link-text="See more partnerships"
+        link-url="./partnership.html"
+        delay="0ms">
+      </ucu-section-header>
 
-      <!-- Row 2: Country Grid -->
       <div class="reveal-on-scroll flex flex-col items-center" style="transition-delay: 100ms;">
          <h3 class="text-center text-[10px] font-bold tracking-[0.25em] uppercase text-muted mb-6">Our Global Footprint</h3>
          <ucu-country-grid></ucu-country-grid>
       </div>
 
-      <!-- Row 3: Strategic Alliance CTA -->
-      <div class="reveal-on-scroll mt-8" style="transition-delay: 200ms;">
-        <div class="w-full rounded-[2rem] bg-ucu-blue-dark p-10 md:p-16 flex flex-col md:flex-row items-center justify-between gap-8 relative overflow-hidden shadow-2xl">
-          <!-- Geometric Background Assets -->
+      <div class="reveal-on-scroll" style="transition-delay: 200ms;">
+        <h3 class="text-center text-[10px] font-bold tracking-[0.25em] uppercase text-muted mb-8">Trusted by Global Institutions</h3>
+        <ucu-partner-carousel></ucu-partner-carousel>
+      </div>
+
+      <div class="reveal-on-scroll" style="transition-delay: 300ms;">
+        <div class="w-full rounded-[2rem] bg-ucu-blue-dark p-8 md:p-14 lg:p-16 relative overflow-hidden shadow-2xl border border-white/10">
+          
+          <div class="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,1)_0%,transparent_60%)] pointer-events-none"></div>
           <div class="absolute -right-10 -bottom-10 w-64 h-64 rounded-full border-[20px] border-white/5 pointer-events-none"></div>
           <div class="absolute top-10 left-10 w-24 h-24 bg-ucu-red/10 rounded-full blur-2xl pointer-events-none"></div>
-          
-          <div class="relative z-10 max-w-2xl text-center md:text-left">
-            <h2 class="text-3xl md:text-4xl font-black text-white mb-4 tracking-tight">Become a Strategic Partner</h2>
-            <p class="text-white/70 text-sm md:text-base leading-relaxed ucu-prose-narrative">
-              Collaborate with Urdaneta City University to drive groundbreaking research, foster student mobility, and execute high-impact UN Sustainable Development Goal initiatives.
-            </p>
-          </div>
-          
-          <div class="relative z-10 shrink-0">
-            <a href="mailto:linkages@ucu.edu.ph" class="inline-flex items-center justify-center px-8 py-4 bg-ucu-yellow text-ucu-blue-dark text-[11px] font-black uppercase tracking-[0.2em] rounded-xl hover:bg-white transition-colors duration-300 shadow-[0_8px_20px_rgba(251,239,75,0.2)] hover:shadow-lg focus:outline-none hover:-translate-y-1 transform">
-              Initiate Partnership
-            </a>
+
+          <div class="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <h2 class="text-3xl md:text-4xl font-black text-white tracking-tight mb-6">Forge a Strategic Alliance</h2>
+              <p class="text-white/80 text-sm md:text-base font-medium leading-[1.65] max-w-[65ch] mb-8">
+                Urdaneta City University (UCU) actively seeks to expand its global and local network through high-impact institutional linkages. We invite esteemed academic organizations and industry leaders to initialize formal collaboration proposals via our centralized portal.
+              </p>
+
+              <a href="https://forms.google.com/your-form-id-here" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-3 bg-ucu-yellow text-ucu-blue-dark px-8 py-4 rounded-xl font-black uppercase tracking-widest text-[11px] hover:bg-white hover:-translate-y-1 hover:shadow-[0_8px_20px_rgba(251,239,75,0.2)] transition-all duration-300 group focus:outline-none">
+                Access Partnership Inquiry Form
+                <svg class="w-5 h-5 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+              </a>
+            </div>
+
+            <div class="flex flex-col gap-5">
+              <h3 class="text-white/60 text-xs font-black uppercase tracking-[0.2em] mb-2">Direct Correspondence Channels</h3>
+
+              <div class="bg-white/10 backdrop-blur-md border border-white/10 p-5 rounded-2xl flex items-center justify-between group">
+                <div class="flex flex-col">
+                  <span class="text-[0.6rem] font-bold text-ucu-yellow uppercase tracking-widest mb-1">Directorate of External Linkages</span>
+                  <span class="text-white font-semibold text-sm md:text-base break-all" id="email-external">external.linkages@ucu.edu.ph</span>
+                </div>
+                <button onclick="copyToClipboard('email-external', this)" class="p-3 rounded-lg bg-white/5 hover:bg-ucu-yellow hover:text-ucu-blue-dark text-white transition-all duration-300 active:scale-95" title="Copy Address">
+                  <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3" /></svg>
+                </button>
+              </div>
+
+              <div class="bg-white/10 backdrop-blur-md border border-white/10 p-5 rounded-2xl flex items-center justify-between group">
+                <div class="flex flex-col">
+                  <span class="text-[0.6rem] font-bold text-ucu-yellow uppercase tracking-widest mb-1">University General Administration</span>
+                  <span class="text-white font-semibold text-sm md:text-base break-all" id="email-official">info@ucu.edu.ph</span>
+                </div>
+                <button onclick="copyToClipboard('email-official', this)" class="p-3 rounded-lg bg-white/5 hover:bg-ucu-yellow hover:text-ucu-blue-dark text-white transition-all duration-300 active:scale-95" title="Copy Address">
+                  <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3" /></svg>
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -196,10 +213,8 @@
     </div>
   </section>
 
-  <!-- S6: FOOTER -->
   <ucu-footer base-path="./"></ucu-footer>
 
-  <!-- Global Scroll Reveal Observer -->
   <script>
     (function () {
       const observer = new IntersectionObserver(
@@ -220,6 +235,24 @@
         });
       });
     })();
+
+    /**
+     * Professional Copy-to-Clipboard Utility (Ported for CTA functionality)
+     */
+    function copyToClipboard(elementId, button) {
+      const text = document.getElementById(elementId).innerText;
+      const originalIcon = button.innerHTML;
+
+      navigator.clipboard.writeText(text).then(() => {
+        button.innerHTML = `<svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>`;
+        button.classList.add("bg-ucu-yellow", "text-ucu-blue-dark");
+
+        setTimeout(() => {
+          button.innerHTML = originalIcon;
+          button.classList.remove("bg-ucu-yellow", "text-ucu-blue-dark");
+        }, 2000);
+      });
+    }
   </script>
 
 </body>

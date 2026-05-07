@@ -472,12 +472,12 @@ class SdgBadge extends HTMLElement {
     const goal = parseInt(this.getAttribute("goal"), 10);
     if (!goal || goal < 1 || goal > 17) return;
 
-    const sdgColors = ["#E5243B","#DDA63A","#4C9F38","#C5192D","#FF3A21","#26BDE2","#FCC30B","#A21942","#FD6925","#DD1367","#FD9D24","#BF8B2E","#3F7E44","#0A97D9","#56C02B","#00689D","#19486A"];
-    const color = sdgColors[goal - 1];
+    const colors = window.UCU_SDG_COLORS || {};
+    const color = colors[goal] || "#24305e";
     const textColor = goal === 7 ? "#1a1a1a" : "#ffffff";
 
     this.innerHTML = `
-      <span class="w-6 h-6 rounded-sm flex items-center justify-center text-[9px] font-black" style="background:${color};color:${textColor};">
+      <span class="w-6 h-6 rounded-sm flex items-center justify-center text-[9px] font-black shadow-sm" style="background:${color};color:${textColor};">
         ${goal}
       </span>
     `;

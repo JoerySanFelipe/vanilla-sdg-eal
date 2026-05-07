@@ -172,17 +172,19 @@ class UcuPartnerCarousel extends HTMLElement {
     const partners = window.UCU_PARTNERS || [];
     const validPartners = partners.filter(p => p.logoSrc && p.logoSrc !== "");
     const renderList = validPartners.length > 0 ? validPartners : Array(10).fill({name: "Partner", logoSrc: "./images/partner-placeholder.png"});
+    
     const generateLogos = () => renderList.map(p => `
-      <div class="flex-none w-32 md:w-40 h-20 md:h-24 bg-white border border-gray-100 rounded-xl flex items-center justify-center p-4 mx-3 shadow-sm hover:shadow-md transition-shadow grayscale hover:grayscale-0">
-        <img src="${p.logoSrc}" alt="${p.name} Logo" class="max-w-full max-h-full object-contain" loading="lazy" onerror="this.style.display='none'">
+      <div class="group/logo flex-none w-48 md:w-56 h-24 md:h-28 bg-white/80 backdrop-blur-sm border border-white rounded-2xl flex items-center justify-center p-2 shadow-[0_4px_15px_rgba(36,48,94,0.03)] hover:shadow-[0_8px_25px_rgba(36,48,94,0.08)] transition-all duration-300 grayscale hover:grayscale-0">
+        <img src="${p.logoSrc}" alt="${p.name} Logo" class="w-full h-full object-contain transition-transform duration-300 group-hover/logo:scale-[1.05]" loading="lazy" onerror="this.style.display='none'">
       </div>
     `).join("");
+    
     this.innerHTML = `
-      <style>@keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } } .animate-marquee { animation: marquee 30s linear infinite; } .animate-marquee:hover { animation-play-state: paused; }</style>
+      <style>@keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } } .animate-marquee { animation: marquee 15s linear infinite; } .animate-marquee:hover { animation-play-state: paused; }</style>
       <div class="w-full overflow-hidden relative group">
-        <div class="absolute left-0 top-0 w-16 h-full bg-gradient-to-r from-canvas to-transparent z-10"></div>
-        <div class="absolute right-0 top-0 w-16 h-full bg-gradient-to-l from-canvas to-transparent z-10"></div>
-        <div class="flex w-[200%] animate-marquee"><div class="flex w-1/2">${generateLogos()}</div><div class="flex w-1/2">${generateLogos()}</div></div>
+        <div class="absolute left-0 top-0 w-16 h-full bg-gradient-to-r from-canvas to-transparent z-10 pointer-events-none"></div>
+        <div class="absolute right-0 top-0 w-16 h-full bg-gradient-to-l from-canvas to-transparent z-10 pointer-events-none"></div>
+        <div class="flex w-max animate-marquee py-2"><div class="flex gap-6 pr-6">${generateLogos()}</div><div class="flex gap-6 pr-6">${generateLogos()}</div></div>
       </div>
     `;
   }
@@ -195,15 +197,17 @@ class UcuPartnerGrid extends HTMLElement {
     const category = this.getAttribute("category");
     const partners = window.UCU_PARTNERS ? window.UCU_PARTNERS.filter((p) => p.category === category) : [];
     if (partners.length === 0) { this.innerHTML = `<p class="text-muted text-sm italic">Partner data currently initializing...</p>`; return; }
+    
     const gridHtml = partners.map((partner) => {
       const innerHtml = `
-        <img src="${partner.logoSrc}" alt="${partner.name} Logo" class="w-[75%] h-[75%] object-contain transition-all duration-300 group-hover:-translate-y-3 group-hover:scale-75 group-hover:opacity-20 relative z-10" loading="lazy" onerror="this.style.display='none'" />
+        <img src="${partner.logoSrc}" alt="${partner.name} Logo" class="w-full h-full object-contain transition-all duration-300 group-hover:-translate-y-2 group-hover:scale-[0.70] group-hover:opacity-15 relative z-10" loading="lazy" onerror="this.style.display='none'" />
         <div class="absolute inset-0 flex items-center justify-center p-3 opacity-0 translate-y-4 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0 pointer-events-none z-10"><span class="text-center text-[0.65rem] font-black text-ucu-blue-dark uppercase tracking-widest whitespace-normal leading-tight text-balance drop-shadow-sm">${partner.name}</span></div>
         <div class="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-ucu-blue to-ucu-red transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-out origin-center z-20"></div>
       `;
-      const baseClasses = "bg-white/80 backdrop-blur-sm border border-white p-4 rounded-2xl shadow-[0_4px_15px_rgba(36,48,94,0.03)] hover:shadow-[0_8px_25px_rgba(36,48,94,0.08)] transition-all duration-300 flex items-center justify-center aspect-[2/1] group relative overflow-hidden";
+      const baseClasses = "bg-white/80 backdrop-blur-sm border border-white p-2 rounded-2xl shadow-[0_4px_15px_rgba(36,48,94,0.03)] hover:shadow-[0_8px_25px_rgba(36,48,94,0.08)] transition-all duration-300 flex items-center justify-center aspect-[2/1] group relative overflow-hidden";
       return partner.url ? `<a href="${partner.url}" target="_blank" rel="noopener noreferrer" class="${baseClasses} cursor-pointer">${innerHtml}</a>` : `<div class="${baseClasses} cursor-default">${innerHtml}</div>`;
     }).join("");
+    
     this.innerHTML = `<div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-5">${gridHtml}</div>`;
   }
 }

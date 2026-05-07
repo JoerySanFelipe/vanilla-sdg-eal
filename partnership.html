@@ -46,7 +46,6 @@
     }
   </style>
 
-  <!-- High-Performance CSS Sprite Engine for Sovereign Flags -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.0.0/css/flag-icons.min.css" />
 
   <script src="./js/partners-data.js" defer></script>
@@ -59,7 +58,6 @@
 <body class="bg-canvas text-main2 font-sans antialiased min-h-screen flex flex-col relative z-0 overflow-x-hidden">
   <ucu-header base-path="./"></ucu-header>
 
-  <!-- Added reveal-on-scroll to the Hero Banner -->
   <ucu-hero-banner
     class="block w-full min-h-[320px] md:min-h-[360px] reveal-on-scroll"
     bg-color="bg-ucu-blue-dark"
@@ -71,10 +69,8 @@
 
   <main class="w-full flex-grow relative z-10 flex flex-col gap-20 md:gap-24 py-16 md:py-24 bg-canvas">
     
-    <!-- Institutional Metrics Grid with Staggered Animation -->
     <section class="max-w-[1280px] w-full mx-auto px-4 sm:px-6 lg:px-8 relative z-20 reveal-on-scroll" style="transition-delay: 100ms;">
       
-      <!-- Added relative overflow-hidden to perfectly clip the bottom gradient border -->
       <div class="bg-white/70 backdrop-blur-xl border border-white p-8 rounded-[1.5rem] shadow-[0_8px_30px_rgba(36,48,94,0.06)] grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-8 lg:gap-4 text-center divide-x-0 lg:divide-x divide-black/10 relative overflow-hidden">
         
         <div class="flex flex-col items-center justify-center p-2 relative z-10">
@@ -104,12 +100,10 @@
           <span class="text-[10px] font-bold text-muted uppercase tracking-widest">Countries Represented</span>
         </div>
 
-        <!-- NEW: Institutional Gradient Bottom Border -->
         <div class="absolute bottom-0 left-0 w-full h-1.5 bg-gradient-to-r from-ucu-blue via-[#2e3c73] to-ucu-red z-0 pointer-events-none"></div>
 
       </div>
 
-      <!-- Minimalist Pure-Text Action Link -->
       <div class="w-full flex justify-end mt-4">
         <a href="#strategic-alliance" class="inline-flex items-center gap-2 text-ucu-red font-bold uppercase tracking-wider text-[10px] hover:text-dark-red hover:-translate-y-0.5 transition-all duration-300">
           Initiate Partnership
@@ -121,10 +115,8 @@
 
     </section>
 
-    <!-- Data-Driven Partnership Grids -->
     <section class="max-w-[1280px] w-full mx-auto px-4 sm:px-6 lg:px-8 flex flex-col gap-20 md:gap-24">
       
-      <!-- International Linkages -->
       <div class="reveal-on-scroll">
         <div class="flex items-center w-full mb-8 gap-4">
           <div class="w-1.5 h-6 bg-ucu-red rounded-full shadow-sm flex-shrink-0"></div>
@@ -134,7 +126,6 @@
         <ucu-partner-grid category="international"></ucu-partner-grid>
       </div>
 
-      <!-- Local Industry Partners -->
       <div class="reveal-on-scroll">
         <div class="flex items-center w-full mb-8 gap-4">
           <div class="w-1.5 h-6 bg-ucu-red rounded-full shadow-sm flex-shrink-0"></div>
@@ -144,7 +135,6 @@
         <ucu-partner-grid category="local"></ucu-partner-grid>
       </div>
 
-      <!-- Institutional Memberships -->
       <div class="reveal-on-scroll">
         <div class="flex items-center w-full mb-8 gap-4">
           <div class="w-1.5 h-6 bg-ucu-red rounded-full shadow-sm flex-shrink-0"></div>
@@ -154,7 +144,6 @@
         <ucu-partner-grid category="membership"></ucu-partner-grid>
       </div>
 
-      <!-- Global Reach Country Cloud -->
       <div class="reveal-on-scroll">
         <div class="flex items-center justify-center w-full mb-8 gap-4">
           <div class="flex-grow h-px bg-gray-300/70 rounded-full"></div>
@@ -166,19 +155,20 @@
 
     </section>
 
-    <!-- Strategic Alliance Call to Action with Staggered Animation -->
-    <section id="strategic-alliance" class="max-w-[1100px] w-full mx-auto px-4 sm:px-6 lg:px-8 reveal-on-scroll" style="transition-delay: 200ms;">
-      <div class="bg-ucu-blue-dark rounded-[2rem] p-8 md:p-14 shadow-2xl relative overflow-hidden border border-white/10">
+    <section id="strategic-alliance" class="max-w-[1280px] w-full mx-auto px-4 sm:px-6 lg:px-8 reveal-on-scroll" style="transition-delay: 200ms;">
+      <div class="w-full rounded-[2rem] bg-ucu-blue-dark p-8 md:p-14 lg:p-16 relative overflow-hidden shadow-2xl border border-white/10">
         <div class="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,1)_0%,transparent_60%)] pointer-events-none"></div>
+        <div class="absolute -right-10 -bottom-10 w-64 h-64 rounded-full border-[20px] border-white/5 pointer-events-none"></div>
+        <div class="absolute top-10 left-10 w-24 h-24 bg-ucu-red/10 rounded-full blur-2xl pointer-events-none"></div>
 
         <div class="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div>
             <h2 class="text-3xl md:text-4xl font-black text-white tracking-tight mb-6">Forge a Strategic Alliance</h2>
-            <p class="text-white/80 text-sm md:text-base font-medium leading-relaxed mb-8">
+            <p class="text-white/80 text-sm md:text-base font-medium leading-[1.65] max-w-[65ch] mb-8">
               Urdaneta City University (UCU) actively seeks to expand its global and local network through high-impact institutional linkages. We invite esteemed academic organizations and industry leaders to initialize formal collaboration proposals via our centralized portal.
             </p>
 
-            <a href="https://forms.google.com/your-form-id-here" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-3 bg-ucu-yellow text-main2 px-8 py-4 rounded-xl font-black uppercase tracking-widest text-sm hover:bg-white hover:-translate-y-1 hover:shadow-xl transition-all duration-300 group">
+            <a href="https://forms.google.com/your-form-id-here" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-3 bg-ucu-yellow text-ucu-blue-dark px-8 py-4 rounded-xl font-black uppercase tracking-widest text-[11px] hover:bg-white hover:-translate-y-1 hover:shadow-[0_8px_20px_rgba(251,239,75,0.2)] transition-all duration-300 group focus:outline-none">
               Access Partnership Inquiry Form
               <svg class="w-5 h-5 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />

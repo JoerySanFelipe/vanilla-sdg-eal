@@ -4,7 +4,7 @@
  */
 
 /* ==========================================================================
-   SHARED STYLES (DRY)
+   SHARED CONSTANTS & STYLES (DRY)
    ========================================================================== */
 
 const IMPACT_FEED_STYLES = `
@@ -25,6 +25,7 @@ class UcuEventsPreview extends HTMLElement {
 
     const limit = parseInt(this.getAttribute("limit") || "3", 10);
     const allEvents = window.UCU_EVENTS || [];
+    const colors = window.UCU_SDG_COLORS || {};
     
     const previewEvents = allEvents.filter(ev => ev.isHighlights === true).slice(0, limit);
 
@@ -33,17 +34,10 @@ class UcuEventsPreview extends HTMLElement {
       return;
     }
 
-    const SDG_COLORS = {
-      1: "#E5243B", 2: "#DDA63A", 3: "#4C9F38", 4: "#C5192D", 5: "#FF3A21", 
-      6: "#26BDE2", 7: "#FCC30B", 8: "#A21942", 9: "#FD6925", 10: "#DD1367", 
-      11: "#FD9D24", 12: "#BF8B2E", 13: "#3F7E44", 14: "#0A97D9", 15: "#56C02B", 
-      16: "#00689D", 17: "#19486A"
-    };
-
     const cardsHtml = previewEvents.map((ev, index) => {
       const delay = index * 100;
       const tagsHtml = (ev.relatedSdgs || []).slice(0, 3).map(num => `
-        <div class="w-6 h-6 rounded-sm text-white text-[10px] flex items-center justify-center font-black shadow-sm" style="background-color: ${SDG_COLORS[num] || '#24305e'};">${num}</div>
+        <div class="w-5 h-5 rounded-sm text-white text-[9px] flex items-center justify-center font-bold shadow-sm" style="background-color: ${colors[num] || '#24305e'};">${num}</div>
       `).join('');
 
       return `
@@ -51,26 +45,31 @@ class UcuEventsPreview extends HTMLElement {
           <div class="relative aspect-video w-full overflow-hidden bg-gray-100 border-b border-gray-100 shrink-0">
             <img src="${ev.img}" alt="${ev.title}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" onerror="this.style.display='none'">
             <div class="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
-            <div class="absolute bottom-4 right-4 flex gap-1.5 z-10">
-              ${tagsHtml}
-            </div>
           </div>
-          <div class="flex flex-col flex-1 p-6 md:p-8 gap-3">
-            <p class="text-[10px] font-bold uppercase tracking-[0.2em] text-ucu-red m-0 flex items-center gap-2">
-               <span class="w-1.5 h-1.5 rounded-full bg-ucu-red"></span>
-               ${ev.date}
-            </p>
-            <h3 class="text-xl font-black text-ucu-blue-dark leading-snug group-hover:text-ucu-red transition-colors duration-200 m-0 line-clamp-2">${ev.title}</h3>
+          <div class="flex flex-col flex-1 p-6 md:p-8">
+            <div class="flex items-center justify-between gap-4 mb-4">
+              <p class="text-[10px] font-bold uppercase tracking-[0.2em] text-ucu-red m-0 flex items-center gap-2">
+                 <span class="w-1.5 h-1.5 rounded-full bg-ucu-red"></span>
+                 ${ev.date}
+              </p>
+              <div class="flex items-center gap-1.5 shrink-0">${tagsHtml}</div>
+            </div>
+            <h3 class="text-xl font-black text-ucu-blue-dark leading-snug group-hover:text-ucu-red transition-colors duration-200 m-0 line-clamp-2 mb-3">${ev.title}</h3>
             <p class="text-muted text-sm font-medium leading-relaxed flex-1 line-clamp-3 m-0">${ev.desc}</p>
           </div>
         </button>
       `;
     }).join('');
 
+    const modalsHtml = previewEvents.map((ev) => `
+      <ucu-modal-shell modal-id="${ev.id}" title="${ev.title}" badge="${ev.date}" content-src="${ev.src}" data-sdgs='${JSON.stringify(ev.relatedSdgs || [])}'></ucu-modal-shell>
+    `).join("");
+
     this.innerHTML = `
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8 w-full">
         ${cardsHtml}
       </div>
+      ${modalsHtml}
     `;
 
     setTimeout(() => {
@@ -95,29 +94,23 @@ class UcuImpactFeed extends HTMLElement {
 
     const targetYear = this.getAttribute("year") || "2025";
     const allEvents = window.UCU_EVENTS || [];
+    const colors = window.UCU_SDG_COLORS || {};
 
     this.pageEvents = allEvents.filter((ev) => ev.isFeatured === true && ev.date && ev.date.includes(targetYear));
     this.highlights = this.pageEvents.filter((ev) => ev.isHighlights === true);
     this.recents = this.pageEvents.filter((ev) => ev.isHighlights !== true);
 
-    this.SDG_COLORS = {
-      1: "#E5243B", 2: "#DDA63A", 3: "#4C9F38", 4: "#C5192D", 5: "#FF3A21",
-      6: "#26BDE2", 7: "#FCC30B", 8: "#A21942", 9: "#FD6925", 10: "#DD1367",
-      11: "#FD9D24", 12: "#BF8B2E", 13: "#3F7E44", 14: "#0A97D9", 15: "#56C02B",
-      16: "#00689D", 17: "#19486A",
-    };
-
     const generateFilters = () => {
       let btns = `<button data-filter="all" class="filter-btn px-5 py-2.5 rounded-full text-xs font-bold border border-ucu-blue-dark/20 bg-white shadow-sm transition-all hover:bg-gray-50 data-[active=true]:bg-ucu-blue-dark data-[active=true]:text-white data-[active=true]:border-ucu-blue-dark text-main2" data-active="true">All Engagements</button>`;
       for (let i = 1; i <= 17; i++) {
-        btns += `<button data-filter="${i}" style="--sdg-color: ${this.SDG_COLORS[i]};" class="filter-btn sdg-hover-btn px-4 py-2.5 rounded-full text-xs font-bold border border-gray-200 bg-white shadow-sm transition-all text-main2" data-active="false">SDG ${i}</button>`;
+        btns += `<button data-filter="${i}" style="--sdg-color: ${colors[i]};" class="filter-btn sdg-hover-btn px-4 py-2.5 rounded-full text-xs font-bold border border-gray-200 bg-white shadow-sm transition-all text-main2" data-active="false">SDG ${i}</button>`;
       }
       return btns;
     };
 
     const highlightsHtml = this.highlights.map((ev) => {
       const tagsHtml = (ev.relatedSdgs || []).map((num) => `
-        <div class="w-5 h-5 rounded-sm text-white text-[9px] flex items-center justify-center font-bold shadow-sm" style="background-color: ${this.SDG_COLORS[num]};">${num}</div>
+        <div class="w-5 h-5 rounded-sm text-white text-[9px] flex items-center justify-center font-bold shadow-sm" style="background-color: ${colors[num] || '#24305e'};">${num}</div>
       `).join("");
 
       return `
@@ -142,7 +135,7 @@ class UcuImpactFeed extends HTMLElement {
 
     const recentsHtml = this.recents.map((ev) => {
       const tagsHtml = (ev.relatedSdgs || []).slice(0, 3).map((num) => `
-        <div class="w-4 h-4 rounded-sm text-white text-[8px] flex items-center justify-center font-bold" style="background-color: ${this.SDG_COLORS[num]};">${num}</div>
+        <div class="w-4 h-4 rounded-sm text-white text-[8px] flex items-center justify-center font-bold" style="background-color: ${colors[num] || '#24305e'};">${num}</div>
       `).join("");
 
       return `
@@ -210,8 +203,9 @@ class UcuImpactFeed extends HTMLElement {
   }
 
   generateStandaloneCard(ev) {
+    const colors = window.UCU_SDG_COLORS || {};
     const tagsHtml = (ev.relatedSdgs || []).slice(0, 3).map((num) => `
-      <div class="w-5 h-5 rounded-sm text-white text-[9px] flex items-center justify-center font-bold" style="background-color: ${this.SDG_COLORS[num]};">${num}</div>
+      <div class="w-5 h-5 rounded-sm text-white text-[9px] flex items-center justify-center font-bold" style="background-color: ${colors[num] || '#24305e'};">${num}</div>
     `).join("");
 
     return `
@@ -294,18 +288,12 @@ class UcuResearchFeed extends HTMLElement {
     const targetYear = this.getAttribute("year");
     const allResearch = window.UCU_RESEARCH || [];
     const research = targetYear ? allResearch.filter((paper) => paper.date && paper.date.includes(targetYear)) : allResearch;
-
-    const sdgColors = {
-      1: "#E5243B", 2: "#DDA63A", 3: "#4C9F38", 4: "#C5192D", 5: "#FF3A21",
-      6: "#26BDE2", 7: "#FCC30B", 8: "#A21942", 9: "#FD6925", 10: "#DD1367",
-      11: "#FD9D24", 12: "#BF8B2E", 13: "#3F7E44", 14: "#0A97D9", 15: "#56C02B",
-      16: "#00689D", 17: "#19486A",
-    };
+    const colors = window.UCU_SDG_COLORS || {};
 
     const generateFilters = () => {
       let btns = `<button data-filter="all" class="filter-btn px-5 py-2.5 rounded-full text-xs font-bold border border-ucu-blue-dark/20 bg-white shadow-sm transition-all hover:bg-gray-50 data-[active=true]:bg-ucu-blue-dark data-[active=true]:text-white data-[active=true]:border-ucu-blue-dark text-main2" data-active="true">All Research</button>`;
       for (let i = 1; i <= 17; i++) {
-        btns += `<button data-filter="${i}" style="--sdg-color: ${sdgColors[i]};" class="filter-btn sdg-hover-btn px-4 py-2.5 rounded-full text-xs font-bold border border-gray-200 bg-white shadow-sm transition-all text-main2" data-active="false">SDG ${i}</button>`;
+        btns += `<button data-filter="${i}" style="--sdg-color: ${colors[i]};" class="filter-btn sdg-hover-btn px-4 py-2.5 rounded-full text-xs font-bold border border-gray-200 bg-white shadow-sm transition-all text-main2" data-active="false">SDG ${i}</button>`;
       }
       return btns;
     };
@@ -319,7 +307,7 @@ class UcuResearchFeed extends HTMLElement {
     const cardsHtml = research.map((paper) => {
       const sdgDataStr = (paper.sdgs || []).join(" ");
       const sdgBadges = (paper.sdgs || []).map((sdgNum) => `
-        <div class="flex items-center justify-center w-7 h-7 rounded text-white text-xs font-black shadow-sm" style="background-color: ${sdgColors[sdgNum] || "#24305e"};" title="SDG ${sdgNum}">${sdgNum}</div>
+        <div class="flex items-center justify-center w-7 h-7 rounded text-white text-xs font-black shadow-sm" style="background-color: ${colors[sdgNum] || "#24305e"};" title="SDG ${sdgNum}">${sdgNum}</div>
       `).join("");
 
       const keywordPills = paper.keywords ? paper.keywords.map((kw) => `<span class="text-[0.6rem] font-bold text-ucu-blue-dark bg-ucu-blue-dark/5 px-2.5 py-1 rounded border border-ucu-blue-dark/10 tracking-widest uppercase">${kw}</span>`).join("") : "";
