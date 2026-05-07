@@ -311,7 +311,7 @@ class UcuSdgLayout extends HTMLElement {
       })
       .join("");
 
-// Replace this block inside UcuSdgLayout connectedCallback() in js/sdg-components.js
+      // Replace this block inside UcuSdgLayout connectedCallback() in js/sdg-components.js
 
     // Generate Event Cards dynamically based on filtered pageEvents
     const cardsHtml = pageEvents

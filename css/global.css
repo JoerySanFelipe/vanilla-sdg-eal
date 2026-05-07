@@ -24,6 +24,13 @@
   --color-canvas: #f4f7fa; 
   --color-muted: #555555; 
 
+  /* Organization Branding Colors */
+  --color-org-wuri: #144989;
+  --color-org-appliedhe: #f62c09;
+  --color-org-uigreenmetric: #089c44;
+  --color-org-the: #e50328;
+  --color-org-hehigher: #013c44;
+
   /* Institutional Typography */
   --font-sans: "Montserrat", system-ui, sans-serif;
 }
@@ -137,7 +144,7 @@
     margin: 1.75rem 0; 
     max-height: 400px; 
     width: 100%; 
-    max-width: 65ch; /* Aligned to reading measure */
+    max-width: 65ch; 
     object-fit: cover; 
     background-color: var(--color-canvas); 
     padding: 0.2rem; 
@@ -185,5 +192,23 @@
   @keyframes pop-in {
     0%   { opacity: 0; transform: scale(0.95) translateY(10px); }
     100% { opacity: 1; transform: scale(1) translateY(0); }
+  }
+
+  /* Viewport Lock: Ensures true full-screen stability on all devices */
+  .ucu-viewport-lock {
+    min-height: 100vh;
+    min-height: 100dvh; /* Dynamic viewport for mobile browser bars */
+  }
+
+  /* Radial Overlay: Used for the "No Green" institutional depth effect */
+  .bg-radial-gradient {
+    background: radial-gradient(circle, var(--tw-gradient-from) 0%, var(--tw-gradient-to) 100%);
+  }
+
+  /* Force vertical centering for viewport-locked sections */
+  .ucu-flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 }
