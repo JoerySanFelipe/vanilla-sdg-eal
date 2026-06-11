@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SDG 10 - Reduced Inequalities (2025) | UCU – EAL</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="../../css/style.css">
+  
+  <script src="../../js/events-data.js" defer></script>
+  <script src="../../js/core-ui.js" defer></script>
+  <script src="../../js/visual-media.js" defer></script>
+  <script src="../../js/impact-feeds.js" defer></script>
+  <script src="../../js/institutional-data.js" defer></script>
+  <script src="../../js/modals.js" defer></script>
+  <script src="../../js/sdg-components.js" defer></script>
+  <script src="../../js/global-charts.js" defer></script>
+</head>
+<body class="bg-slate-50 text-muted font-sans antialiased min-h-screen flex flex-col">
+
+  <ucu-header base-path="../../"></ucu-header>
+
+  <ucu-sdg-page-hero 
+    class="block w-full reveal-on-scroll"
+    sdg="10" 
+    title="Reduced Inequalities" 
+    subtitle="Reduce inequality within and among countries." 
+    hex="#DD1367" 
+    bg-image="../../images/sdg-banner/sdg10.jpg" 
+    icon-image="../../images/sdg/sdg10.png">
+  </ucu-sdg-page-hero>
+
+  <ucu-sdg-layout sdg="10" year="2025">
+    
+    <div slot="description" class="flex flex-col gap-2">
+      
+      <ucu-metric-cards class="block w-full reveal-on-scroll" style="transition-delay: 100ms;" data-metrics='[
+        {"value": "100%", "label": "Inclusive Admission", "theme": "red", "svgIcon": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"28\" height=\"28\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2\"/><circle cx=\"9\" cy=\"7\" r=\"4\"/><path d=\"M23 21v-2a4 4 0 0 0-3-3.87\"/><path d=\"M16 3.13a4 4 0 0 1 0 7.75\"/></svg>"},
+        {"value": "25", "label": "Global Mobility Links", "theme": "navy", "svgIcon": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"28\" height=\"28\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"12\" cy=\"12\" r=\"10\"/><line x1=\"2\" y1=\"12\" x2=\"22\" y2=\"12\"/><path d=\"M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z\"/></svg>"},
+        {"value": "15+", "label": "PWD Friendly Zones", "theme": "red", "svgIcon": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"28\" height=\"28\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"12\" cy=\"12\" r=\"10\"/><path d=\"M8 14s1.5 2 4 2 4-2 4-2\"/><line x1=\"9\" y1=\"9\" x2=\"9.01\" y2=\"9\"/><line x1=\"15\" y1=\"9\" x2=\"15.01\" y2=\"9\"/></svg>"}
+      ]'></ucu-metric-cards>
+
+      <div class="flex items-center w-full mt-8 mb-4 gap-4 reveal-on-scroll">
+        <div class="w-1.5 h-6 bg-ucu-red rounded-full shadow-sm flex-shrink-0"></div>
+        <h2 class="flex-shrink-0 text-2xl font-bold text-ucu-blue-dark tracking-tight m-0 pr-2">Social Inclusion and Equitable Access</h2>
+        <div class="flex-grow h-px bg-gray-300/70 rounded-full"></div>
+      </div>
+
+      <div class="ucu-prose-narrative reveal-on-scroll">
+        <p>Urdaneta City University (UCU) actively works to dismantle the systemic barriers that perpetuate social and economic inequality. To advance SDG 10, our institution has implemented a 100% inclusive admission policy, ensuring that students from ethnolinguistic minorities, diverse religious backgrounds, and low-income deciles have an equal seat in our classrooms.</p>
+        <p>Our External Office and Linkages division extends this commitment to the community by supporting national social protection programs. By providing technical expertise to initiatives like the <b>Kalahi-CIDSS Cash-for-Work program</b>, we help ensure that government aid reaches the most vulnerable sectors with transparency and efficiency.</p>
+      </div>
+
+      <div class="flex items-center w-full mt-10 mb-4 gap-4 reveal-on-scroll">
+        <div class="w-1.5 h-6 bg-ucu-red rounded-full shadow-sm flex-shrink-0"></div>
+        <h2 class="flex-shrink-0 text-2xl font-bold text-ucu-blue-dark tracking-tight m-0 pr-2">International Linkages as Equalizers</h2>
+        <div class="flex-grow h-px bg-gray-300/70 rounded-full"></div>
+      </div>
+
+      <div class="ucu-prose-narrative reveal-on-scroll">
+        <p>We believe that global mobility should not be a privilege of the elite. UCU leverages its growing network of international institutional partners to provide exchange opportunities and collaborative research platforms for students who would otherwise lack access to global academic discourse. These linkages serve as powerful equalizers, equipping our graduates with the global competencies required to compete on the international stage.</p>
+      </div>
+
+      <ucu-data-viz class="block w-full reveal-on-scroll" title="Student Population by Socioeconomic Bracket" subtitle="Ensuring Access for the Bottom 40% of Income Earners" data-type="stacked" data-payload='[
+        {"label": "Bottom 20%", "percentage": 42, "bgClass": "bg-[#DD1367]", "textClass": "text-white", "legendLabel": "Lower Decile"},
+        {"label": "Lower Middle", "percentage": 38, "bgClass": "bg-ucu-blue-dark", "textClass": "text-white", "legendLabel": "Lower-Mid Income"},
+        {"label": "Middle & Above", "percentage": 20, "bgClass": "bg-ucu-yellow", "textClass": "text-ucu-blue-dark", "legendLabel": "Others"}
+      ]'></ucu-data-viz>
+
+    </div>
+  </ucu-sdg-layout>
+
+  <ucu-sdg-ribbon class="block w-full reveal-on-scroll" active="10"></ucu-sdg-ribbon>
+  <ucu-footer base-path="../../" class="reveal-on-scroll"></ucu-footer>
+
+</body>
+</html>

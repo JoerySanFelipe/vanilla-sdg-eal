@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SDG 13 - Climate Action (2025) | UCU – EAL</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="../../css/style.css">
+  
+  <script src="../../js/events-data.js" defer></script>
+  <script src="../../js/core-ui.js" defer></script>
+  <script src="../../js/visual-media.js" defer></script>
+  <script src="../../js/impact-feeds.js" defer></script>
+  <script src="../../js/institutional-data.js" defer></script>
+  <script src="../../js/modals.js" defer></script>
+  <script src="../../js/sdg-components.js" defer></script>
+  <script src="../../js/global-charts.js" defer></script>
+</head>
+<body class="bg-slate-50 text-muted font-sans antialiased min-h-screen flex flex-col">
+
+  <ucu-header base-path="../../"></ucu-header>
+
+  <ucu-sdg-page-hero 
+    class="block w-full reveal-on-scroll"
+    sdg="13" 
+    title="Climate Action" 
+    subtitle="Take urgent action to combat climate change and its impacts." 
+    hex="#3F7E44" 
+    bg-image="../../images/sdg-banner/sdg13.jpg" 
+    icon-image="../../images/sdg/sdg13.png">
+  </ucu-sdg-page-hero>
+
+  <ucu-sdg-layout sdg="13" year="2025">
+    
+    <div slot="description" class="flex flex-col gap-2">
+      
+      <ucu-metric-cards class="block w-full reveal-on-scroll" style="transition-delay: 100ms;" data-metrics='[
+        {"value": "30%", "label": "Carbon Reduction", "theme": "navy", "svgIcon": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"28\" height=\"28\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M4.93 4.93l14.14 14.14\"/><path d=\"M12 4V2\"/><path d=\"M20 12h2\"/><path d=\"M12 20v2\"/><path d=\"M4 12H2\"/><path d=\"M17.66 6.34l1.41-1.41\"/><path d=\"M6.34 17.66l-1.41 1.41\"/><path d=\"M6.34 6.34L4.93 4.93\"/><path d=\"M17.66 17.66l1.41 1.41\"/></svg>"},
+        {"value": "100%", "label": "Disaster Preparedness", "theme": "red", "svgIcon": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"28\" height=\"28\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"m12 14 4-4\"/><path d=\"M3.34 19a10 10 0 1 1 17.32 0\"/></svg>"},
+        {"value": "Low", "label": "Carbon Footprint", "theme": "navy", "svgIcon": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"28\" height=\"28\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z\"/><path d=\"M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12\"/></svg>"}
+      ]'></ucu-metric-cards>
+
+      <div class="flex items-center w-full mt-8 mb-4 gap-4 reveal-on-scroll">
+        <div class="w-1.5 h-6 bg-ucu-red rounded-full shadow-sm flex-shrink-0"></div>
+        <h2 class="flex-shrink-0 text-2xl font-bold text-ucu-blue-dark tracking-tight m-0 pr-2">Decarbonizing the Academic Environment</h2>
+        <div class="flex-grow h-px bg-gray-300/70 rounded-full"></div>
+      </div>
+
+      <div class="ucu-prose-narrative reveal-on-scroll">
+        <p>Urdaneta City University (UCU) recognizes the existential threat posed by climate change and has committed to a radical decarbonization strategy. By leveraging the <b>Smart Eco-Campus solar grid</b>, we have successfully reduced our institutional carbon emissions by 30% as of early 2025. This energy transition represents our primary offensive against climate change, moving us closer to our 2030 Net-Zero operational target.</p>
+        <p>Our climate action extends to institutional policy; we have mandated a "Low Carbon" operational framework that prioritizes energy-efficient architecture, digital administrative processes, and the preservation of our campus green canopy to act as a localized carbon sink.</p>
+      </div>
+
+      <div class="flex items-center w-full mt-10 mb-4 gap-4 reveal-on-scroll">
+        <div class="w-1.5 h-6 bg-ucu-red rounded-full shadow-sm flex-shrink-0"></div>
+        <h2 class="flex-shrink-0 text-2xl font-bold text-ucu-blue-dark tracking-tight m-0 pr-2">Climate Resilience and Advocacy</h2>
+        <div class="flex-grow h-px bg-gray-300/70 rounded-full"></div>
+      </div>
+
+      <div class="ucu-prose-narrative reveal-on-scroll">
+        <p>Resilience is the second pillar of our strategy. UCU has developed a comprehensive climate adaptation plan, ensuring that our campus infrastructure can withstand extreme weather events common to the region. This includes the integration of advanced storm-water management systems and the establishment of an institutional disaster response command center.</p>
+        <p>Through our External Office and Linkages, we actively propagate climate awareness to our partner communities, conducting research and seminars on sustainable agriculture and disaster risk reduction, ensuring that our regional impact is as resilient as our campus.</p>
+      </div>
+
+      <ucu-data-viz class="block w-full reveal-on-scroll" title="Institutional Carbon Emission Reduction (%)" subtitle="Path toward the 2030 Net-Zero Goal" data-type="vertical" data-payload='[
+        {"year": "2022", "value": "5%", "heightPercent": 20, "baseBgClass": "bg-slate-200", "hoverBgClass": "bg-[#3F7E44]", "textClass": "text-slate-500"},
+        {"year": "2023", "value": "12%", "heightPercent": 45, "baseBgClass": "bg-slate-300", "hoverBgClass": "bg-[#3F7E44]", "textClass": "text-slate-600"},
+        {"year": "2024", "value": "22%", "heightPercent": 75, "baseBgClass": "bg-ucu-blue-dark", "hoverBgClass": "bg-[#151f42]", "textClass": "text-ucu-blue-dark"},
+        {"year": "2025", "value": "30%", "heightPercent": 100, "baseBgClass": "bg-[#3F7E44]", "hoverBgClass": "bg-[#2d5a31]", "textClass": "text-[#3F7E44]"}
+      ]'></ucu-data-viz>
+
+    </div>
+  </ucu-sdg-layout>
+
+  <ucu-sdg-ribbon class="block w-full reveal-on-scroll" active="13"></ucu-sdg-ribbon>
+  <ucu-footer base-path="../../" class="reveal-on-scroll"></ucu-footer>
+
+</body>
+</html>

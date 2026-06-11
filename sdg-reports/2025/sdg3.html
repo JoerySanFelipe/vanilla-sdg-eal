@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SDG 3 - Good Health and Well-being (2025) | UCU – EAL</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="../../css/style.css">
+  
+  <script src="../../js/events-data.js" defer></script>
+  <script src="../../js/core-ui.js" defer></script>
+  <script src="../../js/visual-media.js" defer></script>
+  <script src="../../js/impact-feeds.js" defer></script>
+  <script src="../../js/institutional-data.js" defer></script>
+  <script src="../../js/modals.js" defer></script>
+  <script src="../../js/sdg-components.js" defer></script>
+  <script src="../../js/global-charts.js" defer></script>
+</head>
+<body class="bg-slate-50 text-muted font-sans antialiased min-h-screen flex flex-col">
+
+  <ucu-header base-path="../../"></ucu-header>
+
+  <ucu-sdg-page-hero 
+    class="block w-full reveal-on-scroll"
+    sdg="3" 
+    title="Good Health and Well-being" 
+    subtitle="Ensure healthy lives and promote well-being for all at all ages." 
+    hex="#4C9F38" 
+    bg-image="../../images/sdg-banner/sdg3.jpg" 
+    icon-image="../../images/sdg/sdg3.png">
+  </ucu-sdg-page-hero>
+
+  <ucu-sdg-layout sdg="3" year="2025">
+    
+    <div slot="description" class="flex flex-col gap-2">
+      
+      <ucu-metric-cards class="block w-full reveal-on-scroll" style="transition-delay: 100ms;" data-metrics='[
+        {"value": "5,420", "label": "Free Consultations", "theme": "navy", "svgIcon": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"28\" height=\"28\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M22 12h-4l-3 9L9 3l-3 9H2\"/></svg>"},
+        {"value": "12", "label": "Community Health Missions", "theme": "red", "svgIcon": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"28\" height=\"28\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z\"/><polyline points=\"14 2 14 8 20 8\"/><path d=\"M12 18v-6\"/><path d=\"M9 15h6\"/></svg>"},
+        {"value": "100%", "label": "Student Health Coverage", "theme": "navy", "svgIcon": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"28\" height=\"28\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z\"/><path d=\"M9 12h6\"/><path d=\"M12 9v6\"/></svg>"}
+      ]'></ucu-metric-cards>
+
+      <div class="flex items-center w-full mt-8 mb-4 gap-4 reveal-on-scroll">
+        <div class="w-1.5 h-6 bg-ucu-red rounded-full shadow-sm flex-shrink-0"></div>
+        <h2 class="flex-shrink-0 text-2xl font-bold text-ucu-blue-dark tracking-tight m-0 pr-2">Holistic Campus Health Ecosystem</h2>
+        <div class="flex-grow h-px bg-gray-300/70 rounded-full"></div>
+      </div>
+
+      <div class="ucu-prose-narrative reveal-on-scroll">
+        <p>Urdaneta City University asserts that academic excellence is fundamentally rooted in the physical and mental well-being of its constituents. To advance SDG 3, we have fortified our institutional health infrastructure, ensuring that all students, faculty, and staff have immediate, free access to primary medical care, dental services, and mental health counseling through the enhanced University Clinic.</p>
+        <p>Beyond treating acute ailments, our health policy is aggressively preventative. The university mandates comprehensive annual health assessments, supports active intramural athletic programs, and enforces strict campus-wide sanitation and bio-security protocols to prevent the outbreak of communicable diseases.</p>
+      </div>
+
+      <div class="flex items-center w-full mt-10 mb-4 gap-4 reveal-on-scroll">
+        <div class="w-1.5 h-6 bg-ucu-red rounded-full shadow-sm flex-shrink-0"></div>
+        <h2 class="flex-shrink-0 text-2xl font-bold text-ucu-blue-dark tracking-tight m-0 pr-2">Community Medical & Extension Missions</h2>
+        <div class="flex-grow h-px bg-gray-300/70 rounded-full"></div>
+      </div>
+
+      <div class="ucu-prose-narrative reveal-on-scroll">
+        <p>The expertise housed within our College of Nursing and College of Pharmacy extends far beyond the classroom. UCU operates a robust extension program that delivers critical medical interventions to Geographically Isolated and Disadvantaged Areas (GIDA) within the region.</p>
+        <p>Through our student-led medical missions, we provide maternal health seminars, pediatric immunizations, basic pharmaceutical dispensing, and hypertension screenings. These initiatives not only bridge the healthcare gap for vulnerable populations but also forge highly competent, socially conscious medical professionals.</p>
+      </div>
+
+      <ucu-data-viz class="block w-full reveal-on-scroll" title="Annual Community Medical Mission Beneficiaries" subtitle="Year Over Year Growth" data-type="vertical" data-payload='[
+        {"year": "2022", "value": 1250, "heightPercent": 25, "baseBgClass": "bg-slate-200", "hoverBgClass": "bg-[#4C9F38]", "textClass": "text-slate-500"},
+        {"year": "2023", "value": 2800, "heightPercent": 50, "baseBgClass": "bg-slate-300", "hoverBgClass": "bg-[#4C9F38]", "textClass": "text-slate-600"},
+        {"year": "2024", "value": 4100, "heightPercent": 75, "baseBgClass": "bg-ucu-blue-dark", "hoverBgClass": "bg-[#151f42]", "textClass": "text-ucu-blue-dark"},
+        {"year": "2025", "value": 5420, "heightPercent": 100, "baseBgClass": "bg-[#4C9F38]", "hoverBgClass": "bg-[#3a7a2a]", "textClass": "text-[#4C9F38]"}
+      ]'></ucu-data-viz>
+
+    </div>
+  </ucu-sdg-layout>
+
+  <ucu-sdg-ribbon class="block w-full reveal-on-scroll" active="3"></ucu-sdg-ribbon>
+  <ucu-footer base-path="../../" class="reveal-on-scroll"></ucu-footer>
+
+</body>
+</html>

@@ -130,7 +130,7 @@
     line-height: 1.2; 
   }
   .ucu-prose-evidence h3 { 
-    color: var(--color-ucu-red); 
+    color: var(--color-ucu-blue-dark); 
     font-size: 1.05rem; 
     font-weight: 800; 
     margin-top: 1.5rem; 
@@ -189,6 +189,21 @@
   }
 
   /* ── Motion & Interaction ── */
+/* Premium Standardized Global Scroll Reveal */
+  .reveal-on-scroll {
+    opacity: 0;
+    transform: translateY(50px) scale(0.98);
+    transition: 
+      opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), 
+      transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
+  }
+  
+  .reveal-on-scroll.is-visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+
   @keyframes pop-in {
     0%   { opacity: 0; transform: scale(0.95) translateY(10px); }
     100% { opacity: 1; transform: scale(1) translateY(0); }

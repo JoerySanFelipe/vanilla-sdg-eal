@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SDG 2 - Zero Hunger (2025) | UCU – EAL</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="../../css/style.css">
+  
+  <script src="../../js/events-data.js" defer></script>
+  <script src="../../js/core-ui.js" defer></script>
+  <script src="../../js/visual-media.js" defer></script>
+  <script src="../../js/impact-feeds.js" defer></script>
+  <script src="../../js/institutional-data.js" defer></script>
+  <script src="../../js/modals.js" defer></script>
+  <script src="../../js/sdg-components.js" defer></script>
+  <script src="../../js/global-charts.js" defer></script>
+</head>
+<body class="bg-slate-50 text-muted font-sans antialiased min-h-screen flex flex-col">
+
+  <ucu-header base-path="../../"></ucu-header>
+
+  <ucu-sdg-page-hero 
+    class="block w-full reveal-on-scroll"
+    sdg="2" 
+    title="Zero Hunger" 
+    subtitle="End hunger, achieve food security and improved nutrition and promote sustainable agriculture." 
+    hex="#DDA63A" 
+    bg-image="../../images/sdg-banner/sdg2.jpg" 
+    icon-image="../../images/sdg/sdg2.png">
+  </ucu-sdg-page-hero>
+
+  <ucu-sdg-layout sdg="2" year="2025">
+    
+    <div slot="description" class="flex flex-col gap-2">
+      
+      <ucu-metric-cards class="block w-full reveal-on-scroll" style="transition-delay: 100ms;" data-metrics='[
+        {"value": "12,500", "label": "Meals Distributed", "theme": "yellow", "svgIcon": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"28\" height=\"28\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 2v20\"/><path d=\"M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6\"/></svg>"},
+        {"value": "3", "label": "Urban Farms", "theme": "navy", "svgIcon": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"28\" height=\"28\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z\"/><path d=\"M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12\"/></svg>"},
+        {"value": "18", "label": "Agri-Research Papers", "theme": "red", "svgIcon": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"28\" height=\"28\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z\"/><path d=\"M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z\"/></svg>"}
+      ]'></ucu-metric-cards>
+
+      <div class="flex items-center w-full mt-8 mb-4 gap-4 reveal-on-scroll">
+        <div class="w-1.5 h-6 bg-ucu-red rounded-full shadow-sm flex-shrink-0"></div>
+        <h2 class="flex-shrink-0 text-2xl font-bold text-ucu-blue-dark tracking-tight m-0 pr-2">Food Security and Campus Nutrition</h2>
+        <div class="flex-grow h-px bg-gray-300/70 rounded-full"></div>
+      </div>
+
+      <div class="ucu-prose-narrative reveal-on-scroll">
+        <p>Urdaneta City University recognizes that cognitive development and academic success are fundamentally tied to nutritional security. In pursuit of SDG 2, our institution has mobilized aggressive campus-wide feeding programs and subsidized cafeteria initiatives to guarantee that no student attends lectures in a state of food insecurity.</p>
+        <p>By leveraging our agricultural departments, we have transformed unused campus acreage into high-yield urban farming incubators. These hubs not only provide fresh, organic produce directly to the university cafeterias but also serve as living laboratories for sustainable agronomy.</p>
+      </div>
+
+      <ucu-data-viz class="block w-full reveal-on-scroll" title="Annual Urban Farm Yield (in Kilograms)" subtitle="Year Over Year Growth" data-type="vertical" data-payload='[
+        {"year": "2022", "value": 450, "heightPercent": 30, "baseBgClass": "bg-slate-200", "hoverBgClass": "bg-ucu-yellow", "textClass": "text-slate-500"},
+        {"year": "2023", "value": 820, "heightPercent": 55, "baseBgClass": "bg-slate-300", "hoverBgClass": "bg-ucu-yellow", "textClass": "text-slate-600"},
+        {"year": "2024", "value": 1100, "heightPercent": 80, "baseBgClass": "bg-ucu-red", "hoverBgClass": "bg-[#a10e19]", "textClass": "text-ucu-red"},
+        {"year": "2025", "value": 1450, "heightPercent": 100, "baseBgClass": "bg-ucu-blue-dark", "hoverBgClass": "bg-[#151f42]", "textClass": "text-ucu-blue-dark"}
+      ]'></ucu-data-viz>
+
+    </div>
+  </ucu-sdg-layout>
+
+  <ucu-sdg-ribbon class="block w-full reveal-on-scroll" active="2"></ucu-sdg-ribbon>
+  <ucu-footer base-path="../../" class="reveal-on-scroll"></ucu-footer>
+
+</body>
+</html>

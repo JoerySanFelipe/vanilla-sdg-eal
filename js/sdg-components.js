@@ -12,9 +12,25 @@ class SdgCard extends HTMLElement {
     const bgImg = this.getAttribute("bg-img") || "";
     const logoImg = this.getAttribute("logo-img") || "";
     const targets = this.getAttribute("targets") || "0";
-    const events = this.getAttribute("events") || "0";
-    const research = this.getAttribute("research") || "0";
     const exploreLink = this.getAttribute("explore-link") || "#";
+
+    // --- ARCHITECTURAL UPGRADE: Data Registry Intercept ---
+    let events = this.getAttribute("events") || "0";
+    let research = this.getAttribute("research") || "0";
+
+    if (num && window.UCU_METRICS) {
+      const eventKey = `eventsSdg${num}`;
+      const researchKey = `researchSdg${num}`;
+      
+      // If the dynamic getter exists, override the hardcoded attribute
+      if (window.UCU_METRICS[eventKey] !== undefined) {
+        events = window.UCU_METRICS[eventKey];
+      }
+      if (window.UCU_METRICS[researchKey] !== undefined) {
+        research = window.UCU_METRICS[researchKey];
+      }
+    }
+    // ------------------------------------------------------
 
     this.className =
       "group relative text-white aspect-[9/16] overflow-hidden cursor-pointer bg-[#111] focus:outline-none focus:ring-4 focus:ring-inset focus:ring-[#24305e] block isolate";
@@ -89,10 +105,11 @@ class SdgSeeAllCard extends HTMLElement {
 class UcuSdgPageHero extends HTMLElement {
   connectedCallback() {
     const colors = window.UCU_SDG_COLORS || {};
-    const num = this.getAttribute("sdg") || "1";
+    const sdgAttr = this.getAttribute("sdg") || "1";
+    const num = parseInt(sdgAttr);
     const title = this.getAttribute("title") || "";
     const subtitle = this.getAttribute("subtitle") || "";
-    const hex = this.getAttribute("hex") || colors[num] || "#E5243B";
+    const hex = this.getAttribute("hex") || colors[sdgAttr] || "#E5243B";
     const bgImage = this.getAttribute("bg-image") || "";
     const iconImage = this.getAttribute("icon-image") || "";
 
@@ -103,22 +120,62 @@ class UcuSdgPageHero extends HTMLElement {
         `<div class="flex-1 h-full" style="background-color: ${color};"></div>`,
     ).join("");
 
+    // Observant Pagination Logic (Next/Prev)
+    let navHtml = "";
+    const prevSdg = num > 1 ? num - 1 : null;
+    const nextSdg = num < 17 ? num + 1 : null;
+
+    if (prevSdg || nextSdg) {
+      navHtml = `
+        <div class="absolute inset-0 z-40 pointer-events-none">
+          <div class="w-full h-full max-w-[1280px] mx-auto relative px-4 sm:px-6 lg:px-8">
+            <div class="absolute bottom-6 left-4 sm:left-6 lg:left-8 pointer-events-auto flex items-center bg-white/5 border border-white/10 rounded-[2px] hover:bg-white/15 hover:border-white/20 transition-all duration-300">
+              ${
+                prevSdg
+                  ? `
+                <a href="sdg${prevSdg}.html" class="flex items-center gap-1.5 px-3 py-1.5 text-white/60 hover:text-white transition-colors ${nextSdg ? 'border-r border-white/10' : ''} no-underline focus:outline-none focus:bg-white/10 group">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3 transition-transform group-hover:-translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" /></svg>
+                  <span class="text-[9px] uppercase tracking-[0.2em] font-black">Prev</span>
+                </a>
+              `
+                  : ""
+              }
+              ${
+                nextSdg
+                  ? `
+                <a href="sdg${nextSdg}.html" class="flex items-center gap-1.5 px-3 py-1.5 text-white/60 hover:text-white transition-colors no-underline focus:outline-none focus:bg-white/10 group">
+                  <span class="text-[9px] uppercase tracking-[0.2em] font-black">Next</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3 transition-transform group-hover:translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" /></svg>
+                </a>
+              `
+                  : ""
+              }
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
     this.innerHTML = `
       <div class="relative w-full h-64 md:h-80 xl:h-[400px] overflow-hidden flex items-center bg-ucu-blue-dark">
-        <img src="${bgImage}" alt="SDG ${num} Background" class="absolute inset-0 w-full h-full object-cover object-center z-0" loading="eager" />
+        <img src="${bgImage}" alt="SDG ${sdgAttr} Background" class="absolute inset-0 w-full h-full object-cover object-center z-0" loading="eager" />
         <div class="absolute inset-0 z-10" style="background: linear-gradient(to right, rgba(36, 48, 94, 0.98) 0%, rgba(36, 48, 94, 0.85) 45%, ${rightFadeColor} 100%);"></div>
+        
         <div class="relative z-20 w-full max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 flex items-center gap-6 md:gap-8">
           <div class="shrink-0 drop-shadow-2xl">
-            <img src="${iconImage}" alt="SDG ${num} Icon" class="w-24 h-24 md:w-32 md:h-32 xl:w-40 xl:h-40 object-contain rounded-md border-2 border-white/20" />
+            <img src="${iconImage}" alt="SDG ${sdgAttr} Icon" class="w-24 h-24 md:w-32 md:h-32 xl:w-40 xl:h-40 object-contain rounded-md border-2 border-white/20" />
           </div>
           <div class="flex flex-col text-white">
             <span class="text-[0.6rem] md:text-[0.7rem] font-bold tracking-[0.25em] uppercase text-white/80 mb-1 md:mb-2 drop-shadow-md">
-              Sustainable Development Goal ${num}
+              Sustainable Development Goal ${sdgAttr}
             </span>
             <h1 class="text-3xl md:text-5xl xl:text-6xl font-black tracking-tight leading-tight mb-2 md:mb-3 drop-shadow-lg">${title}</h1>
             <p class="text-sm md:text-base xl:text-lg font-medium text-white/90 max-w-[600px] leading-relaxed drop-shadow-md">${subtitle}</p>
           </div>
         </div>
+
+        ${navHtml}
+
         <div class="absolute bottom-0 left-0 w-full flex h-2 sm:h-2.5 z-30">${spectrumHtml}</div>
       </div>
     `;
@@ -164,6 +221,7 @@ class UcuSdgLayout extends HTMLElement {
     if (this.hasRendered) return;
     this.hasRendered = true;
 
+    const base = window.ucuGetBasePath ? window.ucuGetBasePath() : './';
     const narrativeContent = this.querySelector('[slot="description"]')?.innerHTML || "";
     const activeSdg = parseInt(this.getAttribute("sdg") || "1");
     const year = this.getAttribute("year") || "2025";
@@ -180,7 +238,7 @@ class UcuSdgLayout extends HTMLElement {
           : "shadow-sm hover:shadow-md opacity-90 hover:opacity-100";
         return `
         <a href="sdg${num}.html" class="group relative block w-full transition-all duration-300 flex-shrink-0 bg-white rounded-[2px] ${classes}">
-          <img src="../../images/sdg-nav-banner/sdg${num}.jpg" alt="SDG ${num} Navigation" class="w-full h-auto block rounded-[2px]" loading="${num > 4 ? "lazy" : "eager"}" onerror="this.style.display='none'"/>
+          <img src="${base}images/sdg-nav-banner/sdg${num}.jpg" alt="SDG ${num} Navigation" class="w-full h-auto block rounded-[2px]" loading="${num > 4 ? "lazy" : "eager"}" onerror="this.style.display='none'"/>
           ${!isActive ? `<div class="absolute inset-0 bg-[#24305e]/15 group-hover:bg-transparent transition-colors duration-300 pointer-events-none rounded-[2px]"></div>` : ""}
         </a>`;
       })
@@ -199,7 +257,7 @@ class UcuSdgLayout extends HTMLElement {
         <button class="ucu-event-trigger group block relative w-full text-left overflow-hidden rounded-2xl bg-white border border-slate-200 shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] flex flex-col" data-event-id="${ev.id}">
           <span class="absolute bottom-0 left-0 w-full h-[6px] bg-gradient-to-r from-ucu-blue-dark to-ucu-red origin-left scale-x-0 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-x-100 z-20"></span>
           <div class="w-full aspect-video overflow-hidden relative bg-slate-100 shrink-0">
-            <img src="${ev.img}" alt="${ev.title}" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-[0.8s] ease-[cubic-bezier(0.25,1,0.5,1)]" loading="lazy" />
+            <img src="${base}${ev.img}" alt="${ev.title}" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-[0.8s] ease-[cubic-bezier(0.25,1,0.5,1)]" loading="lazy" />
             <div class="absolute top-2.5 right-2.5 bg-ucu-red/85 backdrop-blur-md border border-white/20 text-white text-[8px] font-black px-2 py-1 rounded shadow-sm flex items-center gap-1 uppercase tracking-widest z-10">EVENT</div>
           </div>
           <div class="p-4 pb-5 flex flex-col gap-1.5 relative z-10 bg-white flex-grow w-full">
@@ -222,7 +280,7 @@ class UcuSdgLayout extends HTMLElement {
         modal-id="${ev.id}" 
         title="${ev.title}" 
         badge="${ev.date}" 
-        content-src="${ev.src}"
+        content-src="${base}${ev.src}"
         data-sdgs='${JSON.stringify(ev.relatedSdgs)}'>
       </ucu-modal-shell>
     `,
@@ -235,7 +293,7 @@ class UcuSdgLayout extends HTMLElement {
           
           <aside class="hidden lg:flex flex-col lg:col-span-3 z-10 transition-all duration-300">
             <div class="w-full shadow-sm flex-shrink-0 bg-white mb-4 xl:mb-5">
-              <img src="../../images/sdg-nav-banner/sdg-title.jpg" alt="SDG Reports ${year}" class="w-full h-auto block rounded-t-sm" onerror="this.style.display='none'"/>
+              <img src="${base}images/sdg-nav-banner/sdg-title.jpg" alt="SDG Reports ${year}" class="w-full h-auto block rounded-t-sm" onerror="this.style.display='none'"/>
             </div>
             <nav class="flex flex-col gap-3 xl:gap-4 pb-6">${navItems}</nav>
           </aside>

@@ -96,10 +96,32 @@ class UcuRankingTimeline extends HTMLElement {
       return val;
     };
 
+    const logoMap = {
+      "AppliedHE": "images/rankings-logo/applied-he.png",
+      "THE Impact": "images/rankings-logo/the-impact.png",
+      "UI GreenMetric": "images/rankings-logo/ui-green.png",
+      "WURI": "images/rankings-logo/wuri.png",
+      "HE HIGHER EDUCATION": "images/rankings-logo/higher-education.png"
+    };
+
+    let currentYearTracker = "";
+
     const timelineHtml = rankings.map((rank, index) => {
       const isRightAligned = index % 2 === 0;
       const alignClass = isRightAligned ? "md:pr-14 md:text-right" : "md:pl-14 md:order-last text-left";
       const pointerClass = isRightAligned ? "md:before:-right-[9px] md:before:border-r md:before:border-t" : "before:-left-[9px] before:border-l before:border-b";
+
+      let yearMilestoneHtml = "";
+      if (rank.year !== currentYearTracker) {
+        currentYearTracker = rank.year;
+        yearMilestoneHtml = `
+          <div class="relative w-full h-12 z-20 mb-8 mt-4 timeline-reveal opacity-0 translate-y-8 transition-all duration-700">
+             <div class="absolute left-0 md:left-1/2 -translate-x-1/2 flex items-center justify-center">
+                 <span class="bg-white text-ucu-blue-dark text-xs font-black px-6 py-2.5 rounded-full shadow-[0_4px_15px_rgba(36,48,94,0.08)] border border-gray-200 tracking-[0.2em] uppercase">${currentYearTracker}</span>
+             </div>
+          </div>
+        `;
+      }
 
       const metricsHtml = (rank.metrics || []).map((metric) => {
         let bgColor = metric.color || "#394a8a";
@@ -119,27 +141,38 @@ class UcuRankingTimeline extends HTMLElement {
         `;
       }).join("");
 
+      const logoSrc = logoMap[rank.org] || "";
+      const dropBannerHtml = logoSrc ? `
+        <div class="absolute top-0 right-6 md:right-10 bg-white shadow-[0_12px_30px_rgba(36,48,94,0.12)] rounded-b-[1.25rem] w-24 md:w-32 h-28 md:h-36 border-2 border-t-0 border-ucu-yellow z-20 flex items-center justify-center transform origin-top transition-transform duration-500 group-hover:scale-[1.03]">
+          <img src="${logoSrc}" alt="${rank.org} Logo" class="w-full h-full object-contain p-3 drop-shadow-sm" aria-hidden="true" loading="lazy" onerror="this.style.display='none'">
+        </div>
+      ` : "";
+
       return `
-        <div class="timeline-item timeline-reveal opacity-0 translate-y-12 group relative flex flex-col md:flex-row items-center transition-all duration-[800ms] ease-[cubic-bezier(0.16,1,0.3,1)] origin-bottom" data-org="${rank.org}">
+        ${yearMilestoneHtml}
+        <div class="timeline-item timeline-reveal opacity-0 translate-y-12 group relative flex flex-col md:flex-row items-center transition-all duration-[800ms] ease-[cubic-bezier(0.16,1,0.3,1)] origin-bottom mb-16" data-org="${rank.org}">
           <div class="absolute left-0 md:left-1/2 -translate-x-1/2 flex items-center justify-center z-10 top-6 md:top-1/2 md:-translate-y-1/2">
-            <div class="w-4 h-4 rounded-full bg-white border-4 border-ucu-blue-dark/90 group-hover:scale-125 group-hover:bg-ucu-yellow transition-all duration-300 shadow-sm"></div>
+            <div class="timeline-dot w-4 h-4 rounded-full bg-white border-4 border-ucu-blue-dark/90 transition-all duration-300 shadow-sm scale-100"></div>
           </div>
           <div class="w-full md:w-1/2 ${alignClass}">
             <div class="bg-white border border-gray-200 p-8 md:p-10 rounded-[1.5rem] shadow-[0_8px_30px_rgba(36,48,94,0.04)] hover:shadow-[0_15px_40px_rgba(36,48,94,0.08)] transition-all duration-300 relative before:content-[''] before:absolute before:top-6 md:before:top-1/2 before:-translate-y-1/2 ${pointerClass} before:w-4 before:h-4 before:bg-white before:rotate-45 before:border-gray-200 text-left">
-              <div class="flex items-center gap-3 mb-8">
-                <span class="text-ucu-blue-dark text-sm font-black">${rank.year}</span>
-                <span class="text-[10px] font-bold px-3 py-1 rounded-md uppercase tracking-widest ${rank.badgeClass} shadow-sm">${rank.org}</span>
-              </div>
-              <div class="mb-8">
-                <p class="text-[10px] font-bold text-muted/90 uppercase tracking-[0.15em] mb-1.5">${rank.mainRankLabel}</p>
-                <h4 class="text-6xl md:text-7xl font-black text-ucu-blue-dark tracking-tighter leading-none">${rank.mainRank}</h4>
-                <p class="text-[10px] font-bold text-muted/90 uppercase tracking-[0.15em] mt-3">${rank.category}</p>
-                <div class="flex items-center gap-1.5 mt-5"><div class="w-9 h-1 rounded-full bg-ucu-blue"></div><div class="w-5 h-1 rounded-full bg-ucu-red"></div></div>
-              </div>
-              <div class="grid grid-cols-1 sm:grid-cols-2 gap-y-4 gap-x-4 w-full pt-2">${metricsHtml}</div>
-              <div class="border-t border-black/5 mt-10 pt-5 flex justify-between items-center w-full">
-                <a href="${rank.publicationUrl}" target="_blank" class="text-[10px] font-black text-ucu-blue-dark/80 hover:text-ucu-red uppercase tracking-widest transition-colors flex items-center gap-1.5 group/link">See Publication<svg class="w-3.5 h-3.5 group-hover/link:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg></a>
-                <span class="text-[9px] font-bold text-muted/60 uppercase tracking-widest">${rank.publicationDate}</span>
+              ${dropBannerHtml}
+              <div class="relative z-10">
+                <div class="flex items-center gap-3 mb-8 pr-24 md:pr-32">
+                  <span class="text-ucu-blue-dark text-sm font-black">${rank.year}</span>
+                  <span class="text-[10px] font-bold px-3 py-1 rounded-md uppercase tracking-widest ${rank.badgeClass} shadow-sm">${rank.org}</span>
+                </div>
+                <div class="mb-8">
+                  <p class="text-[10px] font-bold text-muted/90 uppercase tracking-[0.15em] mb-1.5">${rank.mainRankLabel}</p>
+                  <h4 class="text-6xl md:text-7xl font-black text-ucu-blue-dark tracking-tighter leading-none">${rank.mainRank}</h4>
+                  <p class="text-[10px] font-bold text-muted/90 uppercase tracking-[0.15em] mt-3">${rank.category}</p>
+                  <div class="flex items-center gap-1.5 mt-5"><div class="w-9 h-1 rounded-full bg-ucu-blue"></div><div class="w-5 h-1 rounded-full bg-ucu-red"></div></div>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-y-4 gap-x-4 w-full pt-2">${metricsHtml}</div>
+                <div class="border-t border-black/5 mt-10 pt-5 flex justify-between items-center w-full">
+                  <a href="${rank.publicationUrl}" target="_blank" class="text-[10px] font-black text-ucu-blue-dark/80 hover:text-ucu-red uppercase tracking-widest transition-colors flex items-center gap-1.5 group/link">See Publication<svg class="w-3.5 h-3.5 group-hover/link:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg></a>
+                  <span class="text-[9px] font-bold text-muted/60 uppercase tracking-widest">${rank.publicationDate}</span>
+                </div>
               </div>
             </div>
           </div>
@@ -149,19 +182,144 @@ class UcuRankingTimeline extends HTMLElement {
     }).join("");
 
     this.innerHTML = `
-      <div class="relative pl-8 md:pl-0 w-full">
-        <div class="absolute left-8 md:left-1/2 top-4 bottom-4 w-px bg-gray-300 -translate-x-1/2"></div>
-        <div class="space-y-16 relative w-full" id="timeline-list">${timelineHtml}</div>
+      <style>
+        @keyframes ucuTimelinePulse {
+          0% { box-shadow: 0 0 0 0 rgba(196, 54, 67, 0.7); }
+          70% { box-shadow: 0 0 0 15px rgba(196, 54, 67, 0); }
+          100% { box-shadow: 0 0 0 0 rgba(196, 54, 67, 0); }
+        }
+        .animate-timeline-pulse {
+          animation: ucuTimelinePulse 2s infinite;
+        }
+      </style>
+      <div class="relative pl-8 md:pl-0 w-full" id="timeline-container">
+        <div id="timeline-track-container" class="absolute left-8 md:left-1/2 top-4 w-[2px] bg-gray-200 -translate-x-1/2 rounded-full overflow-hidden z-0">
+          <div id="timeline-progress-fill" class="absolute top-0 left-0 w-full h-full bg-ucu-red origin-top transform scale-y-0 transition-transform duration-75 ease-out will-change-transform"></div>
+        </div>
+        
+        <div class="relative w-full" id="timeline-list">${timelineHtml}</div>
+        
+        <div id="terminus-statement-block" class="w-full relative z-10 pt-20 pb-12 text-center timeline-reveal opacity-0 translate-y-12 transition-all duration-[1000ms] ease-[cubic-bezier(0.16,1,0.3,1)]">
+          <div class="terminus-pill w-12 h-1.5 bg-ucu-red mx-auto mb-6 rounded-full transition-all duration-300 origin-center border-0 border-ucu-red"></div>
+          <p class="max-w-[65ch] mx-auto text-[15px] md:text-base leading-[1.65] font-medium text-muted text-balance italic">"We will continue our commitment to relentless innovation and real-world impact, ensuring the little giant UCU rises to meet the titans on the global stage."</p>
+        </div>
         <div id="empty-state" class="hidden py-16 text-center w-full relative z-10"><p class="text-muted text-sm font-black uppercase tracking-[0.2em] bg-white/50 border border-white inline-block px-6 py-3 rounded-xl shadow-sm">No rankings found for this category.</p></div>
       </div>
     `;
 
+    // Engine Initialization
     setTimeout(() => {
-      const observer = new IntersectionObserver((entries, obs) => {
-        entries.forEach((entry) => { if (entry.isIntersecting) { entry.target.classList.remove("opacity-0", "translate-y-12"); obs.unobserve(entry.target); } });
+      // 1. Reveal Observer
+      const revealObserver = new IntersectionObserver((entries, obs) => {
+        entries.forEach((entry) => { if (entry.isIntersecting) { entry.target.classList.remove("opacity-0", "translate-y-12", "translate-y-8"); obs.unobserve(entry.target); } });
       }, { threshold: 0.15, rootMargin: "0px 0px -50px 0px" });
-      this.querySelectorAll(".timeline-reveal").forEach((el) => observer.observe(el));
+      this.querySelectorAll(".timeline-reveal").forEach((el) => revealObserver.observe(el));
+
+      // 2. High-Performance Hit Detection for Dots
+      const dots = this.querySelectorAll('.timeline-dot');
+      const hitObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.remove('bg-white', 'border-ucu-blue-dark/90', 'scale-100');
+            entry.target.classList.add('bg-ucu-yellow', 'border-ucu-red', 'scale-125', 'animate-timeline-pulse');
+          } else {
+            if (entry.boundingClientRect.top > window.innerHeight / 2) {
+              entry.target.classList.add('bg-white', 'border-ucu-blue-dark/90', 'scale-100');
+              entry.target.classList.remove('bg-ucu-yellow', 'border-ucu-red', 'scale-125', 'animate-timeline-pulse');
+            }
+          }
+        });
+      }, { root: null, rootMargin: "-50% 0px -50% 0px", threshold: 0 });
+      dots.forEach(dot => hitObserver.observe(dot));
+
+      // 3. Enterprise Scroll Engine & Resize Observer
+      const container = this.querySelector('#timeline-container');
+      const trackContainer = this.querySelector('#timeline-track-container');
+      const fillLine = this.querySelector('#timeline-progress-fill');
+      const terminusBlock = this.querySelector('#terminus-statement-block');
+      const terminusPill = this.querySelector('.terminus-pill');
+      const timelineItems = this.querySelectorAll('.timeline-item');
+      
+      let containerTop = 0;
+      let scrollableHeight = 0;
+
+      const calculateMetrics = () => {
+        if (!container) return;
+        
+        // Dynamic Filter Detection
+        let visibleCount = 0;
+        timelineItems.forEach(item => {
+          if (item.offsetParent !== null) visibleCount++;
+        });
+        const isFiltered = visibleCount > 0 && visibleCount < timelineItems.length;
+
+        // Auto-Hide Terminus when Filtered
+        if (terminusBlock) {
+          terminusBlock.style.display = isFiltered ? 'none' : '';
+        }
+
+        const rect = container.getBoundingClientRect();
+        containerTop = rect.top + window.scrollY; 
+        
+        // Calculate Track Geometry
+        if (trackContainer && terminusPill && terminusBlock && !isFiltered) {
+          const pillRect = terminusPill.getBoundingClientRect();
+          const heightDownToPill = (pillRect.top + window.scrollY) - containerTop + (pillRect.height / 2) - 16; 
+          trackContainer.style.height = `${heightDownToPill}px`;
+          scrollableHeight = heightDownToPill;
+        } else {
+          // Strict fallback height if filtered or terminus is deleted by user
+          trackContainer.style.height = `calc(100% - 32px)`;
+          scrollableHeight = rect.height;
+        }
+        
+        // Force a scroll update
+        if (typeof this.scrollHandler === 'function') this.scrollHandler();
+      };
+
+      // Highly performant native observer for dynamic height changes
+      const resizeObserver = new ResizeObserver(() => {
+        requestAnimationFrame(() => calculateMetrics());
+      });
+      if (container) resizeObserver.observe(container);
+
+      // Clean Math Logic for the Scroll Line
+      this.scrollHandler = () => {
+        if (!fillLine || scrollableHeight === 0) return;
+        
+        const viewportCenter = window.innerHeight / 2;
+        const currentScroll = window.scrollY;
+        const start = (containerTop - currentScroll) - viewportCenter;
+        
+        let progress = -start / scrollableHeight;
+        progress = Math.max(0, Math.min(1, progress));
+        
+        fillLine.style.transform = `scaleY(${progress})`;
+
+        // Static Terminus Hit Logic (No Animation)
+        if (terminusPill && terminusBlock && terminusBlock.style.display !== 'none') {
+          if (progress >= 0.99) {
+            terminusPill.classList.remove('w-12', 'bg-ucu-red', 'h-1.5', 'border-0');
+            terminusPill.classList.add('w-24', 'bg-ucu-yellow', 'h-2.5', 'border-2', 'scale-110');
+          } else {
+            terminusPill.classList.add('w-12', 'bg-ucu-red', 'h-1.5', 'border-0');
+            terminusPill.classList.remove('w-24', 'bg-ucu-yellow', 'h-2.5', 'border-2', 'scale-110');
+          }
+        }
+      };
+
+      this.scrollHandler();
+      window.addEventListener('scroll', () => requestAnimationFrame(this.scrollHandler), { passive: true });
+      
+      // Setup cleanup
+      this.cleanupObserver = () => resizeObserver.disconnect();
+
     }, 100);
+  }
+
+  disconnectedCallback() {
+    if (this.scrollHandler) window.removeEventListener('scroll', this.scrollHandler);
+    if (this.cleanupObserver) this.cleanupObserver();
   }
 }
 
@@ -180,7 +338,7 @@ class UcuPartnerCarousel extends HTMLElement {
     `).join("");
     
     this.innerHTML = `
-      <style>@keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } } .animate-marquee { animation: marquee 15s linear infinite; } .animate-marquee:hover { animation-play-state: paused; }</style>
+      <style>@keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } } .animate-marquee { animation: marquee 75s linear infinite; } .animate-marquee:hover { animation-play-state: paused; }</style>
       <div class="w-full overflow-hidden relative group">
         <div class="absolute left-0 top-0 w-16 h-full bg-gradient-to-r from-canvas to-transparent z-10 pointer-events-none"></div>
         <div class="absolute right-0 top-0 w-16 h-full bg-gradient-to-l from-canvas to-transparent z-10 pointer-events-none"></div>

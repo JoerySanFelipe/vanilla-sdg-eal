@@ -14,8 +14,16 @@ window.UCU_SDG_COLORS = {
   16: "#00689D", 17: "#19486A"
 };
 
+window.ucuGetBasePath = () => {
+  const header = document.querySelector('ucu-header');
+  if (header) return header.getAttribute('base-path') || './';
+  const footer = document.querySelector('ucu-footer');
+  if (footer) return footer.getAttribute('base-path') || './';
+  return './';
+};
+
 /* ==========================================================================
-   1. NAVIGATION & STRUCTURAL COMPONENTS
+   1. NAVIGATION & STRUCTURAL COMPONENTS (RESPONSIVE + SMART BREADCRUMBS)
    ========================================================================== */
 
 class UcuHeader extends HTMLElement {
@@ -64,30 +72,136 @@ class UcuHeader extends HTMLElement {
     ];
 
     const isActive = (url) => {
-      if (url === "index.html")
-        return currentPath.endsWith("/") || currentPath.endsWith("index.html");
+      if (url === "index.html") return currentPath.endsWith("/") || currentPath.endsWith("index.html");
       return currentPath.includes(url.split("/")[0]);
     };
 
-    let pathArray = currentPath.split("/").filter(Boolean);
-    let pathLast = pathArray.length > 0 ? pathArray[pathArray.length - 1] : "index";
-    let pathStr = pathLast.replace(".html", "");
-    
-    if (pathStr === "index") pathStr = "Home";
-    const pageTitle = pathStr.charAt(0).toUpperCase() + pathStr.slice(1).replace("-", " ");
+    /* ── GENERATE MOBILE HTML LINKS (ACCORDION STRUCTURE) ── */
+    const mobileNavLinksHtml = mainNavLinks.map(link => {
+      if (link.dropdown) {
+        return `
+        <div class="flex flex-col border-b border-white/10">
+          <button class="mobile-dropdown-btn flex items-center justify-between w-full px-6 py-4 text-left text-sm font-medium text-white hover:bg-white/5 transition-colors focus:outline-none">
+            <span class="${link.dropdown.some(d => isActive(d.url)) ? 'text-ucu-yellow' : ''}">${link.name}</span>
+            <svg class="w-4 h-4 text-ucu-yellow transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+          </button>
+          <div class="mobile-dropdown-content max-h-0 overflow-hidden transition-all duration-300 bg-black/20">
+            ${link.dropdown.map(drop => `
+              <a href="${base}${drop.url}" class="block pl-10 pr-6 py-3.5 text-sm text-white/80 hover:text-ucu-yellow hover:bg-white/5 transition-colors border-l-[3px] border-transparent hover:border-ucu-yellow ${isActive(drop.url) ? 'text-ucu-yellow border-ucu-yellow bg-white/5' : ''}">${drop.name}</a>
+            `).join("")}
+          </div>
+        </div>`;
+      } else {
+        return `<a href="${base}${link.url}" class="block px-6 py-4 border-b border-white/10 text-sm font-medium text-white hover:bg-white/5 hover:text-ucu-yellow transition-colors ${isActive(link.url) ? 'text-ucu-yellow bg-white/5 border-l-[3px] border-ucu-yellow' : 'border-l-[3px] border-transparent'}">${link.name}</a>`;
+      }
+    }).join("");
 
-    const breadcrumbsHtml = `
-      <a href="${base}index.html" class="text-white hover:text-ucu-yellow transition-colors duration-300">Home</a>
-      ${pathStr !== "Home" ? `<span class="text-white/40 text-[10px] font-light">›</span> <span class="text-ucu-yellow tracking-[0.1em]">${pageTitle}</span>` : ""}
-    `;
+    /* ── START STATELESS BREADCRUMB ENGINE ── */
+    const PATH_DICTIONARY = {
+      "rankings": "Rankings",
+      "partnership": "Partnerships",
+      "infrastructure": "Setting & Infrastructure",
+      "energy": "Energy & Climate Change",
+      "waste": "Waste",
+      "water": "Water",
+      "transportation": "Transportation",
+      "education": "Education & Research",
+      "digitalization": "Digitalization",
+      "sdg-reports": "SDG Reports",
+      "impact": "Impact & Events",
+      "events": "Events",
+      "research": "Research",
+      "sdg1": "SDG 1: No Poverty",
+      "sdg2": "SDG 2: Zero Hunger",
+      "sdg3": "SDG 3: Good Health and Well-being",
+      "sdg4": "SDG 4: Quality Education",
+      "sdg5": "SDG 5: Gender Equality",
+      "sdg6": "SDG 6: Clean Water and Sanitation",
+      "sdg7": "SDG 7: Affordable and Clean Energy",
+      "sdg8": "SDG 8: Decent Work & Economic Growth",
+      "sdg9": "SDG 9: Industry, Innovation and Infrastructure",
+      "sdg10": "SDG 10: Reduced Inequalities",
+      "sdg11": "SDG 11: Sustainable Cities and Communities",
+      "sdg12": "SDG 12: Responsible Consumption and Production",
+      "sdg13": "SDG 13: Climate Action",
+      "sdg14": "SDG 14: Life Below Water",
+      "sdg15": "SDG 15: Life on Land",
+      "sdg16": "SDG 16: Peace, Justice and Strong Institutions",
+      "sdg17": "SDG 17: Partnerships for the Goals"
+    };
+
+    const SILENT_FOLDERS = []; 
+
+    let pathArray = currentPath.split("/").filter(Boolean);
+    const depth = base.split('/').filter(p => p === '..').length;
+    let appPath = pathArray.slice(pathArray.length - (depth + 1));
+
+    let breadcrumbTrail = [{ label: "Home", url: base + "index.html" }];
+
+    const validSegments = [
+      'sdg-reports', 'research', 'impact', 'events', 'indicators', 'smart-eco-campus', 'rankings', 'partnership',
+      '2025', '2024', '2023', 'index'
+    ];
+    const indicatorsList = ["infrastructure", "energy", "waste", "water", "transportation", "education", "digitalization"];
+    const isValidSegment = (seg) => {
+      if (validSegments.includes(seg)) return true;
+      if (seg.startsWith('sdg') && !isNaN(seg.replace('sdg', ''))) return true;
+      if (!isNaN(seg)) return true;
+      if (indicatorsList.includes(seg)) return true;
+      return false;
+    };
+
+    appPath.forEach((p, index) => {
+      let segment = p.replace(".html", "").replace(".php", "");
+      if (segment === "index" || segment === "") return;
+      if (!isValidSegment(segment)) return;
+      if (SILENT_FOLDERS.includes(segment)) return;
+
+      let label = PATH_DICTIONARY[segment];
+      if (!label) {
+        label = segment.split("-").map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(" ");
+      }
+      
+      let href = "";
+
+      if (segment === "indicators" || (segment === "smart-eco-campus" && index < appPath.length - 1)) {
+        label = "Smart Eco Campus"; 
+        href = base + "smart-eco-campus.html"; 
+      } else if (!isNaN(segment)) {
+        let prevFolder = appPath[index - 1];
+        if (prevFolder === "events") prevFolder = "impact"; 
+        if (prevFolder) href = `${base}${prevFolder}/${segment}.html`;
+      } else if (["rankings", "partnership", "smart-eco-campus"].includes(segment)) {
+        href = base + segment + ".html";
+      }
+
+      breadcrumbTrail.push({ label, url: href });
+    });
+
+    const breadcrumbElementsHtml = breadcrumbTrail.map((item, index) => {
+      let isLast = index === breadcrumbTrail.length - 1;
+      if (isLast) {
+        return `<span class="text-ucu-yellow font-normal tracking-wide cursor-default drop-shadow-sm">${item.label}</span>`;
+      } else if (item.url) {
+        return `<a href="${item.url}" class="text-white/60 hover:text-ucu-yellow transition-colors duration-300 font-normal tracking-wide cursor-pointer">${item.label}</a>`;
+      } else {
+        return `<span class="text-white/60 font-normal tracking-wide cursor-default">${item.label}</span>`;
+      }
+    });
+
+    const separatorSvg = `<svg class="w-4 h-4 mx-4 text-white/40 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" /></svg>`;
+    const breadcrumbsHtml = breadcrumbElementsHtml.join(separatorSvg);
+    /* ── END STATELESS BREADCRUMB ENGINE ── */
 
     this.innerHTML = `
       <header class="bg-dark-red border-t-4 border-ucu-blue shadow-[0_15px_35px_rgba(161,5,5,0.2),_0_5px_15px_rgba(0,0,0,0.15)] sticky top-0 flex flex-col w-full font-[family-name:var(--font-sans)]">
-        <div class="w-full max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="w-full max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 relative z-20 bg-dark-red">
           <div class="flex items-center justify-between py-2">
-            <a href="${base}index.html" class="shrink-0 relative z-20">
-              <img src="${base}images/ucu-landscape-dark.png" alt="UCU Logo" class="h-8 w-auto drop-shadow-sm hover:scale-105 hover:-rotate-1 transition-transform duration-500 ease-out" onerror="this.style.display='none'" />
+            <a href="${base}index.html" class="shrink-0">
+              <img src="${base}images/ucu-landscape-dark.png" alt="UCU Logo" class="h-9 w-auto drop-shadow-sm hover:scale-105 hover:-rotate-1 transition-transform duration-500 ease-out" onerror="this.style.display='none'" />
             </a>
+            
             <nav class="hidden lg:flex items-center gap-1">
               ${mainNavLinks
                 .map((link) => {
@@ -111,20 +225,93 @@ class UcuHeader extends HTMLElement {
                 })
                 .join("")}
             </nav>
-            <div class="lg:hidden w-10"></div>
+
+            <button id="mobile-menu-btn" class="lg:hidden text-white hover:text-ucu-yellow p-2 focus:outline-none transition-colors duration-300" aria-label="Toggle Menu">
+              <svg class="menu-icon w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" /></svg>
+              <svg class="close-icon w-7 h-7 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
+            </button>
           </div>
         </div>
-        <div class="bg-black/10 border-t border-white/5 w-full relative z-10">
-          <div class="w-full max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 py-1.5 overflow-x-auto whitespace-nowrap scrollbar-hide">
-            <nav class="flex items-center gap-2 text-[9px] font-normal tracking-widest text-white/60 uppercase">
+        
+        <div id="mobile-menu" class="lg:hidden absolute top-full left-0 w-full bg-dark-red shadow-2xl border-t border-white/10 overflow-hidden transition-all duration-300 ease-out max-h-0 opacity-0 invisible z-10">
+          <nav class="flex flex-col w-full pb-4 shadow-[inset_0_10px_20px_rgba(0,0,0,0.2)]">
+            ${mobileNavLinksHtml}
+          </nav>
+        </div>
+
+        <div class="bg-black/20 border-t border-white/10 w-full relative z-10 py-2.5 shadow-inner">
+          <div class="w-full max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 overflow-x-auto whitespace-nowrap scrollbar-hide">
+            <nav class="flex items-center text-xs font-normal tracking-wide">
               ${breadcrumbsHtml}
             </nav>
           </div>
         </div>
       </header>
     `;
+
+    /* ── START NATIVE MOBILE INTERACTION LOGIC ── */
+    // Trigger logic after DOM insertion
+    setTimeout(() => {
+      const mobileBtn = this.querySelector('#mobile-menu-btn');
+      const mobileMenu = this.querySelector('#mobile-menu');
+      const menuIcon = mobileBtn.querySelector('.menu-icon');
+      const closeIcon = mobileBtn.querySelector('.close-icon');
+
+      // Toggle Main Menu
+      mobileBtn.addEventListener('click', () => {
+        const isClosed = mobileMenu.classList.contains('max-h-0');
+        
+        if (isClosed) {
+          mobileMenu.classList.remove('max-h-0', 'opacity-0', 'invisible');
+          mobileMenu.classList.add('max-h-[75vh]', 'opacity-100', 'visible', 'overflow-y-auto');
+          menuIcon.classList.add('hidden');
+          closeIcon.classList.remove('hidden');
+        } else {
+          mobileMenu.classList.add('max-h-0', 'opacity-0', 'invisible');
+          mobileMenu.classList.remove('max-h-[75vh]', 'opacity-100', 'visible', 'overflow-y-auto');
+          menuIcon.classList.remove('hidden');
+          closeIcon.classList.add('hidden');
+        }
+      });
+
+      // Toggle Accordion Dropdowns
+      const dropBtns = this.querySelectorAll('.mobile-dropdown-btn');
+      dropBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const content = btn.nextElementSibling;
+          const icon = btn.querySelector('svg');
+          const isOpen = !content.classList.contains('max-h-0');
+
+          // Close all other dropdowns first for a clean experience
+          dropBtns.forEach(otherBtn => {
+            if (otherBtn !== btn) {
+              const otherContent = otherBtn.nextElementSibling;
+              const otherIcon = otherBtn.querySelector('svg');
+              otherContent.classList.add('max-h-0');
+              otherContent.classList.remove('max-h-96');
+              otherIcon.classList.remove('rotate-180');
+            }
+          });
+
+          // Toggle clicked dropdown
+          if (isOpen) {
+            content.classList.add('max-h-0');
+            content.classList.remove('max-h-96');
+            icon.classList.remove('rotate-180');
+          } else {
+            content.classList.remove('max-h-0');
+            content.classList.add('max-h-96'); // Standard fixed height class for CSS transition to target
+            icon.classList.add('rotate-180');
+          }
+        });
+      });
+    }, 0);
   }
 }
+
+/* ==========================================================================
+   2. FOOTER COMPONENT
+   ========================================================================== */
 
 class UcuFooter extends HTMLElement {
   connectedCallback() {
@@ -165,32 +352,32 @@ class UcuFooter extends HTMLElement {
             </nav>
           </div>
 
-          <div class="flex flex-col lg:min-w-[220px]">
-            <h3 class="text-ucu-yellow mb-4 font-bold tracking-widest uppercase text-[11px]">Partners</h3>
-            
-            <h4 class="text-white/60 text-[10px] font-semibold mb-2 uppercase tracking-widest">International</h4>
-            <div class="grid grid-cols-3 gap-2 mb-5">
-              <div class="bg-white min-h-[40px] w-full rounded-md flex items-center justify-center p-1 hover:bg-white/90 transition-colors cursor-pointer"><img src="${base}images/partner-placeholder.png" alt="Partner" class="max-h-8 object-contain opacity-40" onerror="this.style.display='none'" /></div>
-              <div class="bg-white min-h-[40px] w-full rounded-md flex items-center justify-center p-1 hover:bg-white/90 transition-colors cursor-pointer"><img src="${base}images/partner-placeholder.png" alt="Partner" class="max-h-8 object-contain opacity-40" onerror="this.style.display='none'" /></div>
-              <div class="bg-white min-h-[40px] w-full rounded-md flex items-center justify-center p-1 hover:bg-white/90 transition-colors cursor-pointer"><img src="${base}images/partner-placeholder.png" alt="Partner" class="max-h-8 object-contain opacity-40" onerror="this.style.display='none'" /></div>
-            </div>
-
-            <h4 class="text-white/60 text-[10px] font-semibold mb-2 uppercase tracking-widest">Local</h4>
-            <div class="grid grid-cols-3 gap-2">
-              <div class="bg-white min-h-[40px] w-full rounded-md flex items-center justify-center p-1 hover:bg-white/90 transition-colors cursor-pointer"><img src="${base}images/partner-placeholder.png" alt="Partner" class="max-h-8 object-contain opacity-40" onerror="this.style.display='none'" /></div>
-              <div class="bg-white min-h-[40px] w-full rounded-md flex items-center justify-center p-1 hover:bg-white/90 transition-colors cursor-pointer"><img src="${base}images/partner-placeholder.png" alt="Partner" class="max-h-8 object-contain opacity-40" onerror="this.style.display='none'" /></div>
-              <div class="bg-white min-h-[40px] w-full rounded-md flex items-center justify-center p-1 hover:bg-white/90 transition-colors cursor-pointer"><img src="${base}images/partner-placeholder.png" alt="Partner" class="max-h-8 object-contain opacity-40" onerror="this.style.display='none'" /></div>
-            </div>
+          <div class="flex flex-col lg:min-w-[240px]">
+            <h3 class="text-ucu-yellow mb-4 font-bold tracking-widest uppercase text-[11px]">Institutional Portals</h3>
+            <nav class="flex flex-col gap-3">
+              <a href="https://ucu.edu.ph" target="_blank" rel="noopener noreferrer" class="group flex items-center justify-between bg-white/5 hover:bg-white/10 border border-white/10 rounded-lg px-4 py-3 transition-all duration-300 backdrop-blur-sm">
+                <span class="text-white/90 text-xs font-medium tracking-wide">UCU Official Website</span>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-ucu-yellow opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
+              </a>
+              <a href="${base}sdg-reports/2025.html" class="group flex items-center justify-between bg-white/5 hover:bg-white/10 border border-white/10 rounded-lg px-4 py-3 transition-all duration-300 backdrop-blur-sm">
+                <span class="text-white/90 text-xs font-medium tracking-wide">SDG Archives</span>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-ucu-yellow opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
+              </a>
+              <a href="https://forms.google.com/your-form-id-here" target="_blank" rel="noopener noreferrer" class="group flex items-center justify-between bg-white/5 hover:bg-white/10 border border-white/10 rounded-lg px-4 py-3 transition-all duration-300 backdrop-blur-sm">
+                <span class="text-white/90 text-xs font-medium tracking-wide">Partnership Inquiry Form</span>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-ucu-yellow opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
+              </a>
+            </nav>
           </div>
 
           <div class="flex flex-col lg:min-w-[200px]">
             <h3 class="text-ucu-yellow mb-4 font-bold tracking-widest uppercase text-[11px]">Follow Us</h3>
             <div class="flex flex-col gap-4">
-              <a href="#" class="flex items-center gap-3 text-white/80 hover:text-ucu-yellow transition-colors group">
+              <a href="https://www.facebook.com/UCUOfficial" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 text-white/80 hover:text-ucu-yellow transition-colors group">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" class="shrink-0 group-hover:-translate-y-1 transition-transform" viewBox="0 0 24 24" fill="currentColor"><path d="M22.675 0h-21.35c-.732 0-1.325.593-1.325 1.325v21.351c0 .731.593 1.324 1.325 1.324h11.495v-9.294h-3.128v-3.622h3.128v-2.671c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.312h3.587l-.467 3.622h-3.12v9.293h6.116c.73 0 1.323-.593 1.323-1.325v-21.35c0-.732-.593-1.325-1.325-1.325z"/></svg>
                 <span class="text-[13px] font-medium leading-snug">Urdaneta City University</span>
               </a>
-              <a href="#" class="flex items-center gap-3 text-white/80 hover:text-ucu-yellow transition-colors group">
+              <a href="https://www.facebook.com/profile.php?id=100085270500358" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 text-white/80 hover:text-ucu-yellow transition-colors group">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" class="shrink-0 group-hover:-translate-y-1 transition-transform" viewBox="0 0 24 24" fill="currentColor"><path d="M22.675 0h-21.35c-.732 0-1.325.593-1.325 1.325v21.351c0 .731.593 1.324 1.325 1.324h11.495v-9.294h-3.128v-3.622h3.128v-2.671c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.312h3.587l-.467 3.622h-3.12v9.293h6.116c.73 0 1.323-.593 1.323-1.325v-21.35c0-.732-.593-1.325-1.325-1.325z"/></svg>
                 <span class="text-[13px] font-medium leading-snug">External Affairs and Linkages</span>
               </a>
@@ -219,7 +406,7 @@ class UcuFooter extends HTMLElement {
           <div class="border-t border-white/10 pt-6 flex flex-col lg:flex-row items-center lg:items-start justify-between gap-6 text-center lg:text-left">
             
             <div class="text-white/60 text-[11px] tracking-[0.05em] font-medium lg:w-1/3">
-              &copy; 2026 Urdaneta City University - External Office and Linkages. All rights reserved.
+              &copy; 2026 Urdaneta City University. All rights reserved.
             </div>
             
             <div class="flex flex-wrap justify-center lg:justify-end gap-x-2 gap-y-1 text-[10px] text-white/40 uppercase tracking-wider font-semibold lg:w-2/3">
@@ -270,6 +457,36 @@ class UcuSectionHeader extends HTMLElement {
     `;
   }
 }
+
+/* ==========================================================================
+   5. GLOBAL UTILITIES & ANIMATION ENGINE
+   ========================================================================== */
+
+document.addEventListener("DOMContentLoaded", () => {
+  // 1. Standardized Scroll Reveal Observer
+  const revealElements = document.querySelectorAll(".reveal-on-scroll");
+
+  if (revealElements.length > 0) {
+    const revealObserver = new IntersectionObserver(
+      (entries, observer) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            // Stop observing once revealed to optimize performance
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        root: null,
+        rootMargin: "0px 0px -50px 0px", // Triggers slightly before element enters
+        threshold: 0.1, // Triggers when 10% is visible
+      }
+    );
+
+    revealElements.forEach((el) => revealObserver.observe(el));
+  }
+});
 
 /* ==========================================================================
    4. COMPONENT REGISTRATION

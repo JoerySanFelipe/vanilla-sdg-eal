@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SDG 17 - Partnerships for the Goals (2025) | UCU – EAL</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="../../css/style.css">
+  
+  <script src="../../js/events-data.js" defer></script>
+  <script src="../../js/core-ui.js" defer></script>
+  <script src="../../js/visual-media.js" defer></script>
+  <script src="../../js/impact-feeds.js" defer></script>
+  <script src="../../js/institutional-data.js" defer></script>
+  <script src="../../js/modals.js" defer></script>
+  <script src="../../js/sdg-components.js" defer></script>
+  <script src="../../js/global-charts.js" defer></script>
+</head>
+<body class="bg-slate-50 text-muted font-sans antialiased min-h-screen flex flex-col">
+
+  <ucu-header base-path="../../"></ucu-header>
+
+  <ucu-sdg-page-hero 
+    class="block w-full reveal-on-scroll"
+    sdg="17" 
+    title="Partnerships for the Goals" 
+    subtitle="Strengthen the means of implementation and revitalize the global partnership for sustainable development." 
+    hex="#19486A" 
+    bg-image="../../images/sdg-banner/sdg17.jpg" 
+    icon-image="../../images/sdg/sdg17.jpg">
+  </ucu-sdg-page-hero>
+
+  <ucu-sdg-layout sdg="17" year="2025">
+    
+    <div slot="description" class="flex flex-col gap-2">
+      
+      <ucu-metric-cards class="block w-full reveal-on-scroll" style="transition-delay: 100ms;" data-metrics='[
+        {"value": "38", "label": "Active MOUs/MOAs", "theme": "navy", "svgIcon": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"28\" height=\"28\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2\"/><circle cx=\"9\" cy=\"7\" r=\"4\"/><path d=\"M22 21v-2a4 4 0 0 0-3-3.87\"/><path d=\"M16 3.13a4 4 0 0 1 0 7.75\"/></svg>"},
+        {"value": "18", "label=\"Partner Countries\", \"theme\": \"red\", \"svgIcon\": \"<svg xmlns=\\\"http://www.w3.org/2000/svg\\\" width=\\\"28\\\" height=\\\"28\\\" viewBox=\\\"0 0 24 24\\\" fill=\\\"none\\\" stroke=\\\"currentColor\\\" stroke-width=\\\"2\\\" stroke-linecap=\\\"round\\\" stroke-linejoin=\\\"round\\\"><circle cx=\\\"12\\\" cy=\\\"12\\\" r=\\\"10\\\"/><line x1=\\\"2\\\" y1=\\\"12\\\" x2=\\\"22\\\" y2=\\\"12\\\"/><path d=\\\"M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z\\\"/></svg>\"},
+        {"value": "Global", "label": "SDG Reporting", "theme": "navy", "svgIcon": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"28\" height=\"28\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M21.21 15.89A10 10 0 1 1 8 2.83\"/><path d=\"M22 12A10 10 0 0 0 12 2v10z\"/></svg>"}
+      ]'></ucu-metric-cards>
+
+      <div class="flex items-center w-full mt-8 mb-4 gap-4 reveal-on-scroll">
+        <div class="w-1.5 h-6 bg-ucu-red rounded-full shadow-sm flex-shrink-0"></div>
+        <h2 class="flex-shrink-0 text-2xl font-bold text-ucu-blue-dark tracking-tight m-0 pr-2">Strategic Global Alliances</h2>
+        <div class="flex-grow h-px bg-gray-300/70 rounded-full"></div>
+      </div>
+
+      <div class="ucu-prose-narrative reveal-on-scroll">
+        <p>The achievement of the 2030 Agenda requires a highly integrated, multi-stakeholder approach. Urdaneta City University (UCU), through its <b>External Office and Linkages</b>, has architected a robust network of international and local partnerships designed to facilitate knowledge exchange, financial resource mobilization, and technological cooperation.</p>
+        <p>Our commitment to SDG 17 is evidenced by our active participation in global academic consortia and our growing directory of cross-border MOUs. These alliances empower our students and faculty to engage in high-impact collaborative research and international mobility programs that address shared sustainable development challenges.</p>
+      </div>
+
+      <div class="flex items-center w-full mt-10 mb-4 gap-4 reveal-on-scroll">
+        <div class="w-1.5 h-6 bg-ucu-red rounded-full shadow-sm flex-shrink-0"></div>
+        <h2 class="flex-shrink-0 text-2xl font-bold text-ucu-blue-dark tracking-tight m-0 pr-2">Data Transparency & Impact Reporting</h2>
+        <div class="flex-grow h-px bg-gray-300/70 rounded-full"></div>
+      </div>
+
+      <div class="ucu-prose-narrative reveal-on-scroll">
+        <p>UCU prioritizes data-driven transparency as a means of strengthening institutional accountability. This digital SDG reporting portal serves as a centralized hub for tracking our progress against the UN targets, providing our partners and the public with real-time access to our institutional metrics and evidence-based success stories.</p>
+      </div>
+
+      <ucu-data-viz class="block w-full reveal-on-scroll" title="Growth of International Institutional Linkages" subtitle="Expanding our Global Footprint Since 2022" data-type="vertical" data-payload='[
+        {"year": "2022", "value": 12, "heightPercent": 30, "baseBgClass": "bg-slate-200", "hoverBgClass": "bg-[#19486A]", "textClass": "text-slate-500"},
+        {"year": "2023", "value": 24, "heightPercent": 60, "baseBgClass": "bg-slate-300", "hoverBgClass": "bg-[#19486A]", "textClass": "text-slate-600"},
+        {"year": "2024", "value": 31, "heightPercent": 80, "baseBgClass": "bg-ucu-blue-dark", "hoverBgClass": "bg-[#151f42]", "textClass": "text-ucu-blue-dark"},
+        {"year": "2025", "value": 38, "heightPercent": 100, "baseBgClass": "bg-[#19486A]", "hoverBgClass": "#113354", "textClass": "text-[#19486A]"}
+      ]'></ucu-data-viz>
+
+    </div>
+  </ucu-sdg-layout>
+
+  <ucu-sdg-ribbon class="block w-full reveal-on-scroll" active="17"></ucu-sdg-ribbon>
+  <ucu-footer base-path="../../" class="reveal-on-scroll"></ucu-footer>
+
+</body>
+</html>

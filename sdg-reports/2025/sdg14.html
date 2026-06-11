@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SDG 14 - Life Below Water (2025) | UCU – EAL</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="../../css/style.css">
+  
+  <script src="../../js/events-data.js" defer></script>
+  <script src="../../js/core-ui.js" defer></script>
+  <script src="../../js/visual-media.js" defer></script>
+  <script src="../../js/impact-feeds.js" defer></script>
+  <script src="../../js/institutional-data.js" defer></script>
+  <script src="../../js/modals.js" defer></script>
+  <script src="../../js/sdg-components.js" defer></script>
+  <script src="../../js/global-charts.js" defer></script>
+</head>
+<body class="bg-slate-50 text-muted font-sans antialiased min-h-screen flex flex-col">
+
+  <ucu-header base-path="../../"></ucu-header>
+
+  <ucu-sdg-page-hero 
+    class="block w-full reveal-on-scroll"
+    sdg="14" 
+    title="Life Below Water" 
+    subtitle="Conserve and sustainably use the oceans, seas and marine resources for sustainable development." 
+    hex="#0A97D9" 
+    bg-image="../../images/sdg-banner/sdg14.jpg" 
+    icon-image="../../images/sdg/sdg14.png">
+  </ucu-sdg-page-hero>
+
+  <ucu-sdg-layout sdg="14" year="2025">
+    
+    <div slot="description" class="flex flex-col gap-2">
+      
+      <ucu-metric-cards class="block w-full reveal-on-scroll" style="transition-delay: 100ms;" data-metrics='[
+        {"value": "Zero", "label": "Plastic Runoff", "theme": "navy", "svgIcon": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"28\" height=\"28\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M22 12h-4l-3 9L9 3l-3 9H2\"/></svg>"},
+        {"value": "100%", "label": "Wastewater Treated", "theme": "red", "svgIcon": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"28\" height=\"28\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 0 0 7 7z\"/></svg>"},
+        {"value": "8", "label": "Aquatic Research", "theme": "navy", "svgIcon": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"28\" height=\"28\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z\"/><path d=\"M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z\"/></svg>"}
+      ]'></ucu-metric-cards>
+
+      <div class="flex items-center w-full mt-8 mb-4 gap-4 reveal-on-scroll">
+        <div class="w-1.5 h-6 bg-ucu-red rounded-full shadow-sm flex-shrink-0"></div>
+        <h2 class="flex-shrink-0 text-2xl font-bold text-ucu-blue-dark tracking-tight m-0 pr-2">Upstream Responsibility & Watershed Protection</h2>
+        <div class="flex-grow h-px bg-gray-300/70 rounded-full"></div>
+      </div>
+
+      <div class="ucu-prose-narrative reveal-on-scroll">
+        <p>Urdaneta City University (UCU) recognizes that marine health begins inland. In pursuit of SDG 14, we emphasize the prevention of land-based pollution from reaching provincial river systems and eventually the Lingayen Gulf. Our comprehensive <b>Zero-Waste-to-Landfill</b> policy and campus-wide ban on single-use plastics serve as critical barriers against the flow of microplastics into the aquatic food chain.</p>
+        <p>Furthermore, our centralized wastewater treatment facility ensures that 100% of campus effluent is rigorously neutralized before discharge. By maintaining high-quality output standards, we protect localized freshwater biodiversity and contribute to the broader goal of maintaining healthy marine ecosystems upstream.</p>
+      </div>
+
+      <div class="flex items-center w-full mt-10 mb-4 gap-4 reveal-on-scroll">
+        <div class="w-1.5 h-6 bg-ucu-red rounded-full shadow-sm flex-shrink-0"></div>
+        <h2 class="flex-shrink-0 text-2xl font-bold text-ucu-blue-dark tracking-tight m-0 pr-2">Aquatic Research and Community Advocacy</h2>
+        <div class="flex-grow h-px bg-gray-300/70 rounded-full"></div>
+      </div>
+
+      <div class="ucu-prose-narrative reveal-on-scroll">
+        <p>Our academic departments actively engage in research focused on freshwater ecology and the impact of agricultural runoff on local water bodies. Through our External Office, we conduct community seminars on responsible chemical use in farming, aimed at reducing the nitrogen and phosphorus loading that leads to downstream eutrophication and marine "dead zones."</p>
+      </div>
+
+      <ucu-data-viz class="block w-full reveal-on-scroll" title="Institutional Plastic Consumption Reduction" subtitle="Percentage decrease from 2022 baseline" data-type="vertical" data-payload='[
+        {"year": "2022", "value": "0%", "heightPercent": 5, "baseBgClass": "bg-slate-200", "hoverBgClass": "bg-[#0A97D9]", "textClass": "text-slate-500"},
+        {"year": "2023", "value": "25%", "heightPercent": 35, "baseBgClass": "bg-slate-300", "hoverBgClass": "bg-[#0A97D9]", "textClass": "text-slate-600"},
+        {"year": "2024", "value": "55%", "heightPercent": 70, "baseBgClass": "bg-ucu-blue-dark", "hoverBgClass": "bg-[#151f42]", "textClass": "text-ucu-blue-dark"},
+        {"year": "2025", "value": "80%", "heightPercent": 100, "baseBgClass": "bg-[#0A97D9]", "hoverBgClass": "bg-[#087bb2]", "textClass": "text-[#0A97D9]"}
+      ]'></ucu-data-viz>
+
+    </div>
+  </ucu-sdg-layout>
+
+  <ucu-sdg-ribbon class="block w-full reveal-on-scroll" active="14"></ucu-sdg-ribbon>
+  <ucu-footer base-path="../../" class="reveal-on-scroll"></ucu-footer>
+
+</body>
+</html>

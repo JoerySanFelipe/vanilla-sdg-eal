@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SDG 12 - Responsible Consumption and Production (2025) | UCU – EAL</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="../../css/style.css">
+  
+  <script src="../../js/events-data.js" defer></script>
+  <script src="../../js/core-ui.js" defer></script>
+  <script src="../../js/visual-media.js" defer></script>
+  <script src="../../js/impact-feeds.js" defer></script>
+  <script src="../../js/institutional-data.js" defer></script>
+  <script src="../../js/modals.js" defer></script>
+  <script src="../../js/sdg-components.js" defer></script>
+  <script src="../../js/global-charts.js" defer></script>
+</head>
+<body class="bg-slate-50 text-muted font-sans antialiased min-h-screen flex flex-col">
+
+  <ucu-header base-path="../../"></ucu-header>
+
+  <ucu-sdg-page-hero 
+    class="block w-full reveal-on-scroll"
+    sdg="12" 
+    title="Responsible Consumption and Production" 
+    subtitle="Ensure sustainable consumption and production patterns." 
+    hex="#BF8B2E" 
+    bg-image="../../images/sdg-banner/sdg12.jpg" 
+    icon-image="../../images/sdg/sdg12.png">
+  </ucu-sdg-page-hero>
+
+  <ucu-sdg-layout sdg="12" year="2025">
+    
+    <div slot="description" class="flex flex-col gap-2">
+      
+      <ucu-metric-cards class="block w-full reveal-on-scroll" style="transition-delay: 100ms;" data-metrics='[
+        {"value": "85%", "label": "Waste Diversion Rate", "theme": "red", "svgIcon": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"28\" height=\"28\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z\"/></svg>"},
+        {"value": "90%", "label": "Paperless Operations", "theme": "navy", "svgIcon": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"28\" height=\"28\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z\"/><polyline points=\"14 2 14 8 20 8\"/><line x1=\"16\" y1=\"13\" x2=\"8\" y2=\"13\"/><line x1=\"16\" y1=\"17\" x2=\"8\" y2=\"17\"/><polyline points=\"10 9 9 9 8 9\"/></svg>"},
+        {"value": "100%", "label": "Toxic Waste Treated", "theme": "red", "svgIcon": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"28\" height=\"28\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z\"/><path d=\"m9 12 2 2 4-4\"/></svg>"}
+      ]'></ucu-metric-cards>
+
+      <div class="flex items-center w-full mt-8 mb-4 gap-4 reveal-on-scroll">
+        <div class="w-1.5 h-6 bg-ucu-red rounded-full shadow-sm flex-shrink-0"></div>
+        <h2 class="flex-shrink-0 text-2xl font-bold text-ucu-blue-dark tracking-tight m-0 pr-2">Circular Campus Operations</h2>
+        <div class="flex-grow h-px bg-gray-300/70 rounded-full"></div>
+      </div>
+
+      <div class="ucu-prose-narrative reveal-on-scroll">
+        <p>Urdaneta City University (UCU) has institutionalized a comprehensive circular economy framework to ensure that our consumption patterns are both responsible and sustainable. Our "Zero-Waste-to-Landfill" policy mandates rigorous segregation at the source, supported by our Material Recovery Facility (MRF) which processes all solid waste generated on campus.</p>
+        <p>By prioritizing the upcycling of plastics and the on-campus composting of organic cafeteria waste, we have achieved an 85% waste diversion rate. This ensures that our operational footprint remains minimal, directly contributing to the preservation of our regional ecosystem.</p>
+      </div>
+
+      <div class="flex items-center w-full mt-10 mb-4 gap-4 reveal-on-scroll">
+        <div class="w-1.5 h-6 bg-ucu-red rounded-full shadow-sm flex-shrink-0"></div>
+        <h2 class="flex-shrink-0 text-2xl font-bold text-ucu-blue-dark tracking-tight m-0 pr-2">Ethical Procurement & Digitalization</h2>
+        <div class="flex-grow h-px bg-gray-300/70 rounded-full"></div>
+      </div>
+
+      <div class="ucu-prose-narrative reveal-on-scroll">
+        <p>In addition to waste management, UCU has overhauled its supply chain through an ethical procurement policy that favors eco-certified vendors and minimizes single-use packaging. Our transition to 90% paperless administrative operations has further reduced institutional demand for raw timber products, aligning our internal logistics with global sustainability benchmarks.</p>
+      </div>
+
+      <ucu-data-viz class="block w-full reveal-on-scroll" title="Institutional Waste Diversion Performance" subtitle="Percentage of Waste Diverted from Landfills" data-type="vertical" data-payload='[
+        {"year": "2022", "value": "45%", "heightPercent": 40, "baseBgClass": "bg-slate-200", "hoverBgClass": "bg-[#BF8B2E]", "textClass": "text-slate-500"},
+        {"year": "2023", "value": "62%", "heightPercent": 60, "baseBgClass": "bg-slate-300", "hoverBgClass": "bg-[#BF8B2E]", "textClass": "text-slate-600"},
+        {"year": "2024", "value": "78%", "heightPercent": 85, "baseBgClass": "bg-ucu-blue-dark", "hoverBgClass": "bg-[#151f42]", "textClass": "text-ucu-blue-dark"},
+        {"year": "2025", "value": "85%", "heightPercent": 100, "baseBgClass": "bg-[#BF8B2E]", "hoverBgClass": "bg-[#966e25]", "textClass": "text-[#BF8B2E]"}
+      ]'></ucu-data-viz>
+
+    </div>
+  </ucu-sdg-layout>
+
+  <ucu-sdg-ribbon class="block w-full reveal-on-scroll" active="12"></ucu-sdg-ribbon>
+  <ucu-footer base-path="../../" class="reveal-on-scroll"></ucu-footer>
+
+</body>
+</html>

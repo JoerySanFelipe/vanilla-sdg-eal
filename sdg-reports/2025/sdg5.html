@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SDG 5 - Gender Equality (2025) | UCU – EAL</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="../../css/style.css">
+  
+  <script src="../../js/events-data.js" defer></script>
+  <script src="../../js/core-ui.js" defer></script>
+  <script src="../../js/visual-media.js" defer></script>
+  <script src="../../js/impact-feeds.js" defer></script>
+  <script src="../../js/institutional-data.js" defer></script>
+  <script src="../../js/modals.js" defer></script>
+  <script src="../../js/sdg-components.js" defer></script>
+  <script src="../../js/global-charts.js" defer></script>
+</head>
+<body class="bg-slate-50 text-muted font-sans antialiased min-h-screen flex flex-col">
+
+  <ucu-header base-path="../../"></ucu-header>
+
+  <ucu-sdg-page-hero 
+    class="block w-full reveal-on-scroll"
+    sdg="5" 
+    title="Gender Equality" 
+    subtitle="Achieve gender equality and empower all women and girls." 
+    hex="#FF3A21" 
+    bg-image="../../images/sdg-banner/sdg5.jpg" 
+    icon-image="../../images/sdg/sdg5.png">
+  </ucu-sdg-page-hero>
+
+  <ucu-sdg-layout sdg="5" year="2025">
+    
+    <div slot="description" class="flex flex-col gap-2">
+      
+      <ucu-metric-cards class="block w-full reveal-on-scroll" style="transition-delay: 100ms;" data-metrics='[
+        {"value": "65%", "label": "Female Student Ratio", "theme": "red", "svgIcon": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"28\" height=\"28\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2\"/><circle cx=\"9\" cy=\"7\" r=\"4\"/><path d=\"M23 21v-2a4 4 0 0 0-3-3.87\"/><path d=\"M16 3.13a4 4 0 0 1 0 7.75\"/></svg>"},
+        {"value": "58%", "label": "Women in Leadership", "theme": "navy", "svgIcon": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"28\" height=\"28\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 2v20\"/><path d=\"M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6\"/></svg>"},
+        {"value": "Zero", "label": "Tolerance Policy", "theme": "red", "svgIcon": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"28\" height=\"28\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"12\" cy=\"12\" r=\"10\"/><line x1=\"4.93\" y1=\"4.93\" x2=\"19.07\" y2=\"19.07\"/></svg>"}
+      ]'></ucu-metric-cards>
+
+      <div class="flex items-center w-full mt-8 mb-4 gap-4 reveal-on-scroll">
+        <div class="w-1.5 h-6 bg-ucu-red rounded-full shadow-sm flex-shrink-0"></div>
+        <h2 class="flex-shrink-0 text-2xl font-bold text-ucu-blue-dark tracking-tight m-0 pr-2">Institutionalizing Gender Equity</h2>
+        <div class="flex-grow h-px bg-gray-300/70 rounded-full"></div>
+      </div>
+
+      <div class="ucu-prose-narrative reveal-on-scroll">
+        <p>Urdaneta City University enforces a strict, merit-based framework that actively dismantles gender-based disparities across student admissions, faculty hiring, and executive appointments. Operating under the rigorous oversight of our Gender and Development (GAD) office, we ensure a safe, inclusive, and empowering campus environment for all identities.</p>
+        <p>The university maintains an absolute zero-tolerance policy against gender-based discrimination, harassment, and violence. Our institutional grievance mechanisms are engineered to provide immediate, confidential, and highly effective legal and psychological support networks.</p>
+      </div>
+
+      <div class="flex items-center w-full mt-10 mb-4 gap-4 reveal-on-scroll">
+        <div class="w-1.5 h-6 bg-ucu-red rounded-full shadow-sm flex-shrink-0"></div>
+        <h2 class="flex-shrink-0 text-2xl font-bold text-ucu-blue-dark tracking-tight m-0 pr-2">Advancing Women in STEM and Leadership</h2>
+        <div class="flex-grow h-px bg-gray-300/70 rounded-full"></div>
+      </div>
+
+      <div class="ucu-prose-narrative reveal-on-scroll">
+        <p>Historically male-dominated fields—such as engineering, information technology, and institutional governance—have been deliberately restructured at UCU to maximize female participation. Through targeted scholarship pipelines, peer-mentorship protocols, and leadership incubation programs, the university has systematically eliminated the gender gap in technical disciplines.</p>
+        <p>Today, UCU boasts a female-majority representation in academic administration and continuously graduates top-tier female professionals who dictate innovation within the regional workforce.</p>
+      </div>
+
+      <ucu-data-viz class="block w-full reveal-on-scroll" title="Female Representation in Academic Leadership (%)" subtitle="Consistent Upward Progression Since 2022" data-type="vertical" data-payload='[
+        {"year": "2022", "value": "42%", "heightPercent": 42, "baseBgClass": "bg-slate-200", "hoverBgClass": "bg-[#FF3A21]", "textClass": "text-slate-500"},
+        {"year": "2023", "value": "48%", "heightPercent": 48, "baseBgClass": "bg-slate-300", "hoverBgClass": "bg-[#FF3A21]", "textClass": "text-slate-600"},
+        {"year": "2024", "value": "55%", "heightPercent": 55, "baseBgClass": "bg-ucu-blue-dark", "hoverBgClass": "bg-[#151f42]", "textClass": "text-ucu-blue-dark"},
+        {"year": "2025", "value": "58%", "heightPercent": 58, "baseBgClass": "bg-[#FF3A21]", "hoverBgClass": "bg-[#d12c17]", "textClass": "text-[#FF3A21]"}
+      ]'></ucu-data-viz>
+
+    </div>
+  </ucu-sdg-layout>
+
+  <ucu-sdg-ribbon class="block w-full reveal-on-scroll" active="5"></ucu-sdg-ribbon>
+  <ucu-footer base-path="../../" class="reveal-on-scroll"></ucu-footer>
+
+</body>
+</html>

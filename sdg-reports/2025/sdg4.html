@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SDG 4 - Quality Education (2025) | UCU – EAL</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="../../css/style.css">
+  
+  <script src="../../js/events-data.js" defer></script>
+  <script src="../../js/core-ui.js" defer></script>
+  <script src="../../js/visual-media.js" defer></script>
+  <script src="../../js/impact-feeds.js" defer></script>
+  <script src="../../js/institutional-data.js" defer></script>
+  <script src="../../js/modals.js" defer></script>
+  <script src="../../js/sdg-components.js" defer></script>
+  <script src="../../js/global-charts.js" defer></script>
+</head>
+<body class="bg-slate-50 text-muted font-sans antialiased min-h-screen flex flex-col">
+
+  <ucu-header base-path="../../"></ucu-header>
+
+  <ucu-sdg-page-hero 
+    class="block w-full reveal-on-scroll"
+    sdg="4" 
+    title="Quality Education" 
+    subtitle="Ensure inclusive and equitable quality education and promote lifelong learning opportunities for all." 
+    hex="#C5192D" 
+    bg-image="../../images/sdg-banner/sdg4.jpg" 
+    icon-image="../../images/sdg/sdg4.png">
+  </ucu-sdg-page-hero>
+
+  <ucu-sdg-layout sdg="4" year="2025">
+    
+    <div slot="description" class="flex flex-col gap-2">
+      
+      <ucu-metric-cards class="block w-full reveal-on-scroll" style="transition-delay: 100ms;" data-metrics='[
+        {"value": "3,250", "label": "Active Scholars", "theme": "red", "svgIcon": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"28\" height=\"28\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M22 10v6M2 10l10-5 10 5-10 5z\"/><path d=\"M6 12v5c3 3 9 3 12 0v-5\"/></svg>"},
+        {"value": "100%", "label": "E-Learning Integration", "theme": "navy", "svgIcon": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"28\" height=\"28\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"2\" y=\"3\" width=\"20\" height=\"14\" rx=\"2\" ry=\"2\"/><line x1=\"8\" y1=\"21\" x2=\"16\" y2=\"21\"/><line x1=\"12\" y1=\"17\" x2=\"12\" y2=\"21\"/></svg>"},
+        {"value": "92%", "label": "Board Passing Rate", "theme": "red", "svgIcon": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"28\" height=\"28\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z\"/><path d=\"M9 12l2 2 4-4\"/></svg>"}
+      ]'></ucu-metric-cards>
+
+      <div class="flex items-center w-full mt-8 mb-4 gap-4 reveal-on-scroll">
+        <div class="w-1.5 h-6 bg-ucu-red rounded-full shadow-sm flex-shrink-0"></div>
+        <h2 class="flex-shrink-0 text-2xl font-bold text-ucu-blue-dark tracking-tight m-0 pr-2">Democratizing Higher Education</h2>
+        <div class="flex-grow h-px bg-gray-300/70 rounded-full"></div>
+      </div>
+
+      <div class="ucu-prose-narrative reveal-on-scroll">
+        <p>Urdaneta City University operates on the foundational belief that quality higher education is a fundamental human right, not a socioeconomic privilege. To aggressively advance SDG 4, we have democratized access through expansive, multi-tiered scholarship matrices and our institutionalized Earn-While-You-Learn (EWYL) program, ensuring that financially marginalized students receive the same rigorous academic instruction as their peers.</p>
+        <p>Our academic curriculum is continuously audited and recalibrated to align with international pedagogical standards and ASEAN benchmarks. This rigorous academic culture is reflected directly in our board examination passing rates, which consistently eclipse national averages across the nursing, engineering, and education sectors.</p>
+      </div>
+
+      <div class="flex items-center w-full mt-10 mb-4 gap-4 reveal-on-scroll">
+        <div class="w-1.5 h-6 bg-ucu-red rounded-full shadow-sm flex-shrink-0"></div>
+        <h2 class="flex-shrink-0 text-2xl font-bold text-ucu-blue-dark tracking-tight m-0 pr-2">Digital Pedagogy & Lifelong Learning</h2>
+        <div class="flex-grow h-px bg-gray-300/70 rounded-full"></div>
+      </div>
+
+      <div class="ucu-prose-narrative reveal-on-scroll">
+        <p>The transition to a resilient, digital-first learning environment has allowed UCU to extend its educational footprint far beyond the physical campus. Through our Smart Campus e-learning portals, we offer flexible, asynchronous learning modules specifically engineered for working students, adult learners, and remote populations.</p>
+        <p>Furthermore, our community extension networks operate specialized lifelong learning programs. These initiatives provide free adult literacy, technical-vocational upskilling, and digital literacy training to non-traditional learners in surrounding municipalities, proving that education does not end at graduation.</p>
+      </div>
+
+      <ucu-data-viz class="block w-full reveal-on-scroll" title="Annual Scholarship Fund Allocation (in PHP Millions)" subtitle="Year Over Year Growth" data-type="vertical" data-payload='[
+        {"year": "2022", "value": "45M", "heightPercent": 40, "baseBgClass": "bg-slate-200", "hoverBgClass": "bg-[#C5192D]", "textClass": "text-slate-500"},
+        {"year": "2023", "value": "68M", "heightPercent": 60, "baseBgClass": "bg-slate-300", "hoverBgClass": "bg-[#C5192D]", "textClass": "text-slate-600"},
+        {"year": "2024", "value": "85M", "heightPercent": 80, "baseBgClass": "bg-ucu-blue-dark", "hoverBgClass": "bg-[#151f42]", "textClass": "text-ucu-blue-dark"},
+        {"year": "2025", "value": "110M", "heightPercent": 100, "baseBgClass": "bg-[#C5192D]", "hoverBgClass": "bg-[#9a1322]", "textClass": "text-[#C5192D]"}
+      ]'></ucu-data-viz>
+
+    </div>
+  </ucu-sdg-layout>
+
+  <ucu-sdg-ribbon class="block w-full reveal-on-scroll" active="4"></ucu-sdg-ribbon>
+  <ucu-footer base-path="../../" class="reveal-on-scroll"></ucu-footer>
+
+</body>
+</html>

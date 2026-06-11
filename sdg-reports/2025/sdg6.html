@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SDG 6 - Clean Water and Sanitation (2025) | UCU – EAL</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="../../css/style.css">
+  
+  <script src="../../js/events-data.js" defer></script>
+  <script src="../../js/core-ui.js" defer></script>
+  <script src="../../js/visual-media.js" defer></script>
+  <script src="../../js/impact-feeds.js" defer></script>
+  <script src="../../js/institutional-data.js" defer></script>
+  <script src="../../js/modals.js" defer></script>
+  <script src="../../js/sdg-components.js" defer></script>
+  <script src="../../js/global-charts.js" defer></script>
+</head>
+<body class="bg-slate-50 text-muted font-sans antialiased min-h-screen flex flex-col">
+
+  <ucu-header base-path="../../"></ucu-header>
+
+  <ucu-sdg-page-hero 
+    class="block w-full reveal-on-scroll"
+    sdg="6" 
+    title="Clean Water and Sanitation" 
+    subtitle="Ensure availability and sustainable management of water and sanitation for all." 
+    hex="#26BDE2" 
+    bg-image="../../images/sdg-banner/sdg6.jpg" 
+    icon-image="../../images/sdg/sdg6.png">
+  </ucu-sdg-page-hero>
+
+  <ucu-sdg-layout sdg="6" year="2025">
+    
+    <div slot="description" class="flex flex-col gap-2">
+      
+      <ucu-metric-cards class="block w-full reveal-on-scroll" style="transition-delay: 100ms;" data-metrics='[
+        {"value": "40%", "label": "Water Recycled", "theme": "navy", "svgIcon": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"28\" height=\"28\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 0 0 7 7z\"/></svg>"},
+        {"value": "15", "label": "Harvesting Tanks", "theme": "red", "svgIcon": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"28\" height=\"28\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M4 4v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4\"/><path d=\"M4 10h16\"/><path d=\"M4 16h16\"/></svg>"},
+        {"value": "100%", "label": "Potable Access", "theme": "navy", "svgIcon": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"28\" height=\"28\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M22 12h-4l-3 9L9 3l-3 9H2\"/></svg>"}
+      ]'></ucu-metric-cards>
+
+      <div class="flex items-center w-full mt-8 mb-4 gap-4 reveal-on-scroll">
+        <div class="w-1.5 h-6 bg-ucu-red rounded-full shadow-sm flex-shrink-0"></div>
+        <h2 class="flex-shrink-0 text-2xl font-bold text-ucu-blue-dark tracking-tight m-0 pr-2">Closed-Loop Water Architecture</h2>
+        <div class="flex-grow h-px bg-gray-300/70 rounded-full"></div>
+      </div>
+
+      <div class="ucu-prose-narrative reveal-on-scroll">
+        <p>Water is a critical global resource, and Urdaneta City University is committed to drastically reducing its municipal aquifer consumption. By retrofitting our facilities with sensor-driven, low-flow fixtures and deploying an extensive rainwater harvesting matrix across major campus buildings, we have successfully created a localized, closed-loop water system.</p>
+        <p>Our centralized graywater treatment facility ensures that runoff from sanitation and cafeteria use is rigorously filtered and repurposed exclusively for campus landscaping and non-potable flushing. This engineering drastically suppresses our ecological footprint and guarantees long-term sustainability.</p>
+      </div>
+
+      <div class="flex items-center w-full mt-10 mb-4 gap-4 reveal-on-scroll">
+        <div class="w-1.5 h-6 bg-ucu-red rounded-full shadow-sm flex-shrink-0"></div>
+        <h2 class="flex-shrink-0 text-2xl font-bold text-ucu-blue-dark tracking-tight m-0 pr-2">Community Sanitation & WASH Protocols</h2>
+        <div class="flex-grow h-px bg-gray-300/70 rounded-full"></div>
+      </div>
+
+      <div class="ucu-prose-narrative reveal-on-scroll">
+        <p>Beyond our architectural achievements, UCU actively propagates Water, Sanitation, and Hygiene (WASH) standards throughout surrounding municipalities. Our engineering and community extension departments frequently deploy to rural barangays to assess ground-water toxicity and install low-cost, high-efficiency filtration systems.</p>
+        <p>The university also maintains stringent internal sanitary protocols. Drinking stations across campus are subjected to rigorous microbiological testing every quarter, ensuring that 100% of our student population has unimpeded access to safe, potable hydration.</p>
+      </div>
+
+      <ucu-data-viz class="block w-full reveal-on-scroll" title="Annual Volume of Recycled Graywater (Cubic Meters)" subtitle="Year Over Year Conservation Growth" data-type="vertical" data-payload='[
+        {"year": "2022", "value": "1,200", "heightPercent": 35, "baseBgClass": "bg-slate-200", "hoverBgClass": "bg-[#26BDE2]", "textClass": "text-slate-500"},
+        {"year": "2023", "value": "2,450", "heightPercent": 60, "baseBgClass": "bg-slate-300", "hoverBgClass": "bg-[#26BDE2]", "textClass": "text-slate-600"},
+        {"year": "2024", "value": "3,800", "heightPercent": 85, "baseBgClass": "bg-ucu-blue-dark", "hoverBgClass": "bg-[#151f42]", "textClass": "text-ucu-blue-dark"},
+        {"year": "2025", "value": "4,500", "heightPercent": 100, "baseBgClass": "bg-[#26BDE2]", "hoverBgClass": "bg-[#1da1c2]", "textClass": "text-[#26BDE2]"}
+      ]'></ucu-data-viz>
+
+    </div>
+  </ucu-sdg-layout>
+
+  <ucu-sdg-ribbon class="block w-full reveal-on-scroll" active="6"></ucu-sdg-ribbon>
+  <ucu-footer base-path="../../" class="reveal-on-scroll"></ucu-footer>
+
+</body>
+</html>

@@ -7,7 +7,7 @@
    2. HERO & UI COMPONENTS
    ========================================================================== */
 
-class UcuHomeHero extends HTMLElement {
+class UcuHomeHeroSlider extends HTMLElement {
   connectedCallback() {
     this.style.display = "block";
     this.style.width = "100%";
@@ -16,122 +16,136 @@ class UcuHomeHero extends HTMLElement {
     this.hasRendered = true;
 
     const base = this.getAttribute("base-path") || "./";
-    const tickerItems = [
-      "The Impact Rankings Recognized",
-      "169 UN Targets Tracked",
-      "150+ Active MOUs",
-      "18 Countries · Global Network",
+
+    // Configuration for image slides (lazy loaded async)
+    const imageSlides = [
+      `${base}images/home-sliders/1.png`,
+      `${base}images/home-sliders/2.png`,
+      `${base}images/home-sliders/3.png`
     ];
 
-    // Institutional Data Layer
-    const credentialRankings = [
-      { prefix: "#", value: "1", label: "Local University College · Region I", badgeText: "AppliedHE 2026", badgeStyle: "border-white/20 text-white/60 bg-white/5" },
-      { prefix: "#", value: "362", label: "World Ranking · Environment & Sustainability", badgeText: "UI GreenMetric 2025", badgeStyle: "border-white/20 text-white/60 bg-white/5" },
-      { prefix: "#", value: "44", label: "World Rank · Industrial Application", badgeText: "WURI 2025", badgeStyle: "border-white/20 text-white/60 bg-white/5" }
-    ];
-
-    const credentialsHTML = credentialRankings.map((item, index) => `
-      <div class="flex flex-col gap-1 ${index !== credentialRankings.length - 1 ? 'pb-6 mb-6 border-b border-white/10' : ''}">
-        <span class="text-6xl lg:text-7xl font-black text-white leading-none tracking-tighter">
-          <span class="text-ucu-yellow text-5xl lg:text-6xl mr-1">${item.prefix}</span>${item.value}
-        </span>
-        <p class="text-[11px] leading-relaxed text-white/60 mt-1 uppercase tracking-wider">${item.label}</p>
-        <span class="inline-flex w-fit mt-2 border ${item.badgeStyle} px-2 py-0.5 rounded-sm text-[8px] font-bold tracking-widest uppercase transition-colors duration-300 hover:text-white hover:border-white/40">${item.badgeText}</span>
-      </div>
-    `).join("");
+    // Total slides = 1 (Hardcoded Statement) + Dynamic Images
+    const totalSlides = 1 + imageSlides.length;
 
     this.innerHTML = `
-      <section class="ucu-viewport-lock relative w-full overflow-hidden bg-[#0d1020] flex items-center">
+      <section style="height: calc(100dvh - 80px); min-height: 600px;" class="relative w-full overflow-hidden bg-[#0d1020] group/slider" id="hero-slider-container">
         
-        <!-- Background Layer: Optimized for Zoom Scale -->
-        <div class="absolute inset-0 z-0">
-          <img src="${base}images/homebg.png" class="w-full h-full object-cover object-top opacity-40 select-none pointer-events-none" alt="UCU Campus Background">
-          <div class="absolute inset-0 bg-gradient-to-br from-[#0d1433]/95 via-[#1a2550]/85 to-[#0d1020]/100"></div>
-          <div class="absolute inset-0 bg-radial-gradient from-transparent via-[#0d1020]/20 to-[#0d1020]/60"></div>
+<div class="absolute inset-0 z-10 transition-opacity duration-1000 ease-in-out opacity-100 hero-slide" data-index="0">
+          <div class="absolute inset-0 z-0" style="
+            background:
+              linear-gradient(160deg, #0d1433 0%, #1a2550 30%, #24305e 55%, #1e1a40 80%, #0d1020 100%),
+              radial-gradient(ellipse 100% 50% at 50% 100%, rgba(57,74,138,0.55) 0%, transparent 60%),
+              radial-gradient(ellipse 50% 80% at 90% 10%, rgba(196,54,67,0.18) 0%, transparent 55%),
+              radial-gradient(ellipse 30% 40% at 10% 30%, rgba(80,100,180,0.2) 0%, transparent 60%);
+            background-blend-mode: normal, screen, screen, screen;
+          "></div>
+          <div class="relative z-10 w-full h-full flex items-center justify-center text-center px-4 sm:px-6 lg:px-8">
+            <div class="max-w-4xl mx-auto flex flex-col items-center gap-6 md:gap-8">
+              <p class="text-xs md:text-sm font-black tracking-[0.3em] uppercase text-ucu-yellow border-b-2 border-ucu-red pb-2 inline-block">Urdaneta City University</p>
+              <h1 class="text-5xl md:text-6xl lg:text-[5.5rem] font-black text-white leading-[1.05] tracking-tight" style="text-shadow: 0 4px 24px rgba(0,0,0,0.4);">
+                Global Standards.<br><span class="text-ucu-yellow">Local Impact.</span>
+              </h1>
+              <p class="text-base md:text-xl text-white/80 max-w-[65ch] font-medium leading-relaxed">
+                Driving institutional excellence through strategic international linkages, high-impact research, and an unwavering commitment to the UN Sustainable Development Goals.
+              </p>
+              <div class="flex flex-wrap justify-center gap-4 mt-4">
+                <a href="${base}partnership.html" class="px-8 py-4 bg-ucu-yellow text-ucu-blue-dark text-[11px] font-black tracking-[0.2em] uppercase rounded-xl transition-all duration-300 hover:bg-white hover:-translate-y-1 shadow-[0_8px_20px_rgba(251,239,75,0.2)] focus:outline-none">
+                  Explore Partnerships
+                </a>
+                <a href="${base}sdg-reports/2025.html" class="px-8 py-4 bg-white/5 border border-white/20 text-white text-[11px] font-bold tracking-[0.2em] uppercase rounded-xl transition-all duration-300 hover:bg-white/10 hover:-translate-y-1 backdrop-blur-sm focus:outline-none">
+                  View SDG Reports
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
 
-        <!-- Main 1280px Container -->
-        <div class="relative z-10 w-full max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-0">
-          <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        ${imageSlides.map((src, i) => `
+          <div class="absolute inset-0 z-0 transition-opacity duration-1000 ease-in-out opacity-0 hero-slide" data-index="${i + 1}">
+            <img src="${src}" class="w-full h-full object-cover object-center hero-img" alt="UCU Campus Slide ${i + 1}" loading="lazy" decoding="async" onerror="this.style.display='none'">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-black/30 pointer-events-none"></div>
+          </div>
+        `).join('')}
+
+        <div class="absolute bottom-6 w-full flex justify-center z-30 pointer-events-none">
+          <div class="relative flex items-center justify-center group/nav px-16 py-4 pointer-events-auto">
             
-            <!-- LEFT: Editorial Content (Biomechanical Compliance) -->
-            <div class="lg:col-span-7 flex flex-col gap-8">
-              <div class="reveal-on-scroll" style="transition-delay: 100ms;">
-                <p class="text-xs font-black tracking-[0.3em] uppercase text-ucu-yellow border-l-2 border-ucu-red pl-4">Urdaneta City University</p>
-              </div>
+            <button class="hero-prev absolute left-0 w-10 h-10 md:w-12 md:h-12 flex items-center justify-center bg-white/10 backdrop-blur-md border border-white/20 text-white rounded-full opacity-0 group-hover/nav:opacity-100 transition-all duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] focus:outline-none -translate-x-4 group-hover/nav:translate-x-0 shadow-[0_8px_32px_rgba(0,0,0,0.2)] hover:bg-ucu-red hover:border-ucu-red hover:scale-105" aria-label="Previous Slide">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 md:w-6 md:h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" /></svg>
+            </button>
 
-              <div class="reveal-on-scroll" style="transition-delay: 200ms;">
-                <h1 class="text-6xl md:text-7xl lg:text-[5.5rem] font-black text-white leading-[1.05] tracking-tight" style="text-shadow: 0 4px 24px rgba(0,0,0,0.4);">Shaping a<br><span class="text-ucu-yellow">Sustainable<br>Tomorrow.</span></h1>
-              </div>
-
-              <div class="reveal-on-scroll" style="transition-delay: 300ms;">
-                <p class="ucu-prose-narrative text-sm md:text-base text-white/70">Driving institutional impact through research, partnerships, and the 17 United Nations Sustainable Development Goals — recognized globally, rooted locally.</p>
-              </div>
-
-              <!-- REFINED LAYOUT: Ticker placed ABOVE buttons -->
-              <div class="flex flex-col gap-6 mt-2">
-                <div class="reveal-on-scroll flex items-center gap-3" style="transition-delay: 400ms;">
-                  <div class="w-1 h-8 bg-ucu-red rounded-full"></div>
-                  <span id="ucu-hero-ticker" class="text-[10px] font-bold tracking-[0.15em] uppercase text-ucu-yellow/80">The Impact Rankings Recognized</span>
-                </div>
-
-                <div class="reveal-on-scroll flex flex-wrap gap-4" style="transition-delay: 500ms;">
-                  <a href="${base}sdg-reports/2025.html" class="px-8 py-4 bg-white/5 border border-white/20 text-white text-[10px] font-bold tracking-[0.2em] uppercase rounded-md transition-all duration-300 hover:bg-white/10 hover:-translate-y-1">
-                    Explore SDG Reports &rarr;
-                  </a>
-                  <a href="${base}partnership.html" class="px-8 py-4 bg-white/5 border border-white/20 text-white text-[10px] font-bold tracking-[0.2em] uppercase rounded-md transition-all duration-300 hover:bg-white/10 hover:-translate-y-1">
-                    Our Partnerships &rarr;
-                  </a>
-                </div>
-              </div>
+            <div class="flex items-center gap-3">
+              ${Array.from({ length: totalSlides }).map((_, i) => `
+                <button class="hero-indicator transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] rounded-full h-1.5 focus:outline-none shadow-sm ${i === 0 ? 'w-12 bg-ucu-yellow' : 'w-4 bg-white/40 hover:bg-white/80'}" data-index="${i}" aria-label="Go to slide ${i + 1}"></button>
+              `).join('')}
             </div>
 
-            <!-- RIGHT: Institutional Credentials -->
-            <div class="lg:col-span-5 lg:pl-16 border-l border-white/5 hidden lg:block">
-              <div class="reveal-on-scroll" style="transition-delay: 600ms;">
-                <p class="text-[10px] font-bold tracking-[0.2em] uppercase text-white/30 mb-10">Global Performance Index</p>
-                ${credentialsHTML}
-              </div>
-            </div>
-
+            <button class="hero-next absolute right-0 w-10 h-10 md:w-12 md:h-12 flex items-center justify-center bg-white/10 backdrop-blur-md border border-white/20 text-white rounded-full opacity-0 group-hover/nav:opacity-100 transition-all duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] focus:outline-none translate-x-4 group-hover/nav:translate-x-0 shadow-[0_8px_32px_rgba(0,0,0,0.2)] hover:bg-ucu-red hover:border-ucu-red hover:scale-105" aria-label="Next Slide">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 md:w-6 md:h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" /></svg>
+            </button>
+            
           </div>
         </div>
       </section>
-
-      <style>
-        .ucu-viewport-lock {
-          min-height: 100vh;
-          min-height: 100dvh;
-        }
-        #ucu-hero-ticker {
-          transition: opacity 0.5s ease-in-out;
-        }
-        @media (max-width: 1024px) {
-          .ucu-viewport-lock {
-            min-height: auto;
-            padding-top: 120px;
-            padding-bottom: 80px;
-          }
-        }
-      </style>
     `;
 
-    this.initTicker(tickerItems);
+    this.currentIndex = 0;
+    this.totalSlides = totalSlides;
+    this.slides = this.querySelectorAll('.hero-slide');
+    this.indicators = this.querySelectorAll('.hero-indicator');
+    this.btnPrev = this.querySelector('.hero-prev');
+    this.btnNext = this.querySelector('.hero-next');
+
+    // Event Bindings
+    this.btnPrev.addEventListener('click', () => this.navigate(-1));
+    this.btnNext.addEventListener('click', () => this.navigate(1));
+    
+    this.indicators.forEach(ind => {
+      ind.addEventListener('click', (e) => {
+        const idx = parseInt(e.target.getAttribute('data-index'), 10);
+        this.goToSlide(idx);
+      });
+    });
+
+    this.startAutoPlay();
   }
 
-  initTicker(items) {
-    let index = 0;
-    const tickerEl = this.querySelector("#ucu-hero-ticker");
-    if (!tickerEl) return;
+  navigate(direction) {
+    let nextIndex = this.currentIndex + direction;
+    if (nextIndex < 0) nextIndex = this.totalSlides - 1;
+    if (nextIndex >= this.totalSlides) nextIndex = 0;
+    this.goToSlide(nextIndex);
+  }
+
+  goToSlide(index) {
+    if (index === this.currentIndex) return;
     
-    setInterval(() => {
-      tickerEl.style.opacity = "0";
-      setTimeout(() => {
-        index = (index + 1) % items.length;
-        tickerEl.textContent = items[index];
-        tickerEl.style.opacity = "1";
-      }, 500);
-    }, 4000);
+    this.startAutoPlay(); // Reset interval upon manual navigation
+
+    const oldIndex = this.currentIndex;
+    this.currentIndex = index;
+
+    // Transition Slides (Pure Crossfade, Zero Movement)
+    this.slides[oldIndex].classList.remove('opacity-100', 'z-10');
+    this.slides[oldIndex].classList.add('opacity-0', 'z-0');
+    
+    this.slides[this.currentIndex].classList.remove('opacity-0', 'z-0');
+    this.slides[this.currentIndex].classList.add('opacity-100', 'z-10');
+
+    // Update Pill Indicators
+    this.indicators[oldIndex].className = "hero-indicator transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] rounded-full h-1.5 focus:outline-none shadow-sm w-4 bg-white/40 hover:bg-white/80";
+    this.indicators[this.currentIndex].className = "hero-indicator transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] rounded-full h-1.5 focus:outline-none shadow-sm w-12 bg-ucu-yellow";
+  }
+
+  startAutoPlay() {
+    if (this.timer) clearInterval(this.timer);
+    this.timer = setInterval(() => {
+      this.navigate(1);
+    }, 6000); // 6-second cycle for premium pacing
+  }
+
+  disconnectedCallback() {
+    if (this.timer) clearInterval(this.timer);
   }
 }
 
@@ -428,7 +442,7 @@ class UcuMetricCards extends HTMLElement {
     try {
       metrics = JSON.parse(metricsData);
     } catch (e) {
-      console.error("Invalid metrics data.");
+      console.error("Invalid metrics data in UcuMetricCards.");
       return;
     }
 
@@ -436,6 +450,7 @@ class UcuMetricCards extends HTMLElement {
       navy: { bg: "bg-ucu-blue-dark", value: "text-white", label: "text-white/90", icon: "text-ucu-yellow" },
       red: { bg: "bg-ucu-red", value: "text-white", label: "text-white/90", icon: "text-ucu-yellow" },
       yellow: { bg: "bg-ucu-yellow", value: "text-ucu-blue-dark", label: "text-ucu-blue-dark/90", icon: "text-ucu-red" },
+      white: { bg: "bg-ucu-white", value: "text-ucu-blue-dark", label: "text-ucu-blue-dark/90", icon: "text-ucu-red" },
     };
 
     const getGridClass = (count) => {
@@ -443,6 +458,7 @@ class UcuMetricCards extends HTMLElement {
       if (count === 2) return "grid-cols-2";
       if (count === 3) return "grid-cols-1 md:grid-cols-3";
       if (count === 4) return "grid-cols-2 md:grid-cols-4";
+      if (count === 5) return "grid-cols-2 md:grid-cols-3 lg:grid-cols-5";
       if (count === 6) return "grid-cols-2 md:grid-cols-3 lg:grid-cols-6";
       return "grid-cols-1 md:grid-cols-3";
     };
@@ -450,12 +466,26 @@ class UcuMetricCards extends HTMLElement {
     const cardsHtml = metrics.map((metric) => {
       const activeTheme = metric.theme || "navy";
       const styles = themeStyles[activeTheme];
+      
+      // ARCHITECTURAL UPGRADE: Registry Intercept Logic
+      // If 'metricId' exists and is found in the registry, use it. Otherwise, fallback to the hardcoded 'value'.
+      const displayValue = (metric.metricId && window.UCU_METRICS && window.UCU_METRICS[metric.metricId] !== undefined)
+        ? window.UCU_METRICS[metric.metricId]
+        : metric.value;
+
+      const hasTrigger = !!metric.evidenceId;
+      const tagName = hasTrigger ? "button" : "div";
+      const extraAttrs = hasTrigger ? `type="button" data-modal-trigger="${metric.evidenceId}"` : "";
+      const hoverClasses = hasTrigger ? "cursor-pointer text-left w-full focus:outline-none focus-visible:ring-2 focus-visible:ring-ucu-red focus-visible:ring-offset-2" : "";
+
+      const valueSizeClass = displayValue.length > 8 ? "text-xl md:text-2xl" : "text-3xl md:text-4xl";
+
       return `
-        <div class="${styles.bg} rounded-2xl p-6 shadow-lg hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-center min-h-[140px] border border-white/5 group">
+        <${tagName} ${extraAttrs} class="${styles.bg} rounded-2xl p-6 shadow-lg hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-center min-h-[140px] border border-white/5 group ${hoverClasses}">
           ${metric.svgIcon ? `<div class="flex items-center gap-2 mb-3 ${styles.icon} opacity-90 scale-110 origin-left transition-transform duration-300 group-hover:scale-125">${metric.svgIcon}</div>` : ""}
-          <h3 class="text-3xl md:text-4xl font-black tracking-tighter leading-none ${styles.value}">${metric.value}</h3>
-          <p class="${styles.label} text-[10px] font-bold uppercase tracking-[0.15em] mt-2">${metric.label}</p>
-        </div>
+          <h3 class="${valueSizeClass} font-black tracking-tighter leading-none ${styles.value}">${displayValue}</h3>
+          <div class="${styles.label} text-[10px] font-bold uppercase tracking-[0.15em] mt-2">${metric.label}</div>
+        </${tagName}>
       `;
     }).join("");
 
@@ -464,23 +494,18 @@ class UcuMetricCards extends HTMLElement {
   }
 }
 
-class SdgBadge extends HTMLElement {
+// --- NEW: Inline Metric Injector ---
+class UcuMetric extends HTMLElement {
   connectedCallback() {
-    if (this.hasRendered) return;
-    this.hasRendered = true;
-
-    const goal = parseInt(this.getAttribute("goal"), 10);
-    if (!goal || goal < 1 || goal > 17) return;
-
-    const colors = window.UCU_SDG_COLORS || {};
-    const color = colors[goal] || "#24305e";
-    const textColor = goal === 7 ? "#1a1a1a" : "#ffffff";
-
-    this.innerHTML = `
-      <span class="w-6 h-6 rounded-sm flex items-center justify-center text-[9px] font-black shadow-sm" style="background:${color};color:${textColor};">
-        ${goal}
-      </span>
-    `;
+    const id = this.getAttribute("id");
+    if (id && window.UCU_METRICS && window.UCU_METRICS[id] !== undefined) {
+      this.textContent = window.UCU_METRICS[id];
+    } else {
+      this.textContent = this.getAttribute("fallback") || "0";
+      console.warn(`[UCU Architecture] Metric ID '${id}' not found in registry.`);
+    }
+    this.style.display = "inline";
+    this.style.fontWeight = "inherit"; // Respect parent typography
   }
 }
 
@@ -488,8 +513,9 @@ class SdgBadge extends HTMLElement {
    4. COMPONENT REGISTRATION
    ========================================================================== */
 
-if (!customElements.get("ucu-home-hero")) customElements.define("ucu-home-hero", UcuHomeHero);
+if (!customElements.get("ucu-home-hero-slider")) customElements.define("ucu-home-hero-slider", UcuHomeHeroSlider);
 if (!customElements.get("ucu-hero-banner")) customElements.define("ucu-hero-banner", UcuHeroBanner);
 if (!customElements.get("ucu-image-slider")) customElements.define("ucu-image-slider", UcuImageSlider);
 if (!customElements.get("ucu-metric-cards")) customElements.define("ucu-metric-cards", UcuMetricCards);
 if (!customElements.get("sdg-badge")) customElements.define("sdg-badge", SdgBadge);
+if (!customElements.get("ucu-metric")) customElements.define("ucu-metric", UcuMetric);

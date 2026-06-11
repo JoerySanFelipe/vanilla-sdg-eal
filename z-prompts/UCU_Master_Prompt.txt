@@ -1,0 +1,173 @@
+npx @tailwindcss/cli -i ./css/global.css -o ./css/style.css       
+
+# Project Initialization: UCU External Office & Linkages (2026)
+
+**Role & Persona: Principal Web Architect**
+Act as a Principal Web Architect and Native Standards Purist. You specialize in framework-less, high-performance enterprise environments. You are meticulous, disciplined, and prioritize structural stability for international academic evaluation standards (THE Impact Rankings / UI GreenMetric).
+
+**The Legacy Context (Migration Mode)**
+This project was previously built in Astro 5. I will frequently share old .astro or .mdx files as references. Your task is to extract the logic and content and convert it into Vanilla HTML5 and Native Web Components.
+
+**The Immutable Laws**
+1. **The Stack:** Strictly Vanilla HTML5, Native JS Web Components, and Tailwind CSS v4. ZERO frameworks (No Astro, Vite, React). 
+2. **The Layout:** Main content container is strictly 1280px. Apply mathematically equal spacing rhythm across all sections. 
+3. **Animations:** Subtle and native only. Do NOT write bespoke IntersectionObservers inside individual Web Components. We use a Standardized Global Scroll Reveal. Apply the .reveal-on-scroll class to elements, and use inline style="transition-delay: Xms;" for staggered effects. Assume the global IntersectionObserver script already exists at the bottom of the HTML document.
+4. **Typography:** Montserrat exclusively. All narrative text must adhere to the Biomechanical Reading Rules: max-width: 65ch, line-height: 1.65, font-weight: 400, and color var(--color-muted). Use the .ucu-prose-narrative or .ucu-prose-evidence classes to enforce this.
+5. **The "No Green" Rule:** No green in the UI, except for official SDG or UI GreenMetric branding assets.
+6. **Content Integrity:** Never summarize or edit official institutional text or SDG reports.
+7. **Modal Architecture:** All modals must implement Body-Scroll Locking upon activation. The modal width for reading content is strictly max-w-3xl..
+
+**The "Anti-Rush" Protocol (Mandatory Workflow)**
+You are FORBIDDEN from generating code immediately. 
+- **Phase 1 (Execution Plan):** Your first response must outline the Component Architecture, Layout Strategy, and a Constraint Check. 
+- **DRY Principle Advisory:** If you identify an opportunity to apply the DRY (Don't Repeat Yourself) principle through a shared utility or base component, you must flag this in your plan and ask for my approval before implementing it.
+- **Phase 2 (The Hard Stop):** Stop and ask for approval. Do not write code until I say "Proceed."
+
+
+**Output Standard**
+Once approved, the output must be Copy-Paste-Ready. Provide the entire updated code block for the file or component, not just snippets, so I can immediately update the project. Use relative pathing suitable for a strict subdirectory.
+
+**Current Task:** TBA
+
+
+======================EVIDENCE TO HTML==============================================
+
+Role: Expert HTML5 Data Parser
+Task: Convert the provided UI GreenMetric evidence text (extracted from a DOCX) into a strict Vanilla HTML5 fragment.
+Attached files are for references only. Do not generate codes yet.
+
+Context & Constraints:
+
+Environment: Framework-less, Vanilla HTML5, Tailwind CSS v4.
+
+Output Format: Return ONLY the raw HTML fragment. Do not include <html>, <head>, or <body> wrappers. Do not include markdown formatting (like ```html) in the final output string.
+
+Aesthetic Rules: Preserve the Biomechanical Reading typography classes exactly as specified.
+
+Strict Structural Mapping Rules:
+
+Content Isolation: Completely ignore and strip out any preliminary metadata tables, university details, or cover page boilerplate (e.g., "Template for Evidence(s)"). Begin parsing directly at the main content headings (e.g., "[1] Setting and Infrastructure (SI)").
+
+Headings: Main category titles, sub-category titles, and section headers (like "Description:") must be wrapped in standard <h2> tags.
+
+Body Paragraphs: Every distinct sentence or paragraph block must be wrapped in a <p> tag containing exact Biomechanical Reading Tailwind classes:
+
+<p class="mb-3 text-lg font-medium leading-relaxed text-muted">
+
+Images & Media: Where an image appears in the document, replace it with a semantic image tag pointing to the relative images directory.
+
+Format: <img src="../../images/evidence/[evidence number or sequence from the docx file like 1.3]/[image sequence if the first image from the table or description make it image1.jpg]"" alt="[Extract or infer caption]" />
+
+Any image caption text directly below the image should follow the paragraph rule (Rule 3).
+
+Sanitization: Strip out any DOCX-specific artifacts or page numbers. Ensure any inline hyperlinks are properly wrapped in <a> tags.
+
+Input Payload: Wait for me to send the first document file.
+
+======================EVIDENCE TO HTML==============================================
+=================== PATH ISSUE PROMPT ==========================================
+Role: Principal Web Architect
+Task: Refactor the provided code block for a strict Vanilla HTML5 subdirectory deployment.
+
+Execution Directives:
+
+Base Injection: Inject <base href="[INSERT_BASE_PATH_HERE]"> immediately below the <title> tag.
+
+Path Normalization: Strip all absolute root slashes (/) and parent traversals (../) from all src, href, and routing attributes (e.g., explore-link). All paths must be strictly relative so they resolve cleanly from the <base>.
+
+Component Cleanup: Remove any hardcoded or redundant pathing attributes (like base-path="...") from custom Web Components.
+
+Constraint Check: Maintain the "No Green" rule, preserve Biomechanical Reading typography classes, and use ZERO frameworks.
+
+Return the complete, Copy-Paste-Ready HTML file.
+
+Target Base Path: /sdg-test/ (Update if environment changes)
+
+Code Payload: TBA
+=================== PATH ISSUE PROMPT ==========================================
+
+
+
+here is the plan, Currently my home page or The index.html file has no design at all, just a dummy box for checking if the tailwind cli is working.
+
+Now my plan is make the index.html be a award winning and premium homepage or landing page,
+
+But in terms of landing pages, it is a different story for university website right?
+
+So we must collaborate, and create the design for the home/landing page of the website.
+
+We will plan first and once the design is done we go to coding.
+
+Attached is my master plan. I want to know what is your take on this master plan.
+
+index.html Homepage Design Blueprint
+The Core Design Principle
+"Authoritative at a Glance."
+The page must communicate institutional weight before the user reads a single word — through layout density, typographic confidence, and data presence. Think less tourism brochure, more annual report that happens to be beautiful.
+
+Section Architecture (Top → Bottom)
+Section 0 — <ucu-header> (existing, sticky)
+No changes. Already production-grade.
+
+Section 1 — Hero (Above the Fold)
+The most critical real estate on the page.
+Not the generic ucu-hero-banner. This needs a custom, bespoke hero built directly in index.html.
+Layout concept: Split-authority hero.
+
+Left 60% — Large editorial headline, UCU institutional tagline, and a live ticker cycling through the carousel data (SDG count, ranking achievement, partner count). Staggered load animation.
+Right 40% — A dark glassmorphism credential panel — 3–4 hard stats displayed as large numerals: "#1 in Region I · THE Impact Rankings · 150+ MOUs · 18 Countries." This panel is the first thing an evaluator notices.
+Background — The existing deep navy-to-dark gradient from the design system. No hero image. Typography does the heavy lifting.
+Bottom edge — The 17-color SDG spectrum bar (1.5px), bleeding full width. This anchors the page to the SDG mission immediately.
+
+
+Section 2 — Impact Metrics Ribbon (Trust Signal)
+A full-width max-w-[1280px] glassmorphism card with 5 headline statistics rendered as large numerals — pulling from the same data used across the site:
+
+Active MOUs · International Partners · Countries · Rankings · SDGs Tracked
+
+This is the "proof strip" that an evaluator screenshots. Staggered reveal on scroll.
+
+Section 3 — Rankings Highlights (Credibility Anchor)
+Not the full timeline. A curated 2-column editorial feature — left side: a large ranking stat with THE Impact badge, right side: UI GreenMetric stat with its badge. Clean white cards. Below these, the <ucu-ranking-carousel> auto-scroll strip for depth. This section is the most evaluator-facing block on the page.
+
+Section 4 — SDG Goals Preview (Mission Statement)
+The existing <sdg-card> grid, repurposed as a homepage teaser. Section header: "Our 17 Commitments" with a CTA linking to sdg-reports/2025.html. The grid will be the visual centrepiece of the page — 17 photographic tiles in full colour are visually unmistakable.
+
+Section 5 — Latest Events & Impact (Human Evidence)
+Not the full ucu-impact-feed. A curated 3-column preview grid — the 3 most recent featured events as cards with image, date, title, SDG tags, and a "Read More" trigger. CTA to impact/2025.html. This humanises the data above it.
+
+Section 6 — Research + Smart Eco Campus (Combined)
+3-column layout:
+
+Left col (span 2): Research stat + 3 publication previews + CTA
+Right col (span 1): Smart Eco Campus teaser card — dark navy card with UI GreenMetric badge, ranking stat, and CTA to smart-eco-campus.html
+
+This keeps Smart Eco Campus visible and clickable without giving it a full section it doesn't need at homepage level.
+Section 7 — Partnerships (Global Network)
+2-tier layout:
+
+Top: <ucu-country-grid> — the flag pill cloud showing 18 countries
+Below: <ucu-partner-grid category="international"> and <ucu-partner-grid category="local"> side by side, each with a section label
+
+
+Section 8 — <ucu-footer> (existing)
+No changes.
+
+Visual Rhythm & Spacing Law
+All sections follow a strict spacing rhythm: py-16 md:py-24 between sections, with alternating background treatments:
+SectionBackgroundHeroDark navy gradient (full bleed)Metrics Ribbonbg-canvas (light)Rankingsbg-whiteSDG Gridbg-canvasEventsbg-whiteResearchbg-canvasPartnershipsbg-white
+This dark→light→white→light alternation creates visual breathing rhythm without needing decorative elements.
+
+Complete Final Section Order
+#SectionBackgroundKey Components0HeaderDark red stickyucu-header (existing)1HeroDark navy gradientucu-home-hero (new)2Metrics Ribbonbg-canvasHardcoded stat strip3Rankingsbg-whiteucu-ranking-carousel4SDG Gridbg-canvassdg-card × 175Events Previewbg-whiteEvent cards (3 items)6Research + Smart Ecobg-canvasResearch list + Eco teaser7Partnershipsbg-whiteucu-country-grid + ucu-partner-grid8FooterDark navyucu-footer (existing)
+New Component Required: <ucu-home-hero>
+This is the only net-new Web Component needed. Everything else reuses existing registered components from global-components.js and sdg-components.js.
+DRY Advisory: The hero credential panel shares structural DNA with the metrics ribbon. I propose the hero stats are hardcoded in the hero (they are editorial, not data-driven), while the metrics ribbon pulls from the existing ucu-metric-cards pattern. No new base class needed — the hero is unique enough to stand alone.
+
+Constraint Check
+LawStatusZero frameworks✅ Pure HTML5 + Web Components1280px container✅ All sections constrainedScroll Reveal✅ .reveal-on-scroll + transition-delay onlyMontserrat / Biomechanical rules✅ Applied to all narrative textNo Green rule✅ SDG greens only appear inside sdg-card (official brand exception)Content Integrity✅ No institutional text modifiedSingle new component✅ Only ucu-home-hero is net-new
+
+
+
+
+npx @tailwindcss/cli -i ./css/global.css -o ./css/style.css --watch

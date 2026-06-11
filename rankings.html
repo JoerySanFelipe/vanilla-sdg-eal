@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>University Rankings - UCU External Office</title>
+  <title>Rankings | UCU – EAL</title>
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -38,19 +38,18 @@
       }
   </script>
   
-  <!-- Data Store script loaded before components -->
   <script src="./js/rankings-data.js" defer></script>
+  <script src="./js/institutional-data.js" defer></script>
+
   <script src="./js/core-ui.js" defer></script>
   <script src="./js/visual-media.js" defer></script>
   <script src="./js/impact-feeds.js" defer></script>
-  <script src="./js/institutional-data.js" defer></script>
 </head>
 
 <body class="bg-canvas text-main2 font-sans antialiased min-h-screen flex flex-col relative z-0 overflow-x-hidden">
   
   <ucu-header base-path="./"></ucu-header>
 
-  <!-- Structural classes to reserve space and prevent layout shifting -->
   <ucu-hero-banner 
     class="block w-full min-h-[320px] md:min-h-[360px]"
     bg-color="bg-ucu-blue-dark" 
@@ -62,22 +61,18 @@
 
   <main class="w-full flex-grow relative z-10 flex flex-col bg-canvas">
 
-    <!-- CROWN JEWELS: Animated Horizontal Carousel -->
     <section class="max-w-[1280px] w-full mx-auto px-4 sm:px-6 lg:px-8 relative z-20 pt-12 mb-24 reveal opacity-0 translate-y-8 transition-all duration-[800ms] ease-[cubic-bezier(0.16,1,0.3,1)] delay-100">      
       
-      <!-- NEW: Standardized Section Heading -->
       <div class="flex items-center w-full mb-8 gap-4">
         <div class="w-1.5 h-6 bg-ucu-red rounded-full shadow-sm flex-shrink-0"></div>
         <h2 class="flex-shrink-0 text-xl md:text-2xl font-bold text-ucu-blue-dark tracking-tight m-0 pr-2">Current Global Standing</h2>
         <div class="flex-grow h-px bg-gray-300/70 rounded-full"></div>
       </div>
       
-      <!-- Structural classes to reserve carousel space -->
       <ucu-ranking-carousel class="block w-full min-h-[350px] md:min-h-[400px]"></ucu-ranking-carousel>
 
     </section>
 
-    <!-- GRANULAR DATA MATRIX: Historical Timeline -->
     <section class="max-w-[1280px] w-full mx-auto px-4 sm:px-6 lg:px-8 relative z-20 mb-24">
       <div class="w-full">
         
@@ -87,17 +82,15 @@
             <h3 class="text-3xl md:text-4xl font-black text-ucu-blue-dark">Historical Performance</h3>
           </div>
 
-          <!-- The Filters -->
           <div class="flex flex-wrap gap-2.5" id="filter-group">
             <button data-filter="all" class="filter-btn px-4 py-2 rounded-full text-xs font-bold border border-white/50 bg-white/60 transition-all hover:bg-white hover:shadow-sm data-[active=true]:bg-ucu-blue-dark data-[active=true]:text-white data-[active=true]:border-ucu-blue-dark text-main2" data-active="true">All Rankings</button>
-            <button data-filter="WURI" class="filter-btn px-4 py-2 rounded-full text-xs font-bold border border-white/50 bg-white/60 transition-all hover:bg-white hover:shadow-sm data-[active=true]:bg-ucu-blue-dark data-[active=true]:text-white data-[active=true]:border-ucu-blue-dark text-main2" data-active="false">WURI</button>
-            <button data-filter="UI GreenMetric" class="filter-btn px-4 py-2 rounded-full text-xs font-bold border border-white/50 bg-white/60 transition-all hover:bg-white hover:shadow-sm data-[active=true]:bg-ucu-blue-dark data-[active=true]:text-white data-[active=true]:border-ucu-blue-dark text-main2" data-active="false">UI GreenMetric</button>
-            <button data-filter="THE" class="filter-btn px-4 py-2 rounded-full text-xs font-bold border border-white/50 bg-white/60 transition-all hover:bg-white hover:shadow-sm data-[active=true]:bg-ucu-blue-dark data-[active=true]:text-white data-[active=true]:border-ucu-blue-dark text-main2" data-active="false">THE Impact</button>
-            <button data-filter="AppliedHE" class="filter-btn px-4 py-2 rounded-full text-xs font-bold border border-white/50 bg-white/60 transition-all hover:bg-white hover:shadow-sm data-[active=true]:bg-ucu-blue-dark data-[active=true]:text-white data-[active=true]:border-ucu-blue-dark text-main2" data-active="false">AppliedHE</button>
+            <button data-filter="WURI" class="filter-btn px-4 py-2 rounded-full text-xs font-bold border border-white/50 bg-white/60 transition-all hover:bg-white hover:shadow-sm data-[active=true]:bg-[#0f4088] data-[active=true]:text-white data-[active=true]:border-[#0f4088] text-main2" data-active="false">WURI</button>
+            <button data-filter="UI GreenMetric" class="filter-btn px-4 py-2 rounded-full text-xs font-bold border border-white/50 bg-white/60 transition-all hover:bg-white hover:shadow-sm data-[active=true]:bg-[#00993d] data-[active=true]:text-white data-[active=true]:border-[#00993d] text-main2" data-active="false">UI GreenMetric</button>
+            <button data-filter="THE" class="filter-btn px-4 py-2 rounded-full text-xs font-bold border border-white/50 bg-white/60 transition-all hover:bg-white hover:shadow-sm data-[active=true]:bg-[#201f1f] data-[active=true]:text-white data-[active=true]:border-[#201f1f] text-main2" data-active="false">THE Impact</button>
+            <button data-filter="AppliedHE" class="filter-btn px-4 py-2 rounded-full text-xs font-bold border border-white/50 bg-white/60 transition-all hover:bg-white hover:shadow-sm data-[active=true]:bg-[#f26422] data-[active=true]:text-white data-[active=true]:border-[#f26422] text-main2" data-active="false">AppliedHE</button>
           </div>
         </div>
 
-        <!-- The Web Component Engine handles everything inside -->
         <ucu-ranking-timeline></ucu-ranking-timeline>
 
       </div>

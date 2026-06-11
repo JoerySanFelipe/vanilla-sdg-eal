@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SDG 8 - Decent Work and Economic Growth (2025) | UCU – EAL</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="../../css/style.css">
+  
+  <script src="../../js/events-data.js" defer></script>
+  <script src="../../js/core-ui.js" defer></script>
+  <script src="../../js/visual-media.js" defer></script>
+  <script src="../../js/impact-feeds.js" defer></script>
+  <script src="../../js/institutional-data.js" defer></script>
+  <script src="../../js/modals.js" defer></script>
+  <script src="../../js/sdg-components.js" defer></script>
+  <script src="../../js/global-charts.js" defer></script>
+</head>
+<body class="bg-slate-50 text-muted font-sans antialiased min-h-screen flex flex-col">
+
+  <ucu-header base-path="../../"></ucu-header>
+
+  <ucu-sdg-page-hero 
+    class="block w-full reveal-on-scroll"
+    sdg="8" 
+    title="Decent Work and Economic Growth" 
+    subtitle="Promote sustained, inclusive and sustainable economic growth, full and productive employment and decent work for all." 
+    hex="#A21942" 
+    bg-image="../../images/sdg-banner/sdg8.jpg" 
+    icon-image="../../images/sdg/sdg8.png">
+  </ucu-sdg-page-hero>
+
+  <ucu-sdg-layout sdg="8" year="2025">
+    
+    <div slot="description" class="flex flex-col gap-2">
+      
+      <ucu-metric-cards class="block w-full reveal-on-scroll" style="transition-delay: 100ms;" data-metrics='[
+        {"value": "85%", "label": "Graduate Employment", "theme": "red", "svgIcon": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"28\" height=\"28\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2\"/><circle cx=\"9\" cy=\"7\" r=\"4\"/><path d=\"M22 21v-2a4 4 0 0 0-3-3.87\"/><path d=\"M16 3.13a4 4 0 0 1 0 7.75\"/></svg>"},
+        {"value": "PHP 8.4M", "label": "EWYL Total Fund", "theme": "navy", "svgIcon": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"28\" height=\"28\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><line x1=\"12\" y1=\"1\" x2=\"12\" y2=\"23\"/><path d=\"M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6\"/></svg>"},
+        {"value": "100%", "label": "Labor Law Compliance", "theme": "red", "svgIcon": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"28\" height=\"28\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z\"/><path d=\"M9 12l2 2 4-4\"/></svg>"}
+      ]'></ucu-metric-cards>
+
+      <div class="flex items-center w-full mt-8 mb-4 gap-4 reveal-on-scroll">
+        <div class="w-1.5 h-6 bg-ucu-red rounded-full shadow-sm flex-shrink-0"></div>
+        <h2 class="flex-shrink-0 text-2xl font-bold text-ucu-blue-dark tracking-tight m-0 pr-2">Institutional Economic Resilience</h2>
+        <div class="flex-grow h-px bg-gray-300/70 rounded-full"></div>
+      </div>
+
+      <div class="ucu-prose-narrative reveal-on-scroll">
+        <p>Urdaneta City University (UCU) serves as a vital economic engine for the region, prioritizing decent work and sustainable growth both within our campus and throughout our partner communities. Through our <b>Earn-While-You-Learn (EWYL)</b> initiative, we provide marginalized students with living wages and professional experience, effectively removing financial barriers to graduation while contributing to the local labor market.</p>
+        <p>Our commitment extends to absolute compliance with national labor standards. We ensure that 100% of our faculty and staff operate under fair-wage contracts with full social security benefits, fostering a culture of professional dignity and long-term institutional stability.</p>
+      </div>
+
+      <div class="flex items-center w-full mt-10 mb-4 gap-4 reveal-on-scroll">
+        <div class="w-1.5 h-6 bg-ucu-red rounded-full shadow-sm flex-shrink-0"></div>
+        <h2 class="flex-shrink-0 text-2xl font-bold text-ucu-blue-dark tracking-tight m-0 pr-2">Community Livelihood Support</h2>
+        <div class="flex-grow h-px bg-gray-300/70 rounded-full"></div>
+      </div>
+
+      <div class="ucu-prose-narrative reveal-on-scroll">
+        <p>The External Office and Linkages actively bridges the gap between academic theory and economic practice. Our technical support for the <b>DSWD’s Kalahi-CIDSS Cash-for-Work Program</b> is a flagship example of this synergy, where university resources help validate and manage sustainable livelihood projects in vulnerable sectors.</p>
+      </div>
+
+      <ucu-data-viz class="block w-full reveal-on-scroll" title="Graduate Career Placement Rate (%)" subtitle="Performance Across All Degree Programs" data-type="vertical" data-payload='[
+        {"year": "2022", "value": "72%", "heightPercent": 60, "baseBgClass": "bg-slate-200", "hoverBgClass": "bg-[#A21942]", "textClass": "text-slate-500"},
+        {"year": "2023", "value": "78%", "heightPercent": 75, "baseBgClass": "bg-slate-300", "hoverBgClass": "bg-[#A21942]", "textClass": "text-slate-600"},
+        {"year": "2024", "value": "82%", "heightPercent": 90, "baseBgClass": "bg-ucu-blue-dark", "hoverBgClass": "bg-[#151f42]", "textClass": "text-ucu-blue-dark"},
+        {"year": "2025", "value": "85%", "heightPercent": 100, "baseBgClass": "bg-[#A21942]", "hoverBgClass": "bg-[#801232]", "textClass": "text-[#A21942]"}
+      ]'></ucu-data-viz>
+
+    </div>
+  </ucu-sdg-layout>
+
+  <ucu-sdg-ribbon class="block w-full reveal-on-scroll" active="8"></ucu-sdg-ribbon>
+  <ucu-footer base-path="../../" class="reveal-on-scroll"></ucu-footer>
+
+</body>
+</html>

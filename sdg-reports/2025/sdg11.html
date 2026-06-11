@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SDG 11 - Sustainable Cities and Communities (2025) | UCU – EAL</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="../../css/style.css">
+  
+  <script src="../../js/events-data.js" defer></script>
+  <script src="../../js/core-ui.js" defer></script>
+  <script src="../../js/visual-media.js" defer></script>
+  <script src="../../js/impact-feeds.js" defer></script>
+  <script src="../../js/institutional-data.js" defer></script>
+  <script src="../../js/modals.js" defer></script>
+  <script src="../../js/sdg-components.js" defer></script>
+  <script src="../../js/global-charts.js" defer></script>
+</head>
+<body class="bg-slate-50 text-muted font-sans antialiased min-h-screen flex flex-col">
+
+  <ucu-header base-path="../../"></ucu-header>
+
+  <ucu-sdg-page-hero 
+    class="block w-full reveal-on-scroll"
+    sdg="11" 
+    title="Sustainable Cities and Communities" 
+    subtitle="Make cities and human settlements inclusive, safe, resilient and sustainable." 
+    hex="#FD9D24" 
+    bg-image="../../images/sdg-banner/sdg11.jpg" 
+    icon-image="../../images/sdg/sdg11.png">
+  </ucu-sdg-page-hero>
+
+  <ucu-sdg-layout sdg="11" year="2025">
+    
+    <div slot="description" class="flex flex-col gap-2">
+      
+      <ucu-metric-cards class="block w-full reveal-on-scroll" style="transition-delay: 100ms;" data-metrics='[
+        {"value": "8.5ha", "label": "Total Campus Area", "theme": "navy", "svgIcon": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"28\" height=\"28\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z\"/><polyline points=\"9 22 9 12 15 12 15 22\"/></svg>"},
+        {"value": "100%", "label": "Public Access Areas", "theme": "red", "svgIcon": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"28\" height=\"28\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"12\" cy=\"12\" r=\"10\"/><line x1=\"2\" y1=\"12\" x2=\"22\" y2=\"12\"/><path d=\"M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z\"/></svg>"},
+        {"value": "Smart", "label": "Infrastructure", "theme": "navy", "svgIcon": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"28\" height=\"28\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"2\" y=\"3\" width=\"20\" height=\"14\" rx=\"2\" ry=\"2\"/><line x1=\"8\" y1=\"21\" x2=\"16\" y2=\"21\"/><line x1=\"12\" y1=\"17\" x2=\"12\" y2=\"21\"/></svg>"}
+      ]'></ucu-metric-cards>
+
+      <div class="flex items-center w-full mt-8 mb-4 gap-4 reveal-on-scroll">
+        <div class="w-1.5 h-6 bg-ucu-red rounded-full shadow-sm flex-shrink-0"></div>
+        <h2 class="flex-shrink-0 text-2xl font-bold text-ucu-blue-dark tracking-tight m-0 pr-2">Urban Resilience & Green Spaces</h2>
+        <div class="flex-grow h-px bg-gray-300/70 rounded-full"></div>
+      </div>
+
+      <div class="ucu-prose-narrative reveal-on-scroll">
+        <p>Urdaneta City University (UCU) is a vital green lung within the urban landscape of Urdaneta City. Our commitment to SDG 11 is realized through the maintenance of 8.5 hectares of sustainable campus grounds, where architectural development is strictly balanced with ecological preservation. By prioritizing "Forest Campus" initiatives, we provide our community with essential open spaces that foster both mental well-being and biodiversity.</p>
+        <p>Our campus infrastructure is engineered to be resilient and inclusive. We provide 100% public access to our cultural and academic zones, ensuring that the university serves as a shared community resource rather than an isolated enclave. This integration strengthens the social fabric of our local municipality and promotes a safer, more sustainable urban future.</p>
+      </div>
+
+      <div class="flex items-center w-full mt-10 mb-4 gap-4 reveal-on-scroll">
+        <div class="w-1.5 h-6 bg-ucu-red rounded-full shadow-sm flex-shrink-0"></div>
+        <h2 class="flex-shrink-0 text-2xl font-bold text-ucu-blue-dark tracking-tight m-0 pr-2">Sustainable Mobility & Cultural Heritage</h2>
+        <div class="flex-grow h-px bg-gray-300/70 rounded-full"></div>
+      </div>
+
+      <div class="ucu-prose-narrative reveal-on-scroll">
+        <p>In alignment with sustainable mobility targets, UCU has implemented a pedestrian-first policy, reducing vehicular congestion and emissions within the core academic zones. By expanding our network of covered walkways and bicycle-friendly pathways, we promote low-carbon transportation for students and the public alike.</p>
+      </div>
+
+      <ucu-data-viz class="block w-full reveal-on-scroll" title="Campus Green Space vs. Built Infrastructure" subtitle="Maintaining the Ecological Balance" data-type="stacked" data-payload='[
+        {"label": "Vegetation & Open Space", "percentage": 45, "bgClass": "bg-[#FD9D24]", "textClass": "text-white", "legendLabel": "Green Space"},
+        {"label": "Academic Buildings", "percentage": 35, "bgClass": "bg-ucu-blue-dark", "textClass": "text-white", "legendLabel": "Built Area"},
+        {"label": "Recreational Zones", "percentage": 20, "bgClass": "bg-ucu-red", "textClass": "text-white", "legendLabel": "Recreation"}
+      ]'></ucu-data-viz>
+
+    </div>
+  </ucu-sdg-layout>
+
+  <ucu-sdg-ribbon class="block w-full reveal-on-scroll" active="11"></ucu-sdg-ribbon>
+  <ucu-footer base-path="../../" class="reveal-on-scroll"></ucu-footer>
+
+</body>
+</html>

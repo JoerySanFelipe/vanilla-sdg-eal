@@ -3,152 +3,76 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>The 17 Goals Report 2025 - UCU</title>
+  <title>SDG Report (2025) | UCU – EAL</title>
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   
   <link rel="stylesheet" href="../css/style.css">
-
-  <style>
-    /* Base styles for the standardized scroll reveal animation */
-    .reveal-on-scroll {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-      will-change: opacity, transform;
-    }
-    .reveal-on-scroll.is-visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  </style>
   
-  <script src="../js/core-ui.js" defer></script>
-  <script src="../js/visual-media.js" defer></script>
-  <script src="../js/impact-feeds.js" defer></script>
+  <script src="../js/events-data.js" defer></script>
+  <script src="../js/research-data.js" defer></script>
+  <script src="../js/partners-data.js" defer></script>
   <script src="../js/institutional-data.js" defer></script>
+  <script src="../js/metrics-registry.js" defer></script>
+
+  <script src="../js/core-ui.js" defer></script>  
+  <script src="../js/impact-feeds.js" defer></script>
   <script src="../js/sdg-components.js" defer></script>
+  <script src="../js/visual-media.js" defer></script>
 </head>
 
 <body class="bg-canvas text-main2 font-sans antialiased min-h-screen flex flex-col relative z-0 overflow-x-hidden">
   
   <ucu-header base-path="../"></ucu-header>
 
-  <!-- Added reveal-on-scroll to the Hero Banner -->
-  <ucu-hero-banner 
-    class="block w-full reveal-on-scroll"
-    bg-color="bg-ucu-blue-dark" 
-    bg-image="../images/sdg-banner/GLOBAL.png"
-    title="The 17 Goals Report" 
-    subtitle="Explore our comprehensive progress across the United Nations' Sustainable Development Goals. Each tile represents UCU's dedicated effort to drive meaningful change, backed by targeted initiatives and community-driven actions.">
-  </ucu-hero-banner>
+<ucu-hero-banner 
+  bg-color="bg-ucu-blue-dark" 
+  eyebrow="Local Action. Global Impact."
+  headline="SDG Reports"
+  highlight="2025"
+  description="Documenting Urdaneta City University’s measurable contributions to the United Nations Sustainable Development Goals through education, research, partnerships, and community-driven initiatives in 2025.">
+</ucu-hero-banner>
 
-  <main class="w-full flex-grow relative z-10 flex flex-col pb-24 bg-canvas">
+  <main class="w-full flex-grow relative z-10 flex flex-col gap-12 md:gap-16 py-10 md:py-12 bg-canvas">
     
-    <!-- Top Statistics Bar with Scroll Animation -->
-    <section class="max-w-[1280px] w-full mx-auto px-4 sm:px-6 lg:px-8 relative z-20 pt-12 mb-12 reveal-on-scroll" style="transition-delay: 100ms;">
-      <div class="bg-white/70 backdrop-blur-xl border border-white px-8 py-10 rounded-[1.5rem] shadow-[0_8px_30px_rgba(36,48,94,0.06)] flex flex-col items-center transition-all duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)]">
-        
-        <span class="font-sans text-2xl md:text-3xl font-extrabold text-ucu-blue-dark tracking-[0.3em] uppercase mb-4">
-          2025
-        </span>
-        
-        <div class="flex w-full max-w-[800px] h-2 rounded-full overflow-hidden mb-8 shadow-inner">
-          <div class="flex-1 h-full" style="background-color: #E5243B;"></div>
-          <div class="flex-1 h-full" style="background-color: #DDA63A;"></div>
-          <div class="flex-1 h-full" style="background-color: #4C9F38;"></div>
-          <div class="flex-1 h-full" style="background-color: #C5192D;"></div>
-          <div class="flex-1 h-full" style="background-color: #FF3A21;"></div>
-          <div class="flex-1 h-full" style="background-color: #26BDE2;"></div>
-          <div class="flex-1 h-full" style="background-color: #FCC30B;"></div>
-          <div class="flex-1 h-full" style="background-color: #A21942;"></div>
-          <div class="flex-1 h-full" style="background-color: #FD6925;"></div>
-          <div class="flex-1 h-full" style="background-color: #DD1367;"></div>
-          <div class="flex-1 h-full" style="background-color: #FD9D24;"></div>
-          <div class="flex-1 h-full" style="background-color: #BF8B2E;"></div>
-          <div class="flex-1 h-full" style="background-color: #3F7E44;"></div>
-          <div class="flex-1 h-full" style="background-color: #0A97D9;"></div>
-          <div class="flex-1 h-full" style="background-color: #56C02B;"></div>
-          <div class="flex-1 h-full" style="background-color: #00689D;"></div>
-          <div class="flex-1 h-full" style="background-color: #19486A;"></div>
-        </div>
-
-        <div class="flex items-center justify-center gap-8 md:gap-16 w-full">
-          <div class="flex flex-col items-center">
-            <span class="text-3xl md:text-5xl font-black text-ucu-blue-dark leading-none">169</span>
-            <span class="text-[10px] font-bold text-muted uppercase tracking-[0.2em] mt-2">Targets</span>
-          </div>
-          <div class="w-px h-12 bg-gray-300/60 hidden md:block"></div>
-          <div class="flex flex-col items-center">
-            <span class="text-3xl md:text-5xl font-black text-ucu-blue-dark leading-none">3</span>
-            <span class="text-[10px] font-bold text-muted uppercase tracking-[0.2em] mt-2">Events</span>
-          </div>
-          <div class="w-px h-12 bg-gray-300/60 hidden md:block"></div>
-          <div class="flex flex-col items-center">
-            <span class="text-3xl md:text-5xl font-black text-ucu-blue-dark leading-none">8594</span>
-            <span class="text-[10px] font-bold text-muted uppercase tracking-[0.2em] mt-2">Research</span>
-          </div>
-        </div>
-
-      </div>
+<section class="max-w-[1280px] w-full mx-auto px-4 sm:px-6 lg:px-8 relative z-20 reveal-on-scroll" style="transition-delay: 100ms;">
+      <ucu-metric-cards
+        data-metrics='[
+          {"metricId": "sdgTargets", "value": "169", "label": "Targets", "theme": "white", "svgIcon": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"28\" height=\"28\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"12\" cy=\"12\" r=\"10\"/><circle cx=\"12\" cy=\"12\" r=\"6\"/><circle cx=\"12\" cy=\"12\" r=\"2\"/></svg>"},
+          {"metricId": "totalEvents", "value": "0", "label": "Events", "theme": "white", "svgIcon": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"28\" height=\"28\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"3\" y=\"4\" width=\"18\" height=\"18\" rx=\"2\" ry=\"2\"/><line x1=\"16\" y1=\"2\" x2=\"16\" y2=\"6\"/><line x1=\"8\" y1=\"2\" x2=\"8\" y2=\"6\"/><line x1=\"3\" y1=\"10\" x2=\"21\" y2=\"10\"/></svg>"},
+          {"metricId": "totalResearch", "value": "0", "label": "Research", "theme": "white", "svgIcon": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"28\" height=\"28\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z\"/><path d=\"M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z\"/></svg>"}
+        ]'
+      ></ucu-metric-cards>
     </section>
 
-    <!-- Main SDG Grid with Staggered Scroll Animation -->
     <section class="max-w-[1280px] w-full mx-auto px-4 sm:px-6 lg:px-8 reveal-on-scroll" style="transition-delay: 200ms;">
       <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-0 w-full rounded-2xl overflow-hidden shadow-lg border border-white/50 bg-white/60">
-        <sdg-card goal-num="1" title="No Poverty" subtitle="End poverty in all its forms everywhere." color="#E5243B" bg-img="../images/sdg/bg/1.png" logo-img="../images/sdg/sdg1.png" targets="7" events="0" research="342" explore-link="/sdg-reports/2025/sdg1.html"></sdg-card>
-        <sdg-card goal-num="2" title="Zero Hunger" subtitle="End hunger, achieve food security and improved nutrition." color="#DDA63A" bg-img="../images/sdg/bg/2.png" logo-img="../images/sdg/sdg2.png" targets="8" events="0" research="215" explore-link="sdg2.html"></sdg-card>
-        <sdg-card goal-num="3" title="Good Health and Well-being" subtitle="Ensure healthy lives and promote well-being for all." color="#4C9F38" bg-img="../images/sdg/bg/3.png" logo-img="../images/sdg/sdg3.png" targets="13" events="0" research="1104" explore-link="sdg3.html"></sdg-card>
-        <sdg-card goal-num="4" title="Quality Education" subtitle="Ensure inclusive and equitable quality education." color="#C5192D" bg-img="../images/sdg/bg/4.png" logo-img="../images/sdg/sdg4.png" targets="10" events="0" research="890" explore-link="sdg4.html"></sdg-card>
-        <sdg-card goal-num="5" title="Gender Equality" subtitle="Achieve gender equality and empower all women and girls." color="#FF3A21" bg-img="../images/sdg/bg/5.png" logo-img="../images/sdg/sdg5.png" targets="9" events="0" research="312" explore-link="sdg5.html"></sdg-card>
-        <sdg-card goal-num="6" title="Clean Water and Sanitation" subtitle="Ensure availability and sustainable management of water." color="#26BDE2" bg-img="../images/sdg/bg/6.png" logo-img="../images/sdg/sdg6.png" targets="8" events="0" research="450" explore-link="sdg6.html"></sdg-card>
-        <sdg-card goal-num="7" title="Affordable and Clean Energy" subtitle="Ensure access to affordable, reliable, sustainable energy." color="#FCC30B" bg-img="../images/sdg/bg/7.png" logo-img="../images/sdg/sdg7.png" targets="5" events="0" research="678" explore-link="sdg7.html"></sdg-card>
-        <sdg-card goal-num="8" title="Decent Work and Economic Growth" subtitle="Promote sustained, inclusive and sustainable economic growth." color="#A21942" bg-img="../images/sdg/bg/8.png" logo-img="../images/sdg/sdg8.png" targets="12" events="0" research="534" explore-link="sdg8.html"></sdg-card>
-        <sdg-card goal-num="9" title="Industry, Innovation and Infrastructure" subtitle="Build resilient infrastructure, promote inclusive industrialization." color="#FD6925" bg-img="../images/sdg/bg/9.png" logo-img="../images/sdg/sdg9.png" targets="8" events="0" research="789" explore-link="sdg9.html"></sdg-card>
-        <sdg-card goal-num="10" title="Reduced Inequalities" subtitle="Reduce inequality within and among countries." color="#DD1367" bg-img="../images/sdg/bg/10.png" logo-img="../images/sdg/sdg10.png" targets="10" events="0" research="231" explore-link="sdg10.html"></sdg-card>
-        <sdg-card goal-num="11" title="Sustainable Cities and Communities" subtitle="Make cities and human settlements inclusive, safe, resilient." color="#FD9D24" bg-img="../images/sdg/bg/11.png" logo-img="../images/sdg/sdg11.png" targets="10" events="0" research="645" explore-link="sdg11.html"></sdg-card>
-        <sdg-card goal-num="12" title="Responsible Consumption and Production" subtitle="Ensure sustainable consumption and production patterns." color="#BF8B2E" bg-img="../images/sdg/bg/12.png" logo-img="../images/sdg/sdg12.png" targets="11" events="0" research="412" explore-link="sdg12.html"></sdg-card>
-        <sdg-card goal-num="13" title="Climate Action" subtitle="Take urgent action to combat climate change and its impacts." color="#3F7E44" bg-img="../images/sdg/bg/13.png" logo-img="../images/sdg/sdg13.png" targets="5" events="0" research="899" explore-link="sdg13.html"></sdg-card>
-        <sdg-card goal-num="14" title="Life Below Water" subtitle="Conserve and sustainably use the oceans, seas and marine resources." color="#0A97D9" bg-img="../images/sdg/bg/14.png" logo-img="../images/sdg/sdg14.png" targets="10" events="0" research="210" explore-link="sdg14.html"></sdg-card>
-        <sdg-card goal-num="15" title="Life on Land" subtitle="Protect, restore and promote sustainable use of terrestrial ecosystems." color="#56C02B" bg-img="../images/sdg/bg/15.png" logo-img="../images/sdg/sdg15.png" targets="12" events="0" research="345" explore-link="sdg15.html"></sdg-card>
-        <sdg-card goal-num="16" title="Peace, Justice and Strong Institutions" subtitle="Promote peaceful and inclusive societies for sustainable development." color="#00689D" bg-img="../images/sdg/bg/16.png" logo-img="../images/sdg/sdg16.png" targets="12" events="0" research="412" explore-link="sdg16.html"></sdg-card>
-        <sdg-card goal-num="17" title="Partnerships for the Goals" subtitle="Strengthen the means of implementation and revitalize the global partnership." color="#19486A" bg-img="../images/sdg/bg/17.png" logo-img="../images/sdg/sdg17.jpg" targets="19" events="0" research="126" explore-link="sdg17.html"></sdg-card>
-        <sdg-see-all-card explore-link="sdg1.html"></sdg-see-all-card>
+        <sdg-card goal-num="1" title="No Poverty" subtitle="End poverty in all its forms everywhere." color="#E5243B" bg-img="../images/sdg/bg/1.png" logo-img="../images/sdg/sdg1.png" targets="7" events="0" research="342" explore-link="2025/sdg1.html"></sdg-card>
+        <sdg-card goal-num="2" title="Zero Hunger" subtitle="End hunger, achieve food security and improved nutrition." color="#DDA63A" bg-img="../images/sdg/bg/2.png" logo-img="../images/sdg/sdg2.png" targets="8" events="0" research="215" explore-link="2025/sdg2.html"></sdg-card>
+        <sdg-card goal-num="3" title="Good Health and Well-being" subtitle="Ensure healthy lives and promote well-being for all." color="#4C9F38" bg-img="../images/sdg/bg/3.png" logo-img="../images/sdg/sdg3.png" targets="13" events="0" research="1104" explore-link="2025/sdg3.html"></sdg-card>
+        <sdg-card goal-num="4" title="Quality Education" subtitle="Ensure inclusive and equitable quality education." color="#C5192D" bg-img="../images/sdg/bg/4.png" logo-img="../images/sdg/sdg4.png" targets="10" events="0" research="890" explore-link="2025/sdg4.html"></sdg-card>
+        <sdg-card goal-num="5" title="Gender Equality" subtitle="Achieve gender equality and empower all women and girls." color="#FF3A21" bg-img="../images/sdg/bg/5.png" logo-img="../images/sdg/sdg5.png" targets="9" events="0" research="312" explore-link="2025/sdg5.html"></sdg-card>
+        <sdg-card goal-num="6" title="Clean Water and Sanitation" subtitle="Ensure availability and sustainable management of water." color="#26BDE2" bg-img="../images/sdg/bg/6.png" logo-img="../images/sdg/sdg6.png" targets="8" events="0" research="450" explore-link="2025/sdg6.html"></sdg-card>
+        <sdg-card goal-num="7" title="Affordable and Clean Energy" subtitle="Ensure access to affordable, reliable, sustainable energy." color="#FCC30B" bg-img="../images/sdg/bg/7.png" logo-img="../images/sdg/sdg7.png" targets="5" events="0" research="678" explore-link="2025/sdg7.html"></sdg-card>
+        <sdg-card goal-num="8" title="Decent Work and Economic Growth" subtitle="Promote sustained, inclusive and sustainable economic growth." color="#A21942" bg-img="../images/sdg/bg/8.png" logo-img="../images/sdg/sdg8.png" targets="12" events="0" research="534" explore-link="2025/sdg8.html"></sdg-card>
+        <sdg-card goal-num="9" title="Industry, Innovation and Infrastructure" subtitle="Build resilient infrastructure, promote inclusive industrialization." color="#FD6925" bg-img="../images/sdg/bg/9.png" logo-img="../images/sdg/sdg9.png" targets="8" events="0" research="789" explore-link="2025/sdg9.html"></sdg-card>
+        <sdg-card goal-num="10" title="Reduced Inequalities" subtitle="Reduce inequality within and among countries." color="#DD1367" bg-img="../images/sdg/bg/10.png" logo-img="../images/sdg/sdg10.png" targets="10" events="0" research="231" explore-link="2025/sdg10.html"></sdg-card>
+        <sdg-card goal-num="11" title="Sustainable Cities and Communities" subtitle="Make cities and human settlements inclusive, safe, resilient." color="#FD9D24" bg-img="../images/sdg/bg/11.png" logo-img="../images/sdg/sdg11.png" targets="10" events="0" research="645" explore-link="2025/sdg11.html"></sdg-card>
+        <sdg-card goal-num="12" title="Responsible Consumption and Production" subtitle="Ensure sustainable consumption and production patterns." color="#BF8B2E" bg-img="../images/sdg/bg/12.png" logo-img="../images/sdg/sdg12.png" targets="11" events="0" research="412" explore-link="2025/sdg12.html"></sdg-card>
+        <sdg-card goal-num="13" title="Climate Action" subtitle="Take urgent action to combat climate change and its impacts." color="#3F7E44" bg-img="../images/sdg/bg/13.png" logo-img="../images/sdg/sdg13.png" targets="5" events="0" research="899" explore-link="2025/sdg13.html"></sdg-card>
+        <sdg-card goal-num="14" title="Life Below Water" subtitle="Conserve and sustainably use the oceans, seas and marine resources." color="#0A97D9" bg-img="../images/sdg/bg/14.png" logo-img="../images/sdg/sdg14.png" targets="10" events="0" research="210" explore-link="2025/sdg14.html"></sdg-card>
+        <sdg-card goal-num="15" title="Life on Land" subtitle="Protect, restore and promote sustainable use of terrestrial ecosystems." color="#56C02B" bg-img="../images/sdg/bg/15.png" logo-img="../images/sdg/sdg15.png" targets="12" events="0" research="345" explore-link="2025/sdg15.html"></sdg-card>
+        <sdg-card goal-num="16" title="Peace, Justice and Strong Institutions" subtitle="Promote peaceful and inclusive societies for sustainable development." color="#00689D" bg-img="../images/sdg/bg/16.png" logo-img="../images/sdg/sdg16.png" targets="12" events="0" research="412" explore-link="2025/sdg16.html"></sdg-card>
+        <sdg-card goal-num="17" title="Partnerships for the Goals" subtitle="Strengthen the means of implementation and revitalize the global partnership." color="#19486A" bg-img="../images/sdg/bg/17.png" logo-img="../images/sdg/sdg17.jpg" targets="19" events="0" research="126" explore-link="2025/sdg17.html"></sdg-card>
+        <sdg-see-all-card explore-link="2025/sdg1.html"></sdg-see-all-card>
       </div>
     </section>
 
   </main>
 
-  <!-- Added reveal-on-scroll to the Footer -->
   <ucu-footer base-path="../" class="reveal-on-scroll"></ucu-footer>
-
-  <!-- Scroll Animation Observer Script -->
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const revealElements = document.querySelectorAll(".reveal-on-scroll");
-
-      const revealObserver = new IntersectionObserver(
-        (entries, observer) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add("is-visible");
-              // Optional: Stop observing once revealed
-              observer.unobserve(entry.target);
-            }
-          });
-        },
-        {
-          root: null,
-          rootMargin: "0px 0px -50px 0px", // Triggers slightly before the element fully enters the viewport
-          threshold: 0.1, // Triggers when 10% of the element is visible
-        }
-      );
-
-      revealElements.forEach((el) => revealObserver.observe(el));
-    });
-  </script>
 
 </body>
 </html>

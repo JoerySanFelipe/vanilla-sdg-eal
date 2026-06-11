@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SDG 7 - Affordable and Clean Energy (2025) | UCU – EAL</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="../../css/style.css">
+  
+  <script src="../../js/events-data.js" defer></script>
+  <script src="../../js/core-ui.js" defer></script>
+  <script src="../../js/visual-media.js" defer></script>
+  <script src="../../js/impact-feeds.js" defer></script>
+  <script src="../../js/institutional-data.js" defer></script>
+  <script src="../../js/modals.js" defer></script>
+  <script src="../../js/sdg-components.js" defer></script>
+  <script src="../../js/global-charts.js" defer></script>
+</head>
+<body class="bg-slate-50 text-muted font-sans antialiased min-h-screen flex flex-col">
+
+  <ucu-header base-path="../../"></ucu-header>
+
+  <ucu-sdg-page-hero 
+    class="block w-full reveal-on-scroll"
+    sdg="7" 
+    title="Affordable and Clean Energy" 
+    subtitle="Ensure access to affordable, reliable, sustainable and modern energy for all." 
+    hex="#FCC30B" 
+    bg-image="../../images/sdg-banner/sdg7.jpg" 
+    icon-image="../../images/sdg/sdg7.png">
+  </ucu-sdg-page-hero>
+
+  <ucu-sdg-layout sdg="7" year="2025">
+    
+    <div slot="description" class="flex flex-col gap-2">
+      
+      <ucu-metric-cards class="block w-full reveal-on-scroll" style="transition-delay: 100ms;" data-metrics='[
+        {"value": "150kW", "label": "Solar Capacity", "theme": "yellow", "svgIcon": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"28\" height=\"28\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"12\" cy=\"12\" r=\"4\"/><path d=\"M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32l1.41 1.41M2 12h2m16 0h2M6.34 17.66l-1.41 1.41m14.14-14.14l-1.41 1.41\"/></svg>"},
+        {"value": "30%", "label": "Renewable Mix", "theme": "navy", "svgIcon": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"28\" height=\"28\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z\"/><path d=\"M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12\"/></svg>"},
+        {"value": "100%", "label": "LED Integration", "theme": "red", "svgIcon": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"28\" height=\"28\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M9 18h6m-5 4h4m1.09-8c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1.45.62 2.84 1.5 3.5.76.76 1.23 1.52 1.41 2.5\"/></svg>"}
+      ]'></ucu-metric-cards>
+
+      <div class="flex items-center w-full mt-8 mb-4 gap-4 reveal-on-scroll">
+        <div class="w-1.5 h-6 bg-ucu-red rounded-full shadow-sm flex-shrink-0"></div>
+        <h2 class="flex-shrink-0 text-2xl font-bold text-ucu-blue-dark tracking-tight m-0 pr-2">The Solar-Powered Campus Vision</h2>
+        <div class="flex-grow h-px bg-gray-300/70 rounded-full"></div>
+      </div>
+
+      <div class="ucu-prose-narrative reveal-on-scroll">
+        <p>Urdaneta City University is actively reshaping its energy profile to mitigate the impacts of climate change and reduce institutional operational costs. Central to this strategy is the <b>Smart Eco-Campus Initiative</b>, which successfully completed Phase 1 in early 2025. This phase saw the installation of high-efficiency photovoltaic arrays across core academic buildings, providing a reliable source of decentralized, clean energy.</p>
+        <p>By transitioning 30% of our total grid reliance to solar power, we are not only suppressing our carbon footprint but also creating a live, pedagogical laboratory for our engineering and environmental science students. This hands-on integration ensures that our academic community understands the mechanics of the green energy transition.</p>
+      </div>
+
+      <div class="flex items-center w-full mt-10 mb-4 gap-4 reveal-on-scroll">
+        <div class="w-1.5 h-6 bg-ucu-red rounded-full shadow-sm flex-shrink-0"></div>
+        <h2 class="flex-shrink-0 text-2xl font-bold text-ucu-blue-dark tracking-tight m-0 pr-2">Efficiency through Intelligent Architecture</h2>
+        <div class="flex-grow h-px bg-gray-300/70 rounded-full"></div>
+      </div>
+
+      <div class="ucu-prose-narrative reveal-on-scroll">
+        <p>Beyond generation, UCU prioritizes extreme energy conservation. Our "Efficiency First" policy mandates that 100% of campus lighting systems utilize low-consumption LED technology paired with automated motion-sensors. Furthermore, all new infrastructure projects are architected with passive cooling designs to minimize the energy requirements of climate control systems.</p>
+      </div>
+
+      <ucu-data-viz class="block w-full reveal-on-scroll" title="Renewable Energy Share in Total Campus Consumption (%)" subtitle="Advancing Toward the 2030 Net-Zero Target" data-type="vertical" data-payload='[
+        {"year": "2022", "value": "5%", "heightPercent": 15, "baseBgClass": "bg-slate-200", "hoverBgClass": "bg-[#FCC30B]", "textClass": "text-slate-500"},
+        {"year": "2023", "value": "12%", "heightPercent": 40, "baseBgClass": "bg-slate-300", "hoverBgClass": "bg-[#FCC30B]", "textClass": "text-slate-600"},
+        {"year": "2024", "value": "22%", "heightPercent": 70, "baseBgClass": "bg-ucu-blue-dark", "hoverBgClass": "bg-[#151f42]", "textClass": "text-ucu-blue-dark"},
+        {"year": "2025", "value": "30%", "heightPercent": 100, "baseBgClass": "bg-[#FCC30B]", "hoverBgClass": "bg-[#e5b10a]", "textClass": "text-[#FCC30B]"}
+      ]'></ucu-data-viz>
+
+    </div>
+  </ucu-sdg-layout>
+
+  <ucu-sdg-ribbon class="block w-full reveal-on-scroll" active="7"></ucu-sdg-ribbon>
+  <ucu-footer base-path="../../" class="reveal-on-scroll"></ucu-footer>
+
+</body>
+</html>

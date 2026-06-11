@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SDG 15 - Life on Land (2025) | UCU – EAL</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="../../css/style.css">
+  
+  <script src="../../js/events-data.js" defer></script>
+  <script src="../../js/core-ui.js" defer></script>
+  <script src="../../js/visual-media.js" defer></script>
+  <script src="../../js/impact-feeds.js" defer></script>
+  <script src="../../js/institutional-data.js" defer></script>
+  <script src="../../js/modals.js" defer></script>
+  <script src="../../js/sdg-components.js" defer></script>
+  <script src="../../js/global-charts.js" defer></script>
+</head>
+<body class="bg-slate-50 text-muted font-sans antialiased min-h-screen flex flex-col">
+
+  <ucu-header base-path="../../"></ucu-header>
+
+  <ucu-sdg-page-hero 
+    class="block w-full reveal-on-scroll"
+    sdg="15" 
+    title="Life on Land" 
+    subtitle="Protect, restore and promote sustainable use of terrestrial ecosystems and halt biodiversity loss." 
+    hex="#56C02B" 
+    bg-image="../../images/sdg-banner/sdg15.jpg" 
+    icon-image="../../images/sdg/sdg15.png">
+  </ucu-sdg-page-hero>
+
+  <ucu-sdg-layout sdg="15" year="2025">
+    
+    <div slot="description" class="flex flex-col gap-2">
+      
+      <ucu-metric-cards class="block w-full reveal-on-scroll" style="transition-delay: 100ms;" data-metrics='[
+        {"value": "45%", "label": "Green Canopy Cover", "theme": "navy", "svgIcon": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"28\" height=\"28\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 20V10\"/><path d=\"M18 20V14\"/><path d=\"M6 20V16\"/><path d=\"M2 20h20\"/><path d=\"M12 10a4 4 0 0 0-4-4 4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4Z\"/><path d=\"M18 14a3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3Z\"/></svg>"},
+        {"value": "1,200+", "label": "Trees Planted", "theme": "red", "svgIcon": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"28\" height=\"28\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z\"/><path d=\"M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12\"/></svg>"},
+        {"value": "100%", "label": "Land Use Monitored", "theme": "navy", "svgIcon": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"28\" height=\"28\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M15 3h6v6\"/><path d=\"M9 21H3v-6\"/><path d=\"M21 3l-7 7\"/><path d=\"M3 21l7-7\"/></svg>"}
+      ]'></ucu-metric-cards>
+
+      <div class="flex items-center w-full mt-8 mb-4 gap-4 reveal-on-scroll">
+        <div class="w-1.5 h-6 bg-ucu-red rounded-full shadow-sm flex-shrink-0"></div>
+        <h2 class="flex-shrink-0 text-2xl font-bold text-ucu-blue-dark tracking-tight m-0 pr-2">The Forest Campus Initiative</h2>
+        <div class="flex-grow h-px bg-gray-300/70 rounded-full"></div>
+      </div>
+
+      <div class="ucu-prose-narrative reveal-on-scroll">
+        <p>Urdaneta City University (UCU) remains steadfast in its commitment to campus greenery, ensuring that the physical development of the institution harmonizes with the natural environment. Through our flagship <b>"Forest Campus" initiative</b>, we have aggressively expanded our total area covered in native vegetation, transforming our academic grounds into a thriving terrestrial ecosystem within an urban setting.</p>
+        <p>The university rigorously monitors its green spaces, recognizing them as vital components of a sustainable campus that supports local biodiversity. This proactive approach to land use management ensures that modern infrastructure development does not come at the expense of environmental integrity, positioning UCU as a leader in regional environmental stewardship.</p>
+      </div>
+
+      <div class="flex items-center w-full mt-10 mb-4 gap-4 reveal-on-scroll">
+        <div class="w-1.5 h-6 bg-ucu-red rounded-full shadow-sm flex-shrink-0"></div>
+        <h2 class="flex-shrink-0 text-2xl font-bold text-ucu-blue-dark tracking-tight m-0 pr-2">Biodiversity Preservation and Restoration</h2>
+        <div class="flex-grow h-px bg-gray-300/70 rounded-full"></div>
+      </div>
+
+      <div class="ucu-prose-narrative reveal-on-scroll">
+        <p>Our commitment to SDG 15 extends beyond simple aesthetics. UCU actively maintains extensive open spaces to preserve local ecosystems and provide habitats for indigenous species. By integrating smart architecture and energy-efficient designs, we minimize our spatial footprint, allowing more land to be dedicated to ecological restoration and community-accessible green zones.</p>
+      </div>
+
+      <ucu-data-viz class="block w-full reveal-on-scroll" title="Annual Tree Planting and Survival Rate" subtitle="Institutional Reforestation Progress" data-type="vertical" data-payload='[
+        {"year": "2022", "value": 350, "heightPercent": 30, "baseBgClass": "bg-slate-200", "hoverBgClass": "bg-[#56C02B]", "textClass": "text-slate-500"},
+        {"year": "2023", "value": 680, "heightPercent": 55, "baseBgClass": "bg-slate-300", "hoverBgClass": "bg-[#56C02B]", "textClass": "text-slate-600"},
+        {"year": "2024", "value": 940, "heightPercent": 80, "baseBgClass": "bg-ucu-blue-dark", "hoverBgClass": "bg-[#151f42]", "textClass": "text-ucu-blue-dark"},
+        {"year": "2025", "value": 1250, "heightPercent": 100, "baseBgClass": "bg-[#56C02B]", "hoverBgClass": "bg-[#439c21]", "textClass": "text-[#56C02B]"}
+      ]'></ucu-data-viz>
+
+    </div>
+  </ucu-sdg-layout>
+
+  <ucu-sdg-ribbon class="block w-full reveal-on-scroll" active="15"></ucu-sdg-ribbon>
+  <ucu-footer base-path="../../" class="reveal-on-scroll"></ucu-footer>
+
+</body>
+</html>

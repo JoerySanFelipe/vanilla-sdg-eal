@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Water (UI GreenMetric) | UCU – EAL</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet" />
+
+  <link rel="stylesheet" href="../css/style.css" />
+
+  <script src="../js/core-ui.js" defer></script>
+  <script src="../js/visual-media.js" defer></script>
+  <script src="../js/impact-feeds.js" defer></script>
+  <script src="../js/institutional-data.js" defer></script>
+  <script src="../js/modals.js" defer></script>
+  <script src="../js/eco-components.js" defer></script>
+</head>
+
+<body class="bg-canvas text-muted font-sans antialiased min-h-screen flex flex-col relative z-0">
+  <ucu-header base-path="../"></ucu-header>
+
+  <main class="w-full flex-grow relative z-10 flex flex-col">
+    <ucu-indicator-layout class="block reveal-on-scroll" style="transition-delay: 100ms" active-num="04"
+      pillar-title="Water" base-path="../" data-evidence='[
+        {
+          "id": "4_1",
+          "title": "4.1 Water Conservation Program Implementation",
+          "badge": "Water",
+          "src": "../evidence/water/4_1.html",
+          "relatedSdgs": [4, 6, 11, 12]
+        },
+        {
+          "id": "4_2",
+          "title": "4.2 Water Conservation Program Implementation",
+          "badge": "Water",
+          "src": "../evidence/water/4_2.html",
+          "relatedSdgs": [4, 6, 11, 12]
+        },
+        {
+          "id": "4_3",
+          "title": "4.3 Water Recycling Program Implementation",
+          "badge": "Water",
+          "src": "../evidence/water/4_3.html",
+          "relatedSdgs": [6, 11, 12, 15]
+        },
+        {
+          "id": "4_4",
+          "title": "4.4 Water Efficient Appliances Usage (e.g. Hand Washing Taps, Toilet Flush, Etc.)",
+          "badge": "Water",
+          "src": "../evidence/water/4_4.html",
+          "relatedSdgs": [6, 12]
+        },
+        {
+          "id": "4_5",
+          "title": "4.5 Consumption of Treated Water",
+          "badge": "Water",
+          "src": "../evidence/water/4_5.html",
+          "relatedSdgs": [6, 11, 12]
+        },
+        {
+          "id": "4_6",
+          "title": "4.6 Water Pollution Control in Campus Area",
+          "badge": "Water",
+          "src": "../evidence/water/4_6.html",
+          "relatedSdgs": [4, 6, 11, 12, 14, 15]
+        },
+        {
+          "id": "4_7",
+          "title": "4.7 Impact of Water Management Programs in Supporting the Sustainable Development Goals (sdgs)",
+          "badge": "Water",
+          "src": "../evidence/water/4_7.html",
+          "relatedSdgs": [3, 4, 6, 9, 11, 12, 13, 14, 15, 17]
+        }
+      ]'>
+      <div slot="description" class="flex flex-col gap-2">
+        <ucu-metric-cards class="block w-full reveal-on-scroll" style="transition-delay: 200ms" data-metrics='[
+              {"value": "80%", "label": "Water-Efficient Appliances", "theme": "navy", "evidenceId": "4_4", "svgIcon": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"28\" height=\"28\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 0 0 7 7z\"/></svg>"},
+              {"value": "100%", "label": "Buildings With Harvesting", "theme": "red", "evidenceId": "4_1", "svgIcon": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"28\" height=\"28\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M4 4v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4\"/><path d=\"M4 10h16\"/><path d=\"M4 16h16\"/></svg>"},
+              {"value": "Closed-Loop", "label": "Wastewater Recycling", "theme": "navy", "evidenceId": "4_3", "svgIcon": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"28\" height=\"28\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8\"/><path d=\"M16 3h5v5\"/><path d=\"M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16\"/><path d=\"M8 21H3v-5\"/></svg>"}
+            ]'></ucu-metric-cards>
+
+        <div class="ucu-prose-narrative mt-8 reveal-on-scroll" style="transition-delay: 300ms">
+          <p>
+            Urdaneta City University has achieved an average water appliance efficiency rate of 80%, with 40 out of 50 toilet units upgraded to water-efficient models and all 50 flush systems operating at 100% efficiency. Every campus building is equipped with an integrated rainwater harvesting system that captures precipitation from rooftops and channels it into strategically located storage tanks. The harvested rainwater is systematically reused for landscape irrigation, toilet flushing, and general facility cleaning, significantly reducing the university's dependence on potable water sources.
+          </p>
+          <p>
+            The university operates a dedicated treated water consumption program that routes processed wastewater through a campus-wide pipeline network for non-potable applications. A comprehensive Water Pollution Control Program enforces Best Management Practices for waste handling, maintains a Water Quality Task Force, and conducts regular water quality testing of campus ponds and canal systems. ICT-based monitoring through digital water meters and data analytics dashboards enables real-time consumption tracking and leak detection across all facilities.
+          </p>
+          <p>
+            Wastewater generated across campus buildings and laboratories undergoes a closed-loop multi-stage recycling process—including activated sludge treatment and biofiltration—before being routed back for non-potable operations. This recycled water network, combined with student-led waterway cleanup campaigns organized by the Water Quality Task Force, ensures that UCU's local environmental stewardship directly aligns with 10 Sustainable Development Goals.
+          </p>
+        </div>
+      </div>
+    </ucu-indicator-layout>
+  </main>
+
+  <ucu-footer base-path="../" class="reveal-on-scroll"></ucu-footer>
+</body>
+
+</html>

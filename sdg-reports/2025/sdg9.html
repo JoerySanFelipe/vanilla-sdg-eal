@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SDG 9 - Industry, Innovation and Infrastructure (2025) | UCU – EAL</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="../../css/style.css">
+  
+  <script src="../../js/events-data.js" defer></script>
+  <script src="../../js/core-ui.js" defer></script>
+  <script src="../../js/visual-media.js" defer></script>
+  <script src="../../js/impact-feeds.js" defer></script>
+  <script src="../../js/institutional-data.js" defer></script>
+  <script src="../../js/modals.js" defer></script>
+  <script src="../../js/sdg-components.js" defer></script>
+  <script src="../../js/global-charts.js" defer></script>
+</head>
+<body class="bg-slate-50 text-muted font-sans antialiased min-h-screen flex flex-col">
+
+  <ucu-header base-path="../../"></ucu-header>
+
+  <ucu-sdg-page-hero 
+    class="block w-full reveal-on-scroll"
+    sdg="9" 
+    title="Industry, Innovation and Infrastructure" 
+    subtitle="Build resilient infrastructure, promote inclusive and sustainable industrialization and foster innovation." 
+    hex="#FD6925" 
+    bg-image="../../images/sdg-banner/sdg9.jpg" 
+    icon-image="../../images/sdg/sdg9.png">
+  </ucu-sdg-page-hero>
+
+  <ucu-sdg-layout sdg="9" year="2025">
+    
+    <div slot="description" class="flex flex-col gap-2">
+      
+      <ucu-metric-cards class="block w-full reveal-on-scroll" style="transition-delay: 100ms;" data-metrics='[
+        {"value": "100%", "label": "Campus Connectivity", "theme": "navy", "svgIcon": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"28\" height=\"28\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M5 12.55a11 11 0 0 1 14.08 0\"/><path d=\"M1.42 9a16 16 0 0 1 21.16 0\"/><path d=\"M8.53 16.11a6 6 0 0 1 6.95 0\"/><line x1=\"12\" y1=\"20\" x2=\"12.01\" y2=\"20\"/></svg>"},
+        {"value": "24", "label": "Innovation Patents", "theme": "red", "svgIcon": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"28\" height=\"28\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 2v20\"/><path d=\"M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6\"/></svg>"},
+        {"value": "Smart", "label": "Eco-Grid Phase 1", "theme": "yellow", "svgIcon": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"28\" height=\"28\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"2\" y=\"3\" width=\"20\" height=\"14\" rx=\"2\" ry=\"2\"/><line x1=\"8\" y1=\"21\" x2=\"16\" y2=\"21\"/><line x1=\"12\" y1=\"17\" x2=\"12\" y2=\"21\"/></svg>"}
+      ]'></ucu-metric-cards>
+
+      <div class="flex items-center w-full mt-8 mb-4 gap-4 reveal-on-scroll">
+        <div class="w-1.5 h-6 bg-ucu-red rounded-full shadow-sm flex-shrink-0"></div>
+        <h2 class="flex-shrink-0 text-2xl font-bold text-ucu-blue-dark tracking-tight m-0 pr-2">Engineering Resilient Campus Infrastructure</h2>
+        <div class="flex-grow h-px bg-gray-300/70 rounded-full"></div>
+      </div>
+
+      <div class="ucu-prose-narrative reveal-on-scroll">
+        <p>Urdaneta City University (UCU) is at the forefront of regional industrial innovation, leveraging its academic expertise to build a resilient and technologically advanced campus environment. Under our <b>Smart Eco-Campus Framework</b>, we have systematically integrated digital twins and real-time monitoring systems into our physical infrastructure, ensuring optimal resource management and structural integrity.</p>
+        <p>Our commitment to SDG 9 is demonstrated through the aggressive adoption of sustainable building practices. All new facilities are designed with energy-efficient envelopes and integrated renewable energy systems, serving as local benchmarks for sustainable industrialization within the Pangasinan province.</p>
+      </div>
+
+      <div class="flex items-center w-full mt-10 mb-4 gap-4 reveal-on-scroll">
+        <div class="w-1.5 h-6 bg-ucu-red rounded-full shadow-sm flex-shrink-0"></div>
+        <h2 class="flex-shrink-0 text-2xl font-bold text-ucu-blue-dark tracking-tight m-0 pr-2">Fostering a Culture of Innovation</h2>
+        <div class="flex-grow h-px bg-gray-300/70 rounded-full"></div>
+      </div>
+
+      <div class="ucu-prose-narrative reveal-on-scroll">
+        <p>The university serves as an incubator for industrial progress through strategic linkages with both local and international tech partners. By facilitating collaborative research and providing state-of-the-art laboratory facilities, UCU empowers its students and faculty to develop proprietary technologies—ranging from automated agricultural tools to advanced digital education platforms.</p>
+      </div>
+
+      <ucu-data-viz class="block w-full reveal-on-scroll" title="Institutional R&D Investment (in PHP Millions)" subtitle="Fueling Technological Advancement and Innovation" data-type="vertical" data-payload='[
+        {"year": "2022", "value": "12.5M", "heightPercent": 30, "baseBgClass": "bg-slate-200", "hoverBgClass": "bg-[#FD6925]", "textClass": "text-slate-500"},
+        {"year": "2023", "value": "24.0M", "heightPercent": 55, "baseBgClass": "bg-slate-300", "hoverBgClass": "bg-[#FD6925]", "textClass": "text-slate-600"},
+        {"year": "2024", "value": "38.5M", "heightPercent": 80, "baseBgClass": "bg-ucu-blue-dark", "hoverBgClass": "bg-[#151f42]", "textClass": "text-ucu-blue-dark"},
+        {"year": "2025", "value": "45.0M", "heightPercent": 100, "baseBgClass": "bg-[#FD6925]", "hoverBgClass": "bg-[#cc541d]", "textClass": "text-[#FD6925]"}
+      ]'></ucu-data-viz>
+
+    </div>
+  </ucu-sdg-layout>
+
+  <ucu-sdg-ribbon class="block w-full reveal-on-scroll" active="9"></ucu-sdg-ribbon>
+  <ucu-footer base-path="../../" class="reveal-on-scroll"></ucu-footer>
+
+</body>
+</html>

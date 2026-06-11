@@ -4,55 +4,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Smart Eco Campus - UCU</title>
+  <title>Smart Eco Campus | UCU – EAL</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap"
     rel="stylesheet">
 
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-      tailwind.config = {
-          theme: {
-              extend: {
-                  colors: {
-                      'ucu-blue': '#394a8a',
-                      'ucu-blue-dark': '#24305e',
-                      'ucu-yellow': '#fbef4b',
-                      'ucu-red': '#c43643',
-                      'ucu-white': '#ffffff',
-                      'dark-red': '#912020',
-                      'canvas': '#f4f7fa',
-                      'muted': '#555555',
-                      'main2': '#1f1f1f',
-                  },
-                  fontFamily: { sans: ['Montserrat', 'sans-serif'] }
-              }
-          }
-      }
-  </script>
-
   <link rel="stylesheet" href="./css/style.css">
 
-  <style>
-    /* Base styles for the standardized scroll reveal animation */
-    .reveal-on-scroll {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-      will-change: opacity, transform;
-    }
-    .reveal-on-scroll.is-visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  </style>
-
+  <script src="./js/institutional-data.js" defer></script>
+  
   <script src="./js/core-ui.js" defer></script>
   <script src="./js/visual-media.js" defer></script>
   <script src="./js/impact-feeds.js" defer></script>
-  <script src="./js/institutional-data.js" defer></script>
 </head>
 
 <body class="bg-canvas text-muted font-sans antialiased min-h-screen flex flex-col relative z-0">
@@ -68,16 +33,15 @@
     description="Creating a campus where innovation, sustainability, and responsible growth work together to elevate institutional performance and environmental impact.">
   </ucu-hero-banner>
 
-  <main class="w-full flex-grow relative z-10 flex flex-col bg-canvas">
+  <main class="w-full flex-grow relative z-10 flex flex-col gap-12 md:gap-16 py-10 md:py-12 bg-canvas">
 
-    <section class="max-w-[1280px] w-full mx-auto px-4 sm:px-6 lg:px-8 relative z-20 pt-12 mb-24 reveal-on-scroll" style="transition-delay: 100ms;">
+    <section class="max-w-[1280px] w-full mx-auto px-4 sm:px-6 lg:px-8 relative z-20 flex flex-col gap-12 md:gap-16">
 
       <section class="metrics-section">
         <div class="mb-12 grid grid-cols-1 items-start gap-8 lg:grid-cols-2 lg:gap-12">
 
-          <!-- Left Column Image Slider with Scroll Reveal -->
-          <div class="reveal-on-scroll" style="transition-delay: 200ms;">
-            <div class="relative mx-auto aspect-[3/4] w-full max-w-lg overflow-hidden rounded-xl bg-canvas shadow-md lg:aspect-[4/5] lg:max-w-none">
+          <div class="reveal-on-scroll" style="transition-delay: 100ms;">
+            <div class="relative mx-auto aspect-[3/4] w-full max-w-lg overflow-hidden rounded-xl bg-canvas shadow-md lg:aspect-[4/5] lg:max-w-none border border-black/5">
               <img src="./images/smart-eco-assets/ui-gm2.jpg" alt="UI GreenMetric Award" loading="lazy"
                 class="slider-img absolute inset-0 h-full w-full object-contain p-2 opacity-100 transition-opacity duration-1000 ease-in-out" />
               <img src="./images/smart-eco-assets/ui-gm.jpg" alt="UI GreenMetric Metrics" loading="lazy"
@@ -85,8 +49,7 @@
             </div>
           </div>
 
-          <!-- Right Column Text with Staggered Scroll Reveal -->
-          <div class="reveal-on-scroll ucu-prose-narrative" style="transition-delay: 300ms;">
+          <div class="reveal-on-scroll ucu-prose-narrative" style="transition-delay: 200ms;">
             <h3 class="mb-1.5 text-xs font-bold uppercase tracking-[0.15rem] text-ucu-red">Global Recognition</h3>
             <h2 class="mb-5 text-3xl font-extrabold leading-tight text-ucu-blue-dark md:text-4xl">An Academic Milestone</h2>
             <p>The UI GreenMetric World University Rankings evaluates green campuses and environmental sustainability
@@ -98,17 +61,15 @@
           </div>
         </div>
 
-        <!-- Metrics Grid Container with Scroll Reveal -->
-        <div class="w-full rounded-2xl bg-white/60 px-5 py-12 shadow-lg border border-white/50 md:px-6 lg:px-10 reveal-on-scroll" style="transition-delay: 200ms;">
+        <div class="w-full rounded-2xl bg-white/60 px-5 py-12 shadow-lg border border-white/50 md:px-6 lg:px-10 reveal-on-scroll" style="transition-delay: 100ms;">
           <h4 class="mb-8 text-center text-base font-semibold uppercase tracking-widest text-muted">
             Out of 1,477 universities worldwide in 2025, WE ARE:
           </h4>
 
           <div class="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-[1.2fr_repeat(3,1fr)]">
 
-            <div
-              class="group relative flex flex-col items-center justify-center overflow-hidden rounded-2xl border-2 border-ucu-yellow/30 bg-ucu-blue-dark p-8 text-center shadow-sm transition-all duration-[400ms] ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-2 hover:shadow-xl md:col-span-2 lg:col-span-1 lg:row-span-2 lg:p-10">
-              <span class="mb-3 bg-gradient-to-br from-ucu-yellow to-[#d4c51e] bg-clip-text text-6xl font-extrabold leading-none text-ucu-yellow md:text-7xl">#1</span>
+            <div class="group relative flex flex-col items-center justify-center overflow-hidden rounded-2xl border-2 border-ucu-yellow/30 bg-ucu-blue-dark p-8 text-center shadow-sm transition-all duration-[400ms] ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-2 hover:shadow-xl md:col-span-2 lg:col-span-1 lg:row-span-2 lg:p-10">
+              <span class="mb-3 bg-gradient-to-br from-ucu-yellow to-[#d4c51e] bg-clip-text text-6xl font-extrabold leading-none text-transparent md:text-7xl">#1</span>
               <span class="text-base font-bold uppercase tracking-wide text-white">Local Universities & Colleges (LUC)
                 in the Philippines</span>
             </div>
@@ -147,8 +108,7 @@
         </div>
       </section>
 
-      <!-- Interactive Gallery with Scroll Reveal -->
-      <section class="mt-12 reveal-on-scroll" style="transition-delay: 200ms;">
+      <section class="reveal-on-scroll" style="transition-delay: 100ms;">
         <h2 class="mb-10 text-center text-3xl font-extrabold tracking-widest text-ucu-red">
           SUSTAINABILITY INDICATORS
         </h2>
@@ -167,7 +127,7 @@
             </div>
           </a>
 
-          <a href="./smart-eco-campus/energy.html"
+          <a href="./indicators/energy.html"
             class="group relative flex-1 cursor-pointer overflow-hidden rounded-2xl transition-all duration-[600ms] ease-[cubic-bezier(0.16,1,0.3,1)] hover:flex-[6_1_0%] focus-within:flex-[6_1_0%] bg-black">
             <img src="./images/smart-eco-assets/energy_and_climate_change.jpg" alt="Energy and Climate Change Pillar"
               loading="lazy"
@@ -179,7 +139,7 @@
             </div>
           </a>
 
-          <a href="./smart-eco-campus/waste.html"
+          <a href="./indicators/waste.html"
             class="group relative flex-1 cursor-pointer overflow-hidden rounded-2xl transition-all duration-[600ms] ease-[cubic-bezier(0.16,1,0.3,1)] hover:flex-[6_1_0%] focus-within:flex-[6_1_0%] bg-black">
             <img src="./images/smart-eco-assets/waste.jpg" alt="Waste Pillar" loading="lazy"
               class="h-full w-full scale-100 object-cover opacity-60 transition-all duration-[600ms] group-hover:scale-105 group-hover:opacity-100 group-focus-within:scale-105 group-focus-within:opacity-100" />
@@ -190,7 +150,7 @@
             </div>
           </a>
 
-          <a href="./smart-eco-campus/water.html"
+          <a href="./indicators/water.html"
             class="group relative flex-1 cursor-pointer overflow-hidden rounded-2xl transition-all duration-[600ms] ease-[cubic-bezier(0.16,1,0.3,1)] hover:flex-[6_1_0%] focus-within:flex-[6_1_0%] bg-black">
             <img src="./images/smart-eco-assets/water.jpg" alt="Water Pillar" loading="lazy"
               class="h-full w-full scale-100 object-cover opacity-60 transition-all duration-[600ms] group-hover:scale-105 group-hover:opacity-100 group-focus-within:scale-105 group-focus-within:opacity-100" />
@@ -201,7 +161,7 @@
             </div>
           </a>
 
-          <a href="./smart-eco-campus/transportation.html"
+          <a href="./indicators/transportation.html"
             class="group relative flex-1 cursor-pointer overflow-hidden rounded-2xl transition-all duration-[600ms] ease-[cubic-bezier(0.16,1,0.3,1)] hover:flex-[6_1_0%] focus-within:flex-[6_1_0%] bg-black">
             <img src="./images/smart-eco-assets/transportation.jpg" alt="Transportation Pillar" loading="lazy"
               class="h-full w-full scale-100 object-cover opacity-60 transition-all duration-[600ms] group-hover:scale-105 group-hover:opacity-100 group-focus-within:scale-105 group-focus-within:opacity-100" />
@@ -212,7 +172,7 @@
             </div>
           </a>
 
-          <a href="./smart-eco-campus/education.html"
+          <a href="./indicators/education.html"
             class="group relative flex-1 cursor-pointer overflow-hidden rounded-2xl transition-all duration-[600ms] ease-[cubic-bezier(0.16,1,0.3,1)] hover:flex-[6_1_0%] focus-within:flex-[6_1_0%] bg-black">
             <img src="./images/smart-eco-assets/education_and_research.jpg" alt="Education and Research Pillar"
               loading="lazy"
@@ -224,7 +184,7 @@
             </div>
           </a>
 
-          <a href="./smart-eco-campus/digitalization.html"
+          <a href="./indicators/digitalization.html"
             class="group relative flex-1 cursor-pointer overflow-hidden rounded-2xl transition-all duration-[600ms] ease-[cubic-bezier(0.16,1,0.3,1)] hover:flex-[6_1_0%] focus-within:flex-[6_1_0%] bg-black">
             <img src="./images/smart-eco-assets/digitalization.jpg" alt="Digitalization Pillar" loading="lazy"
               class="h-full w-full scale-100 object-cover opacity-60 transition-all duration-[600ms] group-hover:scale-105 group-hover:opacity-100 group-focus-within:scale-105 group-focus-within:opacity-100" />
@@ -237,7 +197,7 @@
 
         </div>
 
-        <div class="mt-10 w-full text-left ucu-prose-narrative full-width reveal-on-scroll" style="transition-delay: 300ms;">
+        <div class="mt-10 w-full text-left ucu-prose-narrative full-width reveal-on-scroll" style="transition-delay: 200ms;">
           <p>
             These seven sustainability indicators form the strategic framework of Urdaneta City University’s Smart Eco
             Campus initiative. By aggressively aligning our institutional metrics with global environmental
@@ -255,28 +215,8 @@
 
   <script>
     document.addEventListener("DOMContentLoaded", () => {
-      // 1. Standardized Intersection Observer for Scroll Reveals
-      const revealElements = document.querySelectorAll(".reveal-on-scroll");
-
-      const revealObserver = new IntersectionObserver(
-        (entries, observer) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add("is-visible");
-              observer.unobserve(entry.target);
-            }
-          });
-        },
-        {
-          root: null,
-          rootMargin: "0px 0px -50px 0px",
-          threshold: 0.1, 
-        }
-      );
-
-      revealElements.forEach((el) => revealObserver.observe(el));
-
-      // 2. UI GreenMetric Image Crossfade (Preserved)
+      // Localized Script: UI GreenMetric Image Crossfade 
+      // Maintained locally as it is specific to the dual images on this page
       const sliderImages = document.querySelectorAll(".slider-img");
       if (sliderImages.length > 1) {
         let currentSlide = 0;

@@ -23,6 +23,7 @@ class UcuEventsPreview extends HTMLElement {
     if (this.hasRendered) return;
     this.hasRendered = true;
 
+    const base = window.ucuGetBasePath ? window.ucuGetBasePath() : './';
     const limit = parseInt(this.getAttribute("limit") || "3", 10);
     const allEvents = window.UCU_EVENTS || [];
     const colors = window.UCU_SDG_COLORS || {};
@@ -43,7 +44,7 @@ class UcuEventsPreview extends HTMLElement {
       return `
         <button data-modal-trigger="${ev.id}" class="reveal-card opacity-0 translate-y-12 transition-all duration-[800ms] ease-[cubic-bezier(0.16,1,0.3,1)] group flex flex-col text-left border border-gray-200 rounded-[1.5rem] overflow-hidden hover:shadow-xl hover:border-gray-300 hover:-translate-y-2 bg-white focus:outline-none" style="transition-delay: ${delay}ms;">
           <div class="relative aspect-video w-full overflow-hidden bg-gray-100 border-b border-gray-100 shrink-0">
-            <img src="${ev.img}" alt="${ev.title}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" onerror="this.style.display='none'">
+            <img src="${base}${ev.img}" alt="${ev.title}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" onerror="this.style.display='none'">
             <div class="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
           </div>
           <div class="flex flex-col flex-1 p-6 md:p-8">
@@ -62,7 +63,7 @@ class UcuEventsPreview extends HTMLElement {
     }).join('');
 
     const modalsHtml = previewEvents.map((ev) => `
-      <ucu-modal-shell modal-id="${ev.id}" title="${ev.title}" badge="${ev.date}" content-src="${ev.src}" data-sdgs='${JSON.stringify(ev.relatedSdgs || [])}'></ucu-modal-shell>
+      <ucu-modal-shell modal-id="${ev.id}" title="${ev.title}" badge="${ev.date}" content-src="${base}${ev.src}" data-sdgs='${JSON.stringify(ev.relatedSdgs || [])}'></ucu-modal-shell>
     `).join("");
 
     this.innerHTML = `
@@ -92,6 +93,7 @@ class UcuImpactFeed extends HTMLElement {
     if (this.hasRendered) return;
     this.hasRendered = true;
 
+    const base = window.ucuGetBasePath ? window.ucuGetBasePath() : './';
     const targetYear = this.getAttribute("year") || "2025";
     const allEvents = window.UCU_EVENTS || [];
     const colors = window.UCU_SDG_COLORS || {};
@@ -116,7 +118,7 @@ class UcuImpactFeed extends HTMLElement {
       return `
         <button data-modal-trigger="${ev.id}" class="event-card group text-left w-full flex flex-col focus:outline-none reveal-card opacity-0 translate-y-12 transition-all duration-[600ms] bg-white border border-gray-200 rounded-[1.5rem] overflow-hidden hover:shadow-lg hover:border-gray-300">
           <div class="w-full aspect-video md:aspect-[21/9] overflow-hidden relative bg-gray-100 border-b border-gray-100">
-            <img src="${ev.img}" alt="${ev.title}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy">
+            <img src="${base}${ev.img}" alt="${ev.title}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy">
           </div>
           <div class="flex flex-col p-6 md:p-8">
             <div class="flex items-center justify-between gap-4 mb-4">
@@ -141,7 +143,7 @@ class UcuImpactFeed extends HTMLElement {
       return `
         <button data-modal-trigger="${ev.id}" class="event-card group text-left w-full flex items-start gap-5 py-5 focus:outline-none hover:bg-gray-50/50 transition-colors px-6 -mx-6">
           <div class="w-24 h-24 shrink-0 rounded-xl overflow-hidden border border-gray-100 bg-gray-100">
-             <img src="${ev.img}" alt="${ev.title}" class="w-full h-full object-cover" loading="lazy">
+             <img src="${base}${ev.img}" alt="${ev.title}" class="w-full h-full object-cover" loading="lazy">
           </div>
           <div class="flex flex-col h-full justify-center flex-grow">
             <p class="text-[9px] font-bold text-ucu-red uppercase tracking-[0.2em] mb-1">${ev.date}</p>
@@ -153,20 +155,11 @@ class UcuImpactFeed extends HTMLElement {
     }).join("") || `<div class="px-6 py-8 text-center"><p class="text-muted text-xs font-bold tracking-widest uppercase">No recent events found.</p></div>`;
 
     const modalsHtml = this.pageEvents.map((ev) => `
-      <ucu-modal-shell modal-id="${ev.id}" title="${ev.title}" badge="${ev.date}" content-src="${ev.src}" data-sdgs='${JSON.stringify(ev.relatedSdgs || [])}'></ucu-modal-shell>
+      <ucu-modal-shell modal-id="${ev.id}" title="${ev.title}" badge="${ev.date}" content-src="${base}${ev.src}" data-sdgs='${JSON.stringify(ev.relatedSdgs || [])}'></ucu-modal-shell>
     `).join("");
 
     this.innerHTML = `
       ${IMPACT_FEED_STYLES}
-      <div class="mb-10 rounded-[1.5rem] overflow-hidden shadow-[0_8px_30px_rgba(36,48,94,0.06)] flex flex-col reveal-card opacity-0 translate-y-8 transition-all duration-[800ms] ease-[cubic-bezier(0.16,1,0.3,1)]">
-        <div class="bg-white/70 backdrop-blur-xl border border-white p-8 grid grid-cols-2 md:grid-cols-4 gap-8 lg:gap-4 text-center divide-x-0 md:divide-x divide-black/10 relative">
-          <div class="flex flex-col items-center justify-center p-2 relative z-10"><span class="text-4xl md:text-5xl font-black text-ucu-blue-dark mb-1 tracking-tight flex items-baseline gap-1">${this.pageEvents.length}</span><span class="text-[10px] font-bold text-muted uppercase tracking-widest">Events</span></div>
-          <div class="flex flex-col items-center justify-center p-2 relative z-10"><span class="text-4xl md:text-5xl font-black text-ucu-blue-dark mb-1 tracking-tight flex items-baseline gap-1">12</span><span class="text-[10px] font-bold text-muted uppercase tracking-widest">Programs</span></div>
-          <div class="flex flex-col items-center justify-center p-2 relative z-10"><span class="text-4xl md:text-5xl font-black text-ucu-blue-dark mb-1 tracking-tight flex items-baseline gap-1">5 <span class="text-[#c43643] text-2xl">+</span></span><span class="text-[10px] font-bold text-muted uppercase tracking-widest">Reached</span></div>
-          <div class="flex flex-col items-center justify-center p-2 relative z-10"><span class="text-4xl md:text-5xl font-black text-ucu-blue-dark mb-1 tracking-tight flex items-baseline gap-1">9</span><span class="text-[10px] font-bold text-muted uppercase tracking-widest">Partners</span></div>
-        </div>
-        <div style="height: 6px; flex-shrink: 0; background: linear-gradient(to right, #24305e, #c43643);"></div>
-      </div>
       <section class="sticky top-[70px] md:top-[80px] z-40 bg-[#f8fafc] pt-5 pb-4 mb-8 reveal-card opacity-0 translate-y-8 transition-all duration-[800ms] ease-[cubic-bezier(0.16,1,0.3,1)]">
         <div class="flex items-center justify-between mb-4"><h2 class="text-xs font-black uppercase tracking-[0.2em] text-muted">Filter by Alignment</h2></div>
         <div class="flex flex-wrap gap-3 pb-6" id="filter-group">${generateFilters()}</div>
@@ -203,6 +196,7 @@ class UcuImpactFeed extends HTMLElement {
   }
 
   generateStandaloneCard(ev) {
+    const base = window.ucuGetBasePath ? window.ucuGetBasePath() : './';
     const colors = window.UCU_SDG_COLORS || {};
     const tagsHtml = (ev.relatedSdgs || []).slice(0, 3).map((num) => `
       <div class="w-5 h-5 rounded-sm text-white text-[9px] flex items-center justify-center font-bold" style="background-color: ${colors[num] || '#24305e'};">${num}</div>
@@ -211,7 +205,7 @@ class UcuImpactFeed extends HTMLElement {
     return `
       <button data-modal-trigger="${ev.id}" class="group text-left w-full flex flex-col sm:flex-row items-start gap-5 p-5 bg-white border border-gray-200 rounded-[1.5rem] shadow-sm hover:shadow-md hover:border-gray-300 transition-all duration-300 focus:outline-none reveal-card opacity-0 translate-y-12">
         <div class="w-full sm:w-32 h-40 sm:h-32 shrink-0 rounded-xl overflow-hidden border border-gray-100 bg-gray-100 relative">
-           <img src="${ev.img}" alt="${ev.title}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy">
+           <img src="${base}${ev.img}" alt="${ev.title}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy">
            <div class="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
         </div>
         <div class="flex flex-col h-full justify-center flex-grow py-1">

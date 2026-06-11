@@ -27,7 +27,7 @@ class UcuIndicatorLayout extends HTMLElement {
     const navHtml = pillars.map(pillar => {
       const isActive = pillar.num === activeNum;
       return `
-        <a href="${base}smart-eco-campus/${pillar.link}" class="group relative flex-1 aspect-square md:aspect-auto md:h-[148px] overflow-hidden block" title="${pillar.title}">
+        <a href="${base}indicators/${pillar.link}" class="group relative flex-1 aspect-square md:aspect-auto md:h-[148px] overflow-hidden block" title="${pillar.title}">
           <div class="h-full w-full overflow-hidden bg-black">
             <img src="${base}${pillar.img}" alt="${pillar.title}" loading="lazy" decoding="async" class="h-full w-full object-cover transition-all duration-[800ms] ease-[cubic-bezier(0.25,1,0.5,1)] ${isActive ? 'scale-100 grayscale-0 brightness-100 opacity-100' : 'scale-110 grayscale-[100%] brightness-50 opacity-60 group-hover:scale-105 group-hover:grayscale-0 group-hover:brightness-100 group-hover:opacity-100'}" />
           </div>
@@ -36,13 +36,24 @@ class UcuIndicatorLayout extends HTMLElement {
       `;
     }).join("");
 
+    const activeIcons = {
+      "01": "images/indicator-icons/infrastructure.png",
+      "02": "images/indicator-icons/energy.png",
+      "03": "images/indicator-icons/waste.png",
+      "04": "images/indicator-icons/water.png",
+      "05": "images/indicator-icons/transportation.png",
+      "06": "images/indicator-icons/education.png",
+      "07": "images/indicator-icons/digitalization.png",
+    };
+    const defaultIcon = activeIcons[activeNum] ? (base + activeIcons[activeNum]) : (base + "images/smart-eco-assets/ui-green-seal.png");
+
     const cardsHtml = evidenceManifest.map(ev => {
       const sdgsString = ev.relatedSdgs ? JSON.stringify(ev.relatedSdgs) : '';
       return `
       <ucu-evidence-card 
         title="${ev.title}" 
         meta="UI GreenMetric" 
-        img="${ev.img || base + 'images/smart-eco-assets/ui-green-seal.png'}" 
+        img="${ev.img || defaultIcon}" 
         evidence-id="${ev.id}"
         data-sdgs='${sdgsString}'>
       </ucu-evidence-card>
@@ -69,8 +80,8 @@ class UcuIndicatorLayout extends HTMLElement {
             ${navHtml}
           </nav>
           <section class="grid grid-cols-1 lg:grid-cols-[6.5fr_3.5fr] w-full items-stretch shadow-2xl rounded-b-[1.5rem] overflow-hidden">
-            <div class="reveal translate-y-8 opacity-0 transition-all duration-900 ease-out bg-white p-6 md:p-12 z-20 h-full">
-              <span class="block text-xs font-extrabold uppercase tracking-[0.2rem] text-ucu-red mb-4">Sustainable Pillar</span>
+            <div class="reveal translate-y-8 opacity-0 transition-all duration-900 ease-out bg-white p-6 md:p-12 z-20" id="indicator-narrative">
+              <span class="block text-xs font-extrabold uppercase tracking-[0.2rem] text-ucu-red mb-4">Sustainable Indicator</span>
               <h2 class="group relative inline-block text-3xl md:text-[3rem] font-black leading-[1.05] tracking-[-0.03em] text-ucu-blue-dark mb-10">
                 ${pillarTitle}
                 <span class="absolute -bottom-[12px] left-0 h-[5px] w-[64px] rounded-full bg-gradient-to-r from-ucu-blue-dark to-ucu-red transition-all duration-500 ease-out group-hover:w-[100px]"></span>
@@ -79,22 +90,21 @@ class UcuIndicatorLayout extends HTMLElement {
                 ${descriptionContent}
               </div>
             </div>
-            <aside class="reveal translate-y-8 opacity-0 transition-all duration-900 ease-out relative flex flex-col gap-8 bg-gray-50 p-6 md:p-8 border-t-2 lg:border-t-0 lg:border-l-2 border-dashed border-black/5 h-full z-20">
-              <h3 class="flex items-center gap-3 text-sm font-extrabold uppercase tracking-[0.15rem] text-ucu-blue-dark z-10 relative">
+            <aside class="reveal translate-y-8 opacity-0 transition-all duration-900 ease-out relative flex flex-col gap-8 bg-gray-50 p-6 md:p-8 border-t-2 lg:border-t-0 lg:border-l-2 border-dashed border-black/5 z-20 lg:max-h-[1px] lg:min-h-full overflow-hidden" id="indicator-evidence-aside">
+              <h3 class="flex items-center gap-3 text-sm font-extrabold uppercase tracking-[0.15rem] text-ucu-blue-dark z-10 relative shrink-0">
                 <span class="relative flex h-2.5 w-2.5">
                   <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-ucu-red opacity-75"></span>
                   <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-ucu-red"></span>
                 </span>
                 Evidence & Documentation
               </h3>
-              <div class="flex flex-col gap-5 relative z-10 w-full max-h-[640px] overflow-y-auto overflow-x-hidden pr-3 custom-scrollbar [&>*]:shrink-0">
+              <div class="flex flex-col gap-5 relative z-10 w-full flex-1 min-h-0 overflow-y-auto overflow-x-hidden pr-3 custom-scrollbar [&>*]:shrink-0" id="evidence-scroll-list">
                 ${cardsHtml}
               </div>
             </aside>
           </section>
         </div>
       </div>
-      <!-- Inject dynamically generated modals outside the main grid -->
       ${modalsHtml}
     `;
 

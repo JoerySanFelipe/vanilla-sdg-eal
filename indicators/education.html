@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Education (UI GreenMetric) | UCU – EAL</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+    <link rel="stylesheet" href="../css/style.css" />
+
+    <script src="../js/core-ui.js" defer></script>
+    <script src="../js/visual-media.js" defer></script>
+    <script src="../js/impact-feeds.js" defer></script>
+    <script src="../js/institutional-data.js" defer></script>
+    <script src="../js/modals.js" defer></script>
+    <script src="../js/eco-components.js" defer></script>
+  </head>
+
+  <body class="bg-canvas text-muted font-sans antialiased min-h-screen flex flex-col relative z-0">
+    <ucu-header base-path="../"></ucu-header>
+
+<main class="w-full flex-grow relative z-10 flex flex-col">      <ucu-indicator-layout 
+        class="block reveal-on-scroll" style="transition-delay: 100ms;"
+        active-num="06" 
+        pillar-title="Education" 
+        base-path="../"
+        data-evidence='[
+          {
+            "id": "6_1",
+            "title": "6.1 Number of Courses/subjects Related to Sustainability Offered",
+            "badge": "Education and Research",
+            "src": "../evidence/education/6_1.html",
+            "relatedSdgs": [4, 13]
+          },
+          {
+            "id": "6_2",
+            "title": "6.2 Total Number of Courses/subjects Offered",
+            "badge": "Education and Research",
+            "src": "../evidence/education/6_2.html",
+            "relatedSdgs": [4]
+          },
+          {
+            "id": "6_3",
+            "title": "6.3 Total Number of Study Program Related to Sustainability Offered",
+            "badge": "Education and Research",
+            "src": "../evidence/education/6_3.html",
+            "relatedSdgs": [4, 13]
+          },
+          {
+            "id": "6_5",
+            "title": "6.5 Total Research Funds Dedicated to Sustainability Research (in Us Dollars)",
+            "badge": "Education and Research",
+            "src": "../evidence/education/6_5.html",
+            "relatedSdgs": [9, 13, 17]
+          },
+          {
+            "id": "6_6",
+            "title": "6.6 Total Research Funds (in Us Dollars)",
+            "badge": "Education and Research",
+            "src": "../evidence/education/6_6.html",
+            "relatedSdgs": [9]
+          },
+          {
+            "id": "6_8",
+            "title": "6.8 Number of Lecturers and Researchers on Campus in One Year Period",
+            "badge": "Education and Research",
+            "src": "../evidence/education/6_8.html",
+            "relatedSdgs": [4, 8]
+          },
+          {
+            "id": "6_9",
+            "title": "6.9 Number of Scholarly Publications on Sustainability in One Year Period",
+            "badge": "Education and Research",
+            "src": "../evidence/education/6_9.html",
+            "relatedSdgs": [4, 9, 10]
+          },
+          {
+            "id": "6_10",
+            "title": "6.10 Ratio of Scholarly Publications to Lecturers and Researchers",
+            "badge": "Education and Research",
+            "src": "../evidence/education/6_10.html",
+            "relatedSdgs": [4, 9]
+          },
+          {
+            "id": "6_11",
+            "title": "6.11 Number of Events Related to Sustainability",
+            "badge": "Education and Research",
+            "src": "../evidence/education/6_11.html",
+            "relatedSdgs": [4, 13, 17]
+          },
+          {
+            "id": "6_12",
+            "title": "6.12 Number of Activities Organized by Student Organizations Related to Sustainability Per Year",
+            "badge": "Education and Research",
+            "src": "../evidence/education/6_12.html",
+            "relatedSdgs": [4, 11, 12, 13]
+          },
+          {
+            "id": "6_13",
+            "title": "6.13 Number of Cultural Activities on Campus (e.g.cultural Festival)",
+            "badge": "Education and Research",
+            "src": "../evidence/education/6_13.html",
+            "relatedSdgs": [4, 11]
+          },
+          {
+            "id": "6_14",
+            "title": "6.14 Number of University Sustainability Program(s) with International Collaborations",
+            "badge": "Education and Research",
+            "src": "../evidence/education/6_14.html",
+            "relatedSdgs": [4, 16, 17]
+          },
+          {
+            "id": "6_15",
+            "title": "6.15 Number of Sustainablity Community Services Project Organised and/or Involving Students",
+            "badge": "Education & Research",
+            "src": "../evidence/education/6_15.html",
+            "relatedSdgs": [4, 11, 17]
+          },
+          {
+            "id": "6_16",
+            "title": "6.16 Number of Sustainability-related Startups",
+            "badge": "Education & Research",
+            "src": "../evidence/education/6_16.html",
+            "relatedSdgs": [2, 3, 8, 9, 12]
+          },
+          {
+            "id": "6_17",
+            "title": "6.17 Total Number of Graduates with Green Jobs (for the Last 3 Years)",
+            "badge": "Education and Research",
+            "src": "../evidence/education/6_17.html",
+            "relatedSdgs": [8, 13]
+          },
+          {
+            "id": "6_18",
+            "title": "6.18 Total Number of Graduates (for the Last 3 Years)",
+            "badge": "Education and Research",
+            "src": "../evidence/education/6_18.html",
+            "relatedSdgs": [4, 8]
+          },
+          {
+            "id": "6_19",
+            "title": "6.19 Percentage of Number of Graduates with Green Jobs (for the Last 3 Years)",
+            "badge": "Education and Research",
+            "src": "../evidence/education/6_19.html",
+            "relatedSdgs": [8, 13]
+          },
+          {
+            "id": "6_20",
+            "title": "6.20 Impact of Eduaction and Research Programs in Supporting the Sustainable Development Goals (sdgs)",
+            "badge": "Education and Research",
+            "src": "../evidence/education/6_20.html",
+            "relatedSdgs": [3, 4, 5, 6, 7, 9, 11, 12, 13, 15, 17]
+          }
+        ]'
+      >
+        <div slot="description" class="flex flex-col gap-2">
+          
+          <ucu-metric-cards class="block w-full reveal-on-scroll" style="transition-delay: 200ms;" data-metrics='[
+              {"value": "50.4%", "label": "Green Curriculum Ratio", "theme": "navy", "evidenceId": "6_1", "svgIcon": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"28\" height=\"28\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M4 19.5A2.5 2.5 0 0 1 6.5 17H20\"/><path d=\"M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z\"/></svg>"},
+              {"value": "8", "label": "Eco-Startups Incubated", "theme": "red", "evidenceId": "6_16", "svgIcon": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"28\" height=\"28\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M4.5 16.5c-1.5 1.25-2.5 3.5-2.5 3.5s2.25-1 3.5-2.5M14 2s.75 3.25-2 6c-3 3-7.5 4-7.5 4s1-4.5 4-7.5c2.75-2.75 6-2 6-2z\"/><path d=\"M9 15l3 3M19 15l-3-3\"/></svg>"},
+              {"value": "330", "label": "Green Career Placements", "theme": "navy", "evidenceId": "6_17", "svgIcon": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"28\" height=\"28\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M22 10v6M2 10l10-5 10 5-10 5z\"/><path d=\"M6 12v5c0 2 2 3 6 3s6-1 6-3v-5\"/></svg>"}
+            ]'></ucu-metric-cards>
+
+          <div class="ucu-prose-narrative mt-8 reveal-on-scroll" style="transition-delay: 300ms;">
+            <p>
+              Urdaneta City University embeds ecological stewardship throughout its academic landscape, with 185 out of 367 total courses integrating sustainability principles. This represents a 50.4% green curriculum ratio across multiple departments, ensuring that students develop core competencies in resource conservation, climate action, and environmental ethics aligned with 11 different United Nations Sustainable Development Goals.
+            </p>
+            <p>
+              In December 2024, the university launched eight sustainability-focused startup ventures through its business incubation programs. These innovative projects turn agricultural byproducts and local resources into commercial wellness and food solutions, such as Banana Peel Patties by ChoPeel, Purslane Chips by Green Bites, Kawayang Tinik Bamboo Shoot Bitesnacks, and nutrient-dense Malunggay Crackers. These initiatives foster a robust campus culture of green entrepreneurship and sustainable economic development.
+            </p>
+            <p>
+              The university's practical commitments extend to career transitions and research output. UCU has tracked 330 graduates securing green job placements over a three-year period, representing 23.8% of graduates from key technical departments. This professional pipeline is reinforced by active faculty inquiry, with publications in peer-reviewed journals doubling in 2025 to explore topics like AI-driven methodological gap analysis tools and virtual resilience in graduate studies.
+            </p>
+          </div>
+        </div>
+      </ucu-indicator-layout>
+    </main>
+
+    <ucu-footer base-path="../" class="reveal-on-scroll"></ucu-footer>
+
+  </body>
+</html>

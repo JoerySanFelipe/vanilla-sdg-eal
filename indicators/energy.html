@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Energy & Climate Change (UI GreenMetric) | UCU – EAL</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+    <link rel="stylesheet" href="../css/style.css" />
+
+    <script src="../js/core-ui.js" defer></script>
+    <script src="../js/visual-media.js" defer></script>
+    <script src="../js/impact-feeds.js" defer></script>
+    <script src="../js/institutional-data.js" defer></script>
+    <script src="../js/modals.js" defer></script>
+    <script src="../js/eco-components.js" defer></script>
+  </head>
+
+  <body class="bg-canvas text-muted font-sans antialiased min-h-screen flex flex-col relative z-0">
+    <ucu-header base-path="../"></ucu-header>
+
+    <main class="w-full flex-grow relative z-10 flex flex-col">
+      <ucu-indicator-layout 
+        class="block reveal-on-scroll" style="transition-delay: 100ms;"
+        active-num="02" 
+        pillar-title="Energy & Climate Change" 
+        base-path="../"
+        data-evidence='[
+          {
+            "id": "2_1",
+            "title": "2.1 Energy Efficient Appliances Usage",
+            "badge": "Energy and Climate Change",
+            "src": "../evidence/energy/2_1.html",
+            "relatedSdgs": [7, 12, 13]
+          },
+          {
+            "id": "2_3",
+            "title": "2.3 Smart Building Implementation",
+            "badge": "Energy and Climate Change",
+            "src": "../evidence/energy/2_3.html",
+            "relatedSdgs": [7, 9, 11, 13]
+          },
+          {
+            "id": "2_5",
+            "title": "2.5 Renewable Energy Sources in Campus",
+            "badge": "Energy and Climate Change",
+            "src": "../evidence/energy/2_5.html",
+            "relatedSdgs": [7, 11, 13]
+          },
+          {
+            "id": "2_6",
+            "title": "2.6 Electricity Usage Per Year (in Kilowatt Hour)",
+            "badge": "Energy and Climate Change",
+            "src": "../evidence/energy/2_6.html",
+            "relatedSdgs": [7, 12, 13]
+          },
+          {
+            "id": "2_8",
+            "title": "2.8 Ratio of Renewable Energy Production Divided by Total Energy Usage Per Year",
+            "badge": "Energy and Climate Change",
+            "src": "../evidence/energy/2_8.html",
+            "relatedSdgs": [7, 12, 13]
+          },
+          {
+            "id": "2_9",
+            "title": "2.9 Elements of Green Building Implementation As Reflected in All Buildings",
+            "badge": "Energy and Climate Change",
+            "src": "../evidence/energy/2_9.html",
+            "relatedSdgs": [3, 6, 7, 9, 11, 12, 13]
+          },
+          {
+            "id": "2_10",
+            "title": "2.10 Greenhouse Gas Emission Reduction Program",
+            "badge": "Energy and Climate Change",
+            "src": "../evidence/energy/2_10.html",
+            "relatedSdgs": [7, 13]
+          },
+          {
+            "id": "2_11",
+            "title": "2.11 The Total Carbon Footprint (co2emission in the Last 12 Months, in Metric Tons)",
+            "badge": "Energy and Climate Change",
+            "src": "../evidence/energy/2_11.html",
+            "relatedSdgs": [7, 11, 13]
+          },
+          {
+            "id": "2_13",
+            "title": "2.13 Number of Innovative Program(s) in Energy and Climate Change",
+            "badge": "Energy and Climate Change",
+            "src": "../evidence/energy/2_13.html",
+            "relatedSdgs": [4, 7, 9, 11, 13]
+          },
+          {
+            "id": "2_14",
+            "title": "2.14 Impactful University Program(s) on Climate Change",
+            "badge": "Energy and Climate Change",
+            "src": "../evidence/energy/2_14.html",
+            "relatedSdgs": [4, 7, 11, 12, 13]
+          },
+          {
+            "id": "2_15",
+            "title": "2.15 Planning, Implementation, Monitoring and/or Evaluation of All Programs Related to Energy and Climate Change Through the Utilization of Information and Communication Technology (ict)",
+            "badge": "Energy and Climate Change",
+            "src": "../evidence/energy/2_15.html",
+            "relatedSdgs": [4, 7, 9, 11, 13]
+          }
+        ]'
+      >
+        <div slot="description" class="flex flex-col gap-2">
+          
+          <ucu-metric-cards
+            class="block w-full reveal-on-scroll" style="transition-delay: 200ms;"
+            data-metrics='[
+              {"value": "91%", "label": "Energy-Efficient Appliances", "theme": "navy", "evidenceId": "2_1", "svgIcon": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"28\" height=\"28\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M9 18h6\"/><path d=\"M10 22h4\"/><path d=\"M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1.45.62 2.84 1.5 3.5.76.76 1.23 1.52 1.41 2.5\"/></svg>"},
+              {"value": "571,950", "label": "kWh Electricity Per Year", "theme": "red", "evidenceId": "2_6", "svgIcon": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"28\" height=\"28\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M13 2 3 14h9l-1 8 10-12h-9l1-8z\"/></svg>"},
+              {"value": "503", "label": "Metric Tons CO₂ (2024)", "theme": "navy", "evidenceId": "2_11", "svgIcon": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"28\" height=\"28\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z\"/></svg>"}
+            ]'
+          ></ucu-metric-cards>
+
+          <div class="ucu-prose-narrative mt-8 reveal-on-scroll" style="transition-delay: 300ms;">
+            <p>
+              Urdaneta City University is actively pursuing energy efficiency and climate-responsible operations across its campus. A total of 91% of campus appliances are classified as energy-efficient, including all 1,096 LED lamps and 31 street lights operating at 100% efficiency, alongside 89 out of 122 inverter-type air conditioning units. The university consumes approximately 571,950 kWh of electricity annually to power its academic buildings, administrative offices, and campus-wide lighting systems.
+            </p>
+            <p>
+              UCU has invested in renewable energy through a 4.5 kW grid-connected solar photovoltaic system installed on the Dr. Teofidez E. Calvero Building since 2017. This system generates approximately 4,297 kWh per year, contributing 0.75% of total campus energy demand. The university has also developed a comprehensive Green Building Implementation Plan covering energy efficiency, water conservation, sustainable materials, and indoor environmental quality across all six major campus structures.
+            </p>
+            <p>
+              The university's total carbon footprint for 2024 stands at 503 metric tons of CO₂, computed from electricity consumption (480.44 metric tons), campus shuttle bus operations (0.35 metric tons), private cars (13.44 metric tons), and motorcycles (8.8 metric tons). Through its greenhouse gas emission reduction programs and continued investment in clean energy infrastructure, UCU demonstrates a measurable commitment to climate action and operational sustainability.
+            </p>
+          </div>
+          
+        </div>
+      </ucu-indicator-layout>
+    </main>
+
+    <ucu-footer base-path="../" class="reveal-on-scroll"></ucu-footer>
+
+  </body>
+</html>

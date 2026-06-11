@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SDG 16 - Peace, Justice and Strong Institutions (2025) | UCU – EAL</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="../../css/style.css">
+  
+  <script src="../../js/events-data.js" defer></script>
+  <script src="../../js/core-ui.js" defer></script>
+  <script src="../../js/visual-media.js" defer></script>
+  <script src="../../js/impact-feeds.js" defer></script>
+  <script src="../../js/institutional-data.js" defer></script>
+  <script src="../../js/modals.js" defer></script>
+  <script src="../../js/sdg-components.js" defer></script>
+  <script src="../../js/global-charts.js" defer></script>
+</head>
+<body class="bg-slate-50 text-muted font-sans antialiased min-h-screen flex flex-col">
+
+  <ucu-header base-path="../../"></ucu-header>
+
+  <ucu-sdg-page-hero 
+    class="block w-full reveal-on-scroll"
+    sdg="16" 
+    title="Peace, Justice and Strong Institutions" 
+    subtitle="Promote peaceful and inclusive societies for sustainable development, provide access to justice for all and build effective, accountable and inclusive institutions at all levels." 
+    hex="#00689D" 
+    bg-image="../../images/sdg-banner/sdg16.jpg" 
+    icon-image="../../images/sdg/sdg16.png">
+  </ucu-sdg-page-hero>
+
+  <ucu-sdg-layout sdg="16" year="2025">
+    
+    <div slot="description" class="flex flex-col gap-2">
+      
+      <ucu-metric-cards class="block w-full reveal-on-scroll" style="transition-delay: 100ms;" data-metrics='[
+        {"value": "100%", "label": "Transparent Governance", "theme": "navy", "svgIcon": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"28\" height=\"28\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z\"/><path d=\"m9 12 2 2 4-4\"/></svg>"},
+        {"value": "24", "label": "Student Organizations", "theme": "red", "svgIcon": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"28\" height=\"28\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2\"/><circle cx=\"9\" cy=\"7\" r=\"4\"/><path d=\"M23 21v-2a4 4 0 0 0-3-3.87\"/><path d=\"M16 3.13a4 4 0 0 1 0 7.75\"/></svg>"},
+        {"value": "Zero", "label": "Tolerance Policy", "theme": "navy", "svgIcon": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"28\" height=\"28\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"12\" cy=\"12\" r=\"10\"/><line x1=\"4.93\" y1=\"4.93\" x2=\"19.07\" y2=\"19.07\"/></svg>"}
+      ]'></ucu-metric-cards>
+
+      <div class="flex items-center w-full mt-8 mb-4 gap-4 reveal-on-scroll">
+        <div class="w-1.5 h-6 bg-ucu-red rounded-full shadow-sm flex-shrink-0"></div>
+        <h2 class="flex-shrink-0 text-2xl font-bold text-ucu-blue-dark tracking-tight m-0 pr-2">Institutional Transparency & Accountability</h2>
+        <div class="flex-grow h-px bg-gray-300/70 rounded-full"></div>
+      </div>
+
+      <div class="ucu-prose-narrative reveal-on-scroll">
+        <p>Urdaneta City University (UCU) upholds the highest standards of institutional integrity as a foundation for academic excellence. To advance SDG 16, we have formalized a <b>Strong Institution Framework</b> that ensures absolute transparency in administrative operations, financial management, and policy development. Our "Open-Door" governance model invites scrutiny and encourages active participation from all sectors of the university community.</p>
+        <p>The university maintains a zero-tolerance policy regarding unethical conduct, supported by robust internal auditing units and an independent ethics committee. This ensures that UCU remains an accountable, safe, and just environment where the rights of every student and staff member are fiercely protected.</p>
+      </div>
+
+      <div class="flex items-center w-full mt-10 mb-4 gap-4 reveal-on-scroll">
+        <div class="w-1.5 h-6 bg-ucu-red rounded-full shadow-sm flex-shrink-0"></div>
+        <h2 class="flex-shrink-0 text-2xl font-bold text-ucu-blue-dark tracking-tight m-0 pr-2">Inclusive Representation & Civic Engagement</h2>
+        <div class="flex-grow h-px bg-gray-300/70 rounded-full"></div>
+      </div>
+
+      <div class="ucu-prose-narrative reveal-on-scroll">
+        <p>Inclusive decision-making is central to our campus culture. We empower 24 recognized student organizations and the Central Student Council to act as legitimate representatives in university board meetings, ensuring that student voices directly shape institutional directives. Beyond the campus, our External Office facilitates legal clinics and civic awareness seminars, promoting the rule of law and peaceful conflict resolution within our regional partner communities.</p>
+      </div>
+
+      <ucu-data-viz class="block w-full reveal-on-scroll" title="Student Council Participation & Election Turnout" subtitle="Measuring Civic Engagement and Institutional Trust" data-type="vertical" data-payload='[
+        {"year": "2022", "value": "65%", "heightPercent": 50, "baseBgClass": "bg-slate-200", "hoverBgClass": "bg-[#00689D]", "textClass": "text-slate-500"},
+        {"year": "2023", "value": "72%", "heightPercent": 65, "baseBgClass": "bg-slate-300", "hoverBgClass": "bg-[#00689D]", "textClass": "text-slate-600"},
+        {"year": "2024", "value": "84%", "heightPercent": 85, "baseBgClass": "bg-ucu-blue-dark", "hoverBgClass": "bg-[#151f42]", "textClass": "text-ucu-blue-dark"},
+        {"year": "2025", "value": "91%", "heightPercent": 100, "baseBgClass": "bg-[#00689D]", "hoverBgClass": "bg-[#004e7a]", "textClass": "text-[#00689D]"}
+      ]'></ucu-data-viz>
+
+    </div>
+  </ucu-sdg-layout>
+
+  <ucu-sdg-ribbon class="block w-full reveal-on-scroll" active="16"></ucu-sdg-ribbon>
+  <ucu-footer base-path="../../" class="reveal-on-scroll"></ucu-footer>
+
+</body>
+</html>
