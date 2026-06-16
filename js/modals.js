@@ -61,9 +61,9 @@ class UcuModalShell extends HTMLElement {
     `;
 
     this.innerHTML = `
-      <dialog id="modal-${this.modalId}" class="main-evidence-modal backdrop:bg-slate-900/50 backdrop:backdrop-blur-sm bg-white w-full max-w-3xl m-auto p-0 rounded-3xl shadow-2xl max-h-[90vh] overflow-y-auto custom-scrollbar open:animate-[pop-in_0.3s_ease-out_forwards]">
-        <div class="flex flex-col w-full relative">
-          <header class="flex items-start justify-between px-6 py-4 border-b border-slate-100 sticky top-0 z-20 bg-white/95 backdrop-blur-sm">
+      <dialog id="modal-${this.modalId}" class="main-evidence-modal backdrop:bg-slate-900/50 backdrop:backdrop-blur-sm bg-white w-full max-w-3xl m-auto p-0 rounded-3xl shadow-2xl max-h-[90vh] overflow-hidden open:animate-[pop-in_0.3s_ease-out_forwards]">
+        <div class="flex flex-col w-full max-h-[90vh] relative">
+          <header class="flex items-start justify-between px-6 py-4 border-b border-slate-100 sticky top-0 z-20 bg-white/95 backdrop-blur-sm shrink-0">
             <div class="flex flex-col gap-2">
               <div class="inline-flex items-center gap-2 px-3 py-1 bg-slate-50 border border-slate-200 rounded-full w-fit shadow-sm">
                 <span class="relative flex h-2 w-2">
@@ -82,7 +82,7 @@ class UcuModalShell extends HTMLElement {
               </button>
             </form>
           </header>
-          <article class="p-6 md:p-8">
+          <article class="p-6 md:p-8 overflow-y-auto custom-scrollbar flex-grow min-h-0 bg-white">
             <div class="ucu-prose-evidence evidence-content-container flex flex-col"></div>
           </article>
           ${footerHtml}
@@ -99,6 +99,7 @@ class UcuModalShell extends HTMLElement {
     this.lightboxImg = this.querySelector('.lightbox-img');
     this.contentContainer = this.querySelector('.evidence-content-container');
     this.closeBtn = this.querySelector('.close-btn');
+    this.scrollContainer = this.querySelector('article');
 
     this.initEvents();
   }
@@ -122,6 +123,9 @@ class UcuModalShell extends HTMLElement {
 
     // 3. Open Dialog
     this.dialog.showModal();
+    if (this.scrollContainer) {
+      this.scrollContainer.scrollTop = 0;
+    }
 
     // 4. Update Navigation Buttons
     this.updateNavButtons();
