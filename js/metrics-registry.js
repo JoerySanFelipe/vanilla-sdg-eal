@@ -29,7 +29,7 @@ window.UCU_METRICS = {
   // --- PARTNERSHIP SPECIFIC FILTERS ---
   get localPartners() {
     if (!window.UCU_PARTNERS) return "0";
-    return window.UCU_PARTNERS.filter(p => p.category === "local").length.toLocaleString();
+    return window.UCU_PARTNERS.filter(p => p.category === "local-academic" || p.category === "local-industry").length.toLocaleString();
   },
   get globalPartners() {
     if (!window.UCU_PARTNERS) return "0";
