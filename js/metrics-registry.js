@@ -33,7 +33,7 @@ window.UCU_METRICS = {
   },
   get globalPartners() {
     if (!window.UCU_PARTNERS) return "0";
-    return window.UCU_PARTNERS.filter(p => p.category === "international").length.toLocaleString();
+    return window.UCU_PARTNERS.filter(p => p.category === "international-academic" || p.category === "international-industry").length.toLocaleString();
   },
   get membershipPartners() {
     if (!window.UCU_PARTNERS) return "0";

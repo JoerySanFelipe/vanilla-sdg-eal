@@ -4,49 +4,12 @@
  * UCU Institutional Linkages & Memberships Data Store
  * Schema:
  * - name: Official name of the institution/organization
- * - category: 'international' | 'local-academic' | 'local-industry' | 'membership'
+ * - category: 'international-academic' | 'international-industry' | 'local-academic' | 'local-industry' | 'membership'
  * - logoSrc: Relative path to the logo image
  * - url: Official website (leave empty string "" if none exists to disable linking)
  */
 
 window.UCU_PARTNERS = [
-  // --- INTERNATIONAL PARTNERS ---
-  { name: "Abdullah Gul University", category: "international", logoSrc: "./images/international-partners/abdullah-gul-university.png", url: "" },
-  { name: "American University of Sovereign Nations", category: "international", logoSrc: "./images/international-partners/ausovereignnations.png", url: "https://ausovereignnations.org/" },
-  { name: "Aptimizer", category: "international", logoSrc: "./images/international-partners/Aptimizer.png", url: "" },
-  { name: "aSSIST University, and SDG Management School", category: "international", logoSrc: "./images/international-partners/aSSIST.png", url: "" },
-  { name: "Chandigarh Group of Colleges", category: "international", logoSrc: "./images/international-partners/Chandigarh-Group.png", url: "" },
-  { name: "Chitkara University", category: "international", logoSrc: "./images/international-partners/chitkara-university.png", url: "" },
-  { name: "Ecolde 42", category: "international", logoSrc: "./images/international-partners/Ecole-42.png", url: "" },
-  { name: "Global Peace Foundation", category: "international", logoSrc: "./images/international-partners/Global-Peace.png", url: "" },
-  { name: "Incheon National University", category: "international", logoSrc: "./images/international-partners/incheon-national-university.png", url: "" },
-  { name: "Institut Teknologi Sepuluh Nopember (ITS) Indonesia", category: "international", logoSrc: "./images/international-partners/ITS.png", url: "" },
-  { name: "International Society of Teachers, Administrators and Researchers Inc.", category: "international", logoSrc: "./images/international-partners/ISTAR.png", url: "" },
-  { name: "Konan University", category: "international", logoSrc: "./images/international-partners/Konan-University.png", url: "" },
-  { name: "Lac Hong University", category: "international", logoSrc: "./images/international-partners/lac-hong-university.png", url: "" },
-  { name: "Minerva University", category: "international", logoSrc: "./images/international-partners/minerva-university.png", url: "" },
-  { name: "National Chi Nan University", category: "international", logoSrc: "./images/international-partners/national-chi-nan-university.png", url: "" },
-  { name: "Portsworld Academy Malaysia", category: "international", logoSrc: "./images/international-partners/Portsworlds.png", url: "" },
-  { name: "Richmond American University, London", category: "international", logoSrc: "./images/international-partners/Richmond-American.png", url: "" },
-  { name: "Seoul National University (Human Resource Research Center)", category: "international", logoSrc: "./images/international-partners/seoul-national-university.png", url: "" },
-  { name: "Siam University", category: "international", logoSrc: "./images/international-partners/siam-university.png", url: "" },
-  { name: "Tongmyong University", category: "international", logoSrc: "./images/international-partners/Tongmyong.png", url: "" },
-  { name: "Universitas Gadjah Mada", category: "international", logoSrc: "./images/international-partners/Universitas-gadjah-mada-indonesia.png", url: "" },
-  { name: "Universitas Pendidikan Ganeshia", category: "international", logoSrc: "./images/international-partners/Ganeshia.png", url: "" },
-  { name: "Universitas Persada Indonesia", category: "international", logoSrc: "./images/international-partners/Universitas-Persada-Indonesia.png", url: "" },
-  { name: "University of Liberal Arts Bangladesh", category: "international", logoSrc: "./images/international-partners/University-of-Liberal-Arts-Bangladesh.png", url: "" },
-  { name: "University of Mostar", category: "international", logoSrc: "./images/international-partners/Mostar.png", url: "" },
-  { name: "University of Technology and Applied Sciences", category: "international", logoSrc: "./images/international-partners/UTAS.png", url: "" },
-
-  // --- LOCAL INDUSTRY PARTNERS ---
-  { name: "Beyond Books Publication", category: "local-industry", logoSrc: "./images/local-partners/Beyond-Books-Publication.png", url: "" },
-  { name: "Center for Pangasinan Studies", category: "local-industry", logoSrc: "./images/local-partners/CPS.png", url: "" },
-  { name: "Commission on Human Rights-RO1", category: "local-industry", logoSrc: "./images/local-partners/CHR-1.png", url: "" },
-  { name: "Global Professional Advancement", category: "local-industry", logoSrc: "./images/local-partners/GPA.png", url: "" },
-  { name: "Philippine Red Cross", category: "local-industry", logoSrc: "./images/local-partners/Redcross.png", url: "" },
-  { name: "SDO-Urdaneta City", category: "local-industry", logoSrc: "./images/local-partners/SDO-URD.png", url: "" },
-  { name: "Urdaneta District Jail Male Dorm", category: "local-industry", logoSrc: "./images/local-partners/BJMP.png", url: "" },
-
   // --- LOCAL ACADEMIC PARTNERS (Universities & Schools) ---
   { name: "Adventist University of the Philippines", category: "local-academic", logoSrc: "./images/local-partners/Adventist-University-of-the-Philippines.png", url: "" },
   { name: "Air Link International Aviation College", category: "local-academic", logoSrc: "./images/local-partners/Air-Link-International-Aviation-College.png", url: "" },
@@ -81,6 +44,7 @@ window.UCU_PARTNERS = [
   { name: "Osias Educational Foundation Inc.", category: "local-academic", logoSrc: "./images/local-partners/oasis-educational-foundation-inc.png", url: "" },
   { name: "Samar College - Catbalogan", category: "local-academic", logoSrc: "./images/local-partners/Samar-college.png", url: "" },
   { name: "San Pedro College - Davao City", category: "local-academic", logoSrc: "./images/local-partners/san-pedro-college-davao-city.png", url: "" },
+  { name: "SDO-Urdaneta City", category: "local-academic", logoSrc: "./images/local-partners/SDO-URD.png", url: "" },
   { name: "St. Bernadette Lourdes College", category: "local-academic", logoSrc: "./images/local-partners/SBLC.png", url: "" },
   { name: "St. Paul University - Dumaguete City", category: "local-academic", logoSrc: "./images/local-partners/st-paul-university-dumaguete.png", url: "" },
   { name: "St. Paul University Philippines - Quezon City", category: "local-academic", logoSrc: "./images/local-partners/st-paul-university-qc.png", url: "" },
@@ -95,6 +59,44 @@ window.UCU_PARTNERS = [
   { name: "University of Nueva Caceres", category: "local-academic", logoSrc: "./images/local-partners/university-of-nueva-caceres.png", url: "" },
   { name: "University od Santo Tomas - Legazpi", category: "local-academic", logoSrc: "./images/local-partners/university-of-santo-tomas-legazpi.png", url: "" },
   { name: "University of the Immaculate Conception", category: "local-academic", logoSrc: "./images/local-partners/university-of-the-immaculate-conception.png", url: "" },
+
+  // --- LOCAL INDUSTRY PARTNERS ---
+  { name: "Beyond Books Publication", category: "local-industry", logoSrc: "./images/local-partners/Beyond-Books-Publication.png", url: "" },
+  { name: "Center for Pangasinan Studies", category: "local-industry", logoSrc: "./images/local-partners/CPS.png", url: "" },
+  { name: "Commission on Human Rights-RO1", category: "local-industry", logoSrc: "./images/local-partners/CHR-1.png", url: "" },
+  { name: "Global Professional Advancement", category: "local-industry", logoSrc: "./images/local-partners/GPA.png", url: "" },
+  { name: "Philippine Red Cross", category: "local-industry", logoSrc: "./images/local-partners/Redcross.png", url: "" },
+  { name: "Urdaneta District Jail Male Dorm", category: "local-industry", logoSrc: "./images/local-partners/BJMP.png", url: "" },
+
+  // --- INTERNATIONAL ACADEMIC PARTNERS ---
+  { name: "Abdullah Gul University", category: "international-academic", logoSrc: "./images/international-partners/abdullah-gul-university.png", url: "" },
+  { name: "American University of Sovereign Nations", category: "international-academic", logoSrc: "./images/international-partners/ausovereignnations.png", url: "https://ausovereignnations.org/" },
+  { name: "aSSIST University, and SDG Management School", category: "international-academic", logoSrc: "./images/international-partners/aSSIST.png", url: "" },
+  { name: "Chandigarh Group of Colleges", category: "international-academic", logoSrc: "./images/international-partners/Chandigarh-Group.png", url: "" },
+  { name: "Chitkara University", category: "international-academic", logoSrc: "./images/international-partners/chitkara-university.png", url: "" },
+  { name: "Ecolde 42", category: "international-academic", logoSrc: "./images/international-partners/Ecole-42.png", url: "" },
+  { name: "Incheon National University", category: "international-academic", logoSrc: "./images/international-partners/incheon-national-university.png", url: "" },
+  { name: "Institut Teknologi Sepuluh Nopember (ITS) Indonesia", category: "international-academic", logoSrc: "./images/international-partners/ITS.png", url: "" },
+  { name: "Konan University", category: "international-academic", logoSrc: "./images/international-partners/Konan-University.png", url: "" },
+  { name: "Lac Hong University", category: "international-academic", logoSrc: "./images/international-partners/lac-hong-university.png", url: "" },
+  { name: "Minerva University", category: "international-academic", logoSrc: "./images/international-partners/minerva-university.png", url: "" },
+  { name: "National Chi Nan University", category: "international-academic", logoSrc: "./images/international-partners/national-chi-nan-university.png", url: "" },
+  { name: "Portsworld Academy Malaysia", category: "international-academic", logoSrc: "./images/international-partners/Portsworlds.png", url: "" },
+  { name: "Richmond American University, London", category: "international-academic", logoSrc: "./images/international-partners/Richmond-American.png", url: "" },
+  { name: "Seoul National University (Human Resource Research Center)", category: "international-academic", logoSrc: "./images/international-partners/seoul-national-university.png", url: "" },
+  { name: "Siam University", category: "international-academic", logoSrc: "./images/international-partners/siam-university.png", url: "" },
+  { name: "Tongmyong University", category: "international-academic", logoSrc: "./images/international-partners/Tongmyong.png", url: "" },
+  { name: "Universitas Gadjah Mada", category: "international-academic", logoSrc: "./images/international-partners/Universitas-gadjah-mada-indonesia.png", url: "" },
+  { name: "Universitas Pendidikan Ganeshia", category: "international-academic", logoSrc: "./images/international-partners/Ganeshia.png", url: "" },
+  { name: "Universitas Persada Indonesia", category: "international-academic", logoSrc: "./images/international-partners/Universitas-Persada-Indonesia.png", url: "" },
+  { name: "University of Liberal Arts Bangladesh", category: "international-academic", logoSrc: "./images/international-partners/University-of-Liberal-Arts-Bangladesh.png", url: "" },
+  { name: "University of Mostar", category: "international-academic", logoSrc: "./images/international-partners/Mostar.png", url: "" },
+  { name: "University of Technology and Applied Sciences", category: "international-academic", logoSrc: "./images/international-partners/UTAS.png", url: "" },
+
+  // --- INTERNATIONAL INDUSTRY PARTNERS ---
+  { name: "Aptimizer", category: "international-industry", logoSrc: "./images/international-partners/Aptimizer.png", url: "" },
+  { name: "Global Peace Foundation", category: "international-industry", logoSrc: "./images/international-partners/Global-Peace.png", url: "" },
+  { name: "International Society of Teachers, Administrators and Researchers Inc.", category: "international-industry", logoSrc: "./images/international-partners/ISTAR.png", url: "" },
 
   // --- MEMBERSHIPS ---
   { name: "3ZERO", category: "membership", logoSrc: "./images/membership/3zero.png", url: "" },
