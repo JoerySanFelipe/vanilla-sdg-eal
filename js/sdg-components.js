@@ -221,14 +221,63 @@ class UcuSdgLayout extends HTMLElement {
     if (this.hasRendered) return;
     this.hasRendered = true;
 
+    // Hide component content initially to prevent FOUC (Flash of Unstyled Content)
+    this.style.opacity = "0";
+    this.style.transition = "opacity 0.25s ease-in-out";
+    this.style.display = "block";
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', () => this.startLoading());
+    } else {
+      this.startLoading();
+    }
+  }
+
+  startLoading() {
+    const base = window.ucuGetBasePath ? window.ucuGetBasePath() : './';
+
+    const loadResearch = new Promise((resolve) => {
+      if (window.UCU_RESEARCH) {
+        resolve();
+      } else {
+        const script = document.createElement("script");
+        script.src = `${base}js/research-data.js`;
+        script.onload = () => resolve();
+        script.onerror = () => resolve();
+        document.head.appendChild(script);
+      }
+    });
+
+    const loadEvents = new Promise((resolve) => {
+      if (window.UCU_EVENTS) {
+        resolve();
+      } else {
+        const script = document.createElement("script");
+        script.src = `${base}js/events-data.js`;
+        script.onload = () => resolve();
+        script.onerror = () => resolve();
+        document.head.appendChild(script);
+      }
+    });
+
+    Promise.all([loadResearch, loadEvents]).then(() => {
+      this.doRender();
+    });
+  }
+
+  doRender() {
     const base = window.ucuGetBasePath ? window.ucuGetBasePath() : './';
     const narrativeContent = this.querySelector('[slot="description"]')?.innerHTML || "";
     const activeSdg = parseInt(this.getAttribute("sdg") || "1");
     const year = this.getAttribute("year") || "2025";
     const colors = window.UCU_SDG_COLORS || {};
-    
+    const sdgColor = colors[activeSdg] || "#24305e";
+
     const allEvents = window.UCU_EVENTS || [];
-    const pageEvents = allEvents.filter(ev => ev.relatedSdgs.includes(activeSdg));
+    const pageEvents = allEvents.filter(ev => ev.relatedSdgs && ev.relatedSdgs.includes(activeSdg));
+
+    const allResearch = window.UCU_RESEARCH || [];
+    const pageResearch = allResearch.filter(res => res.sdgs && res.sdgs.includes(activeSdg));
 
     const navItems = Array.from({ length: 17 }, (_, i) => i + 1)
       .map((num) => {
@@ -254,7 +303,7 @@ class UcuSdgLayout extends HTMLElement {
           .join("");
           
         return `
-        <button class="ucu-event-trigger group block relative w-full text-left overflow-hidden rounded-2xl bg-white border border-slate-200 shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] flex flex-col" data-event-id="${ev.id}">
+        <button class="ucu-event-trigger group block relative w-full text-left overflow-hidden rounded-2xl bg-white border border-slate-200 shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] flex flex-col cursor-pointer" data-event-id="${ev.id}">
           <span class="absolute bottom-0 left-0 w-full h-[6px] bg-gradient-to-r from-ucu-blue-dark to-ucu-red origin-left scale-x-0 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-x-100 z-20"></span>
           <div class="w-full aspect-video overflow-hidden relative bg-slate-100 shrink-0">
             <img src="${base}${ev.img}" alt="${ev.title}" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-[0.8s] ease-[cubic-bezier(0.25,1,0.5,1)]" loading="lazy" />
@@ -287,7 +336,207 @@ class UcuSdgLayout extends HTMLElement {
       )
       .join("");
 
+    // Research HTML Content
+    const researchHtml = pageResearch.length > 0 
+      ? pageResearch.map(res => {
+          const keywordPills = res.keywords && res.keywords.length > 0
+            ? res.keywords.map(kw => `<span class="px-2 py-0.5 text-[9px] font-semibold rounded bg-slate-100 text-slate-500 border border-slate-200">${kw}</span>`).join("")
+            : "";
+          
+          let resolvedPdfLink = res.pdfLink;
+          if (resolvedPdfLink && resolvedPdfLink.startsWith("../")) {
+            resolvedPdfLink = base + resolvedPdfLink.substring(3);
+          }
+          
+          const pdfBtn = resolvedPdfLink && resolvedPdfLink !== "#"
+            ? `<a href="${resolvedPdfLink}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-4 py-2 bg-ucu-blue-dark text-white text-[10px] font-bold uppercase tracking-widest rounded hover:bg-ucu-red hover:shadow-md transition-all duration-300 no-underline">
+                 <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
+                 View Research PDF
+               </a>`
+            : `<span class="inline-flex items-center gap-1.5 px-4 py-2 bg-slate-100 text-slate-400 text-[10px] font-bold uppercase tracking-widest rounded border border-slate-200 cursor-not-allowed select-none" title="PDF availability pending publication">
+                 <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" /></svg>
+                 Access Restricted
+               </span>`;
+
+          return `
+            <div class="p-5 md:p-6 rounded-xl border border-slate-200 bg-white hover:border-slate-300 hover:shadow-md transition-all duration-300 flex flex-col gap-3">
+              <div class="flex flex-wrap items-start justify-between gap-2 border-b border-slate-100 pb-2">
+                <h4 class="text-xs md:text-sm font-black text-ucu-blue-dark m-0 leading-snug text-left max-w-[80%]">${res.title}</h4>
+                <span class="text-[9px] font-black text-slate-400 uppercase tracking-widest shrink-0">${res.date}</span>
+              </div>
+              <p class="text-[10px] font-bold text-ucu-red m-0 text-left">Authors: <span class="text-slate-600 font-medium">${res.authors}</span></p>
+              <div class="text-[11px] leading-relaxed text-slate-600 text-left m-0">
+                <strong class="text-slate-700 font-black block mb-1 text-[9px] uppercase tracking-widest">Abstract</strong>
+                ${res.abstract}
+              </div>
+              <div class="flex flex-wrap gap-1.5 mt-1 items-center">
+                ${keywordPills}
+              </div>
+              <div class="mt-2 flex justify-start">
+                ${pdfBtn}
+              </div>
+            </div>
+          `;
+        }).join('<div class="h-4"></div>')
+      : `<div class="p-8 text-center rounded-xl border border-dashed border-slate-300 bg-slate-50/50 flex flex-col items-center justify-center gap-2">
+           <svg class="w-8 h-8 text-slate-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+             <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" />
+           </svg>
+           <span class="text-[9px] font-black text-slate-400 uppercase tracking-widest">No publications recorded for this goal in 2025 yet</span>
+         </div>`;
+
+    // ── PARSE SLOT DESCRIPTION INTO SUB-ACCORDIONS (GROUPED BY H2) ──
+    const tempDiv = document.createElement("div");
+    tempDiv.innerHTML = narrativeContent;
+
+    let introHtml = "";
+    const subSections = [];
+    let currentSection = null;
+
+    Array.from(tempDiv.children).forEach((child) => {
+      // Look for H2 element in child (either child is H2 or contains H2)
+      const h2Element = child.tagName === "H2" ? child : child.querySelector("h2");
+      if (h2Element) {
+        currentSection = {
+          title: h2Element.innerText.trim(),
+          content: "",
+          events: []
+        };
+        subSections.push(currentSection);
+      } else {
+        if (currentSection) {
+          currentSection.content += child.outerHTML;
+        } else {
+          introHtml += child.outerHTML;
+        }
+      }
+    });
+
+    // ── MATCH EVENTS TO H2 SUB-SECTIONS ──
+    const matchedEventIds = new Set();
+    subSections.forEach(sec => {
+      // Match if the section content mentions the event ID (e.g. kalahi-cidss)
+      const matched = pageEvents.filter(ev => sec.content.toLowerCase().includes(ev.id.toLowerCase()));
+      matched.forEach(ev => {
+        sec.events.push(ev);
+        matchedEventIds.add(ev.id);
+      });
+    });
+
+    let reportBodyHtml = "";
+    if (subSections.length > 0) {
+      // Build collapsible drawers for each H2 section
+      const subAccordionsHtml = subSections.map((sec, index) => {
+        const isOpen = false; // All sections collapsed on load by default
+        
+        // Render section events if any are matched
+        let sectionEventsHtml = "";
+        if (sec.events.length > 0) {
+          const eventCards = sec.events.map(ev => {
+            const tagsHtml = ev.relatedSdgs
+              .map(num => `<div class="flex items-center justify-center w-5 h-5 rounded text-white text-[9px] font-black shadow-sm" style="background-color: ${colors[num] || "#24305e"};">${num}</div>`)
+              .join("");
+              
+            return `
+              <button class="ucu-event-trigger group block relative w-full text-left overflow-hidden rounded-xl bg-slate-50 border border-slate-200/80 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col cursor-pointer max-w-[280px]" data-event-id="${ev.id}">
+                <div class="w-full aspect-video overflow-hidden relative bg-slate-100 shrink-0">
+                  <img src="${base}${ev.img}" alt="${ev.title}" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-[0.6s]" loading="lazy" />
+                  <div class="absolute top-2 right-2 bg-ucu-red/90 backdrop-blur-md border border-white/10 text-white text-[8px] font-black px-1.5 py-0.5 rounded shadow-sm uppercase tracking-widest">EVENT</div>
+                </div>
+                <div class="p-3.5 flex flex-col gap-1 relative bg-white flex-grow w-full">
+                  <p class="text-[8px] text-ucu-red font-bold uppercase tracking-widest">${ev.date}</p>
+                  <h5 class="text-xs font-black text-ucu-blue-dark group-hover:text-ucu-red leading-tight transition-colors duration-200 line-clamp-2">${ev.title}</h5>
+                  <p class="text-[10px] text-slate-500 line-clamp-2 leading-relaxed m-0 mb-2">${ev.desc}</p>
+                  <div class="mt-auto pt-2.5 border-t border-slate-100 flex items-center justify-between gap-2 w-full">
+                    <span class="text-[8px] font-black text-slate-400 uppercase tracking-widest shrink-0">SDG Alignment</span>
+                    <div class="flex flex-wrap gap-1 justify-end">${tagsHtml}</div>
+                  </div>
+                </div>
+              </button>
+            `;
+          }).join("");
+
+          sectionEventsHtml = `
+            <div class="mt-6 pt-5 border-t border-slate-100 flex flex-col gap-3">
+              <h4 class="text-[10px] font-black text-slate-400 uppercase tracking-widest flex items-center gap-2">
+                <svg class="w-3.5 h-3.5" style="color: ${sdgColor};" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+                Aligned Community Engagement
+              </h4>
+              <div class="flex flex-wrap gap-4">
+                ${eventCards}
+              </div>
+            </div>
+          `;
+        }
+
+        return `
+          <div class="border border-slate-200/80 bg-white rounded-xl overflow-hidden mb-4 hover:border-slate-300/80 transition-all duration-300">
+            <button 
+              id="sub-header-${index}"
+              aria-controls="sub-panel-${index}"
+              aria-expanded="${isOpen ? 'true' : 'false'}"
+              class="ucu-sub-accordion-header w-full flex items-center justify-between p-4.5 text-left font-black text-ucu-blue-dark transition-colors duration-300 cursor-pointer focus:outline-none"
+              style="background-color: ${sdgColor}05;"
+            >
+              <span class="text-[13px] md:text-sm font-black tracking-tight text-slate-700">${sec.title}</span>
+              <svg class="ucu-sub-chevron w-4 h-4 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}" style="color: ${sdgColor};" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+            <div 
+              id="sub-panel-${index}" 
+              role="region"
+              aria-labelledby="sub-header-${index}"
+              class="p-5 md:p-6 border-t border-slate-100 bg-white ${isOpen ? 'ucu-slide-down' : 'hidden'}"
+            >
+              <article class="w-full max-w-[65ch] text-lg leading-relaxed prose prose-lg prose-slate transition-colors">
+                ${sec.content}
+              </article>
+              ${sectionEventsHtml}
+            </div>
+          </div>
+        `;
+      }).join("");
+
+      reportBodyHtml = `
+        <div class="flex flex-col gap-4">
+          ${introHtml}
+          <div class="mt-4 flex flex-col">
+            ${subAccordionsHtml}
+          </div>
+        </div>
+      `;
+    } else {
+      reportBodyHtml = `
+        <article class="w-full max-w-[65ch] text-lg leading-relaxed prose prose-lg prose-slate transition-colors">
+          ${narrativeContent}
+        </article>
+      `;
+    }
+
     this.innerHTML = `
+      <style>
+        @keyframes ucuSlideDown {
+          from { opacity: 0; transform: translateY(-8px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        .ucu-slide-down {
+          animation: ucuSlideDown 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        .ucu-accordion-header {
+          transition: background-color 0.2s ease;
+        }
+        .ucu-accordion-header:hover {
+          background-color: ${sdgColor}12 !important;
+        }
+        .ucu-sub-accordion-header {
+          transition: background-color 0.2s ease;
+        }
+        .ucu-sub-accordion-header:hover {
+          background-color: ${sdgColor}0E !important;
+        }
+      </style>
+      
       <div class="w-full min-h-screen bg-slate-50 font-sans pb-8 xl:pb-12 pt-8 xl:pt-10">
         <div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-6 xl:gap-12">
           
@@ -298,25 +547,64 @@ class UcuSdgLayout extends HTMLElement {
             <nav class="flex flex-col gap-3 xl:gap-4 pb-6">${navItems}</nav>
           </aside>
 
-          <div class="col-span-1 lg:col-span-9 flex flex-col gap-16">
-            <article class="w-full max-w-[65ch] text-lg leading-relaxed prose prose-lg prose-slate transition-colors">
-              ${narrativeContent}
-            </article>
-
-            ${
-              pageEvents.length > 0
-                ? `
-            <section class="flex flex-col mt-10 pt-10 border-t border-gray-100">
-              <div class="flex items-center w-full mb-10 gap-4">
-                <div class="w-1.5 h-6 bg-ucu-red rounded-full shadow-sm flex-shrink-0"></div>
-                <h3 class="flex-shrink-0 text-2xl font-bold text-ucu-blue-dark tracking-tight m-0 pr-2">Events & Documentation</h3>
-                <div class="flex-grow h-px bg-gray-300/70 rounded-full"></div>
+          <div class="col-span-1 lg:col-span-9 flex flex-col gap-6">
+            
+            <!-- ACCORDION 1: SDG REPORT -->
+            <div class="border border-slate-200/80 bg-white rounded-2xl shadow-sm overflow-hidden transition-all duration-300 hover:shadow-md">
+              <button 
+                id="header-report"
+                aria-controls="panel-report"
+                aria-expanded="true"
+                class="ucu-accordion-header w-full flex items-center justify-between p-5 md:p-6 text-left font-black text-ucu-blue-dark hover:bg-slate-50/50 transition-colors duration-300 cursor-pointer focus:outline-none border-l-4"
+                style="border-left-color: ${sdgColor}; background-color: ${sdgColor}08;"
+              >
+                <div class="flex items-center gap-3">
+                  <span class="text-sm md:text-base tracking-tight font-black uppercase">SDG Report</span>
+                  <span class="px-2.5 py-0.5 text-[9px] font-black rounded-full text-white uppercase tracking-wider shadow-sm" style="background-color: ${sdgColor};">Overview</span>
+                </div>
+                <svg class="ucu-chevron-icon w-5 h-5 transition-transform duration-300 rotate-180" style="color: ${sdgColor};" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+              <div 
+                id="panel-report" 
+                role="region" 
+                aria-labelledby="header-report"
+                class="p-5 md:p-8 border-t border-slate-100 ucu-slide-down"
+              >
+                ${reportBodyHtml}
               </div>
-              <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">${cardsHtml}</div>
-            </section>
-            `
-                : ""
-            }
+            </div>
+
+            <!-- ACCORDION 2: SDG RESEARCHES -->
+            <div class="border border-slate-200/80 bg-white rounded-2xl shadow-sm overflow-hidden transition-all duration-300 hover:shadow-md">
+              <button 
+                id="header-research"
+                aria-controls="panel-research"
+                aria-expanded="false"
+                class="ucu-accordion-header w-full flex items-center justify-between p-5 md:p-6 text-left font-black text-ucu-blue-dark hover:bg-slate-50/50 transition-colors duration-300 cursor-pointer focus:outline-none border-l-4"
+                style="border-left-color: ${sdgColor}; background-color: ${sdgColor}08;"
+              >
+                <div class="flex items-center gap-3">
+                  <span class="text-sm md:text-base tracking-tight font-black uppercase">SDG Researches</span>
+                  <span class="px-2.5 py-0.5 text-[9px] font-black rounded-full text-white uppercase tracking-wider shadow-sm" style="background-color: ${sdgColor};">Publications [${pageResearch.length}]</span>
+                </div>
+                <svg class="ucu-chevron-icon w-5 h-5 transition-transform duration-300" style="color: ${sdgColor};" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+              <div 
+                id="panel-research" 
+                role="region" 
+                aria-labelledby="header-research"
+                class="p-5 md:p-8 border-t border-slate-100 hidden"
+              >
+                <div class="flex flex-col gap-4">
+                  ${researchHtml}
+                </div>
+              </div>
+            </div>
+
           </div>
 
         </div>
@@ -324,12 +612,88 @@ class UcuSdgLayout extends HTMLElement {
       ${modalsHtml}
     `;
 
+    // Accordion Toggle JavaScript
+    const headers = this.querySelectorAll(".ucu-accordion-header");
+    headers.forEach(header => {
+      header.addEventListener("click", () => {
+        const isExpanded = header.getAttribute("aria-expanded") === "true";
+        const targetId = header.getAttribute("aria-controls");
+        const targetPanel = this.querySelector(`#${targetId}`);
+        const chevron = header.querySelector(".ucu-chevron-icon");
+        
+        if (targetPanel) {
+          if (isExpanded) {
+            header.setAttribute("aria-expanded", "false");
+            targetPanel.classList.add("hidden");
+            targetPanel.classList.remove("ucu-slide-down");
+            if (chevron) chevron.classList.remove("rotate-180");
+          } else {
+            header.setAttribute("aria-expanded", "true");
+            targetPanel.classList.remove("hidden");
+            targetPanel.classList.add("ucu-slide-down");
+            if (chevron) chevron.classList.add("rotate-180");
+          }
+        }
+      });
+    });
+
+    // Sub-accordion Toggle JavaScript
+    const subHeaders = this.querySelectorAll(".ucu-sub-accordion-header");
+    subHeaders.forEach(header => {
+      header.addEventListener("click", () => {
+        const isExpanded = header.getAttribute("aria-expanded") === "true";
+        const targetId = header.getAttribute("aria-controls");
+        const targetPanel = this.querySelector(`#${targetId}`);
+        const chevron = header.querySelector(".ucu-sub-chevron");
+        
+        if (targetPanel) {
+          if (isExpanded) {
+            header.setAttribute("aria-expanded", "false");
+            targetPanel.classList.add("hidden");
+            targetPanel.classList.remove("ucu-slide-down");
+            if (chevron) chevron.classList.remove("rotate-180");
+          } else {
+            header.setAttribute("aria-expanded", "true");
+            targetPanel.classList.remove("hidden");
+            targetPanel.classList.add("ucu-slide-down");
+            if (chevron) chevron.classList.add("rotate-180");
+          }
+        }
+      });
+    });
+
     this.querySelectorAll(".ucu-event-trigger").forEach((btn) => {
       btn.addEventListener("click", (e) => {
         const eventId = e.currentTarget.getAttribute("data-event-id");
         window.history.pushState({}, "", "?event=" + eventId);
         window.dispatchEvent(new Event("popstate")); 
       });
+    });
+
+    // Re-initialize scroll reveal observer for newly created DOM nodes
+    const localReveals = this.querySelectorAll(".reveal-on-scroll");
+    if (localReveals.length > 0) {
+      const localRevealObserver = new IntersectionObserver(
+        (entries, observer) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("is-visible");
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        {
+          root: null,
+          rootMargin: "0px 0px -50px 0px",
+          threshold: 0.1,
+        }
+      );
+      localReveals.forEach((el) => localRevealObserver.observe(el));
+    }
+
+    // Fade component into view smoothly after DOM is updated
+    requestAnimationFrame(() => {
+      this.style.opacity = "1";
     });
   }
 }
