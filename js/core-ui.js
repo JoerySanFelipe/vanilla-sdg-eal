@@ -22,6 +22,11 @@ window.ucuGetBasePath = () => {
   return './';
 };
 
+window.ucuHandleImageError = (imgEl) => {
+  imgEl.onerror = null; // Prevent infinite loop if fallback fails
+  imgEl.src = "data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 450'%3E%3Crect width='100%25' height='100%25' fill='%2324305e'/%3E%3Ccircle cx='400' cy='225' r='180' fill='none' stroke='%23fbef4b' stroke-width='1.5' stroke-opacity='0.15'/%3E%3Ccircle cx='400' cy='225' r='120' fill='none' stroke='%23c43643' stroke-width='1.5' stroke-opacity='0.2'/%3E%3Ctext x='50%25' y='46%25' dominant-baseline='middle' text-anchor='middle' font-family='sans-serif' font-weight='900' font-size='26' fill='%23ffffff' letter-spacing='4'%3EURDANETA CITY UNIVERSITY%3C/text%3E%3Ctext x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='sans-serif' font-weight='700' font-size='14' fill='%23fbef4b' letter-spacing='6'%3EEXTERNAL AFFAIRS %26 LINKAGES%3C/text%3E%3C/svg%3E";
+};
+
 /* ==========================================================================
    1. NAVIGATION & STRUCTURAL COMPONENTS (RESPONSIVE + SMART BREADCRUMBS)
    ========================================================================== */
@@ -87,7 +92,7 @@ class UcuHeader extends HTMLElement {
           </button>
           <div class="mobile-dropdown-content max-h-0 overflow-hidden transition-all duration-300 bg-black/20">
             ${link.dropdown.map(drop => `
-              <a href="${base}${drop.url}" class="block pl-10 pr-6 py-3.5 text-sm text-white/80 hover:text-ucu-yellow hover:bg-white/5 transition-colors border-l-[3px] border-transparent hover:border-ucu-yellow ${isActive(drop.url) ? 'text-ucu-yellow border-ucu-yellow bg-white/5' : ''}">${drop.name}</a>
+              <a href="${base}${drop.url}" class="block pl-10 pr-6 py-3.5 text-sm text-white hover:text-ucu-yellow hover:bg-white/5 transition-colors border-l-[3px] border-transparent hover:border-ucu-yellow ${isActive(drop.url) ? 'text-ucu-yellow border-ucu-yellow bg-white/5' : ''}">${drop.name}</a>
             `).join("")}
           </div>
         </div>`;
@@ -194,7 +199,7 @@ class UcuHeader extends HTMLElement {
     /* ── END STATELESS BREADCRUMB ENGINE ── */
 
     this.innerHTML = `
-      <header class="bg-dark-red border-t-4 border-ucu-blue shadow-[0_15px_35px_rgba(161,5,5,0.2),_0_5px_15px_rgba(0,0,0,0.15)] sticky top-0 flex flex-col w-full font-[family-name:var(--font-sans)]">
+      <header class="bg-dark-red border-t-4 border-ucu-blue shadow-[0_15px_35px_rgba(161,5,5,0.2),_0_5px_15px_rgba(0,0,0,0.15)] sticky top-0 flex flex-col w-full font-[family-name:var(--font-sans)]" style="background-clip: padding-box;">
         
         <div class="w-full max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 relative z-20 bg-dark-red">
           <div class="flex items-center justify-between py-2">
@@ -241,7 +246,7 @@ class UcuHeader extends HTMLElement {
 
         <div class="bg-black/20 border-t border-white/10 w-full relative z-10 py-2.5 shadow-inner">
           <div class="w-full max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 overflow-x-auto whitespace-nowrap scrollbar-hide">
-            <nav class="flex items-center text-xs font-normal tracking-wide">
+            <nav class="flex items-center text-sm font-normal tracking-wide">
               ${breadcrumbsHtml}
             </nav>
           </div>
@@ -325,6 +330,7 @@ class UcuFooter extends HTMLElement {
 
     this.innerHTML = `
       <footer class="mt-10 w-full relative overflow-hidden border-t-[4px] border-ucu-red font-sans pb-8" style="
+  background-clip: padding-box;
   background-color: #111827;
   background-image:
     linear-gradient(160deg, #0d1433 0%, #1a2550 30%, #24305e 55%, #1e1a40 80%, #0d1020 100%),
@@ -486,6 +492,53 @@ document.addEventListener("DOMContentLoaded", () => {
 
     revealElements.forEach((el) => revealObserver.observe(el));
   }
+
+  // 2. Dynamic, Responsive "Back to Top" Button
+  const backToTopBtn = document.createElement("button");
+  backToTopBtn.id = "ucu-back-to-top";
+  backToTopBtn.className = "fixed bottom-6 right-6 z-50 flex items-center justify-center p-3 md:px-5 md:py-3 md:gap-2 rounded-full bg-ucu-red text-white shadow-[0_4px_20px_rgba(196,54,67,0.3)] opacity-0 pointer-events-none transition-all duration-300 hover:bg-ucu-blue-dark hover:scale-105 focus:outline-none focus:ring-2 focus:ring-ucu-yellow translate-y-4 cursor-pointer font-[family-name:var(--font-sans)] font-bold text-xs uppercase tracking-wider";
+  backToTopBtn.setAttribute("aria-label", "Back to top");
+  backToTopBtn.innerHTML = `
+    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7" />
+    </svg>
+    <span class="hidden md:inline leading-none select-none">Back to Top</span>
+  `;
+  document.body.appendChild(backToTopBtn);
+
+  backToTopBtn.addEventListener("click", () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+
+  const toggleBackToTop = () => {
+    const isScrollable = document.documentElement.scrollHeight > window.innerHeight;
+    const currentScroll = window.scrollY;
+
+    if (isScrollable && currentScroll > 300) {
+      backToTopBtn.classList.remove("opacity-0", "pointer-events-none", "translate-y-4");
+      backToTopBtn.classList.add("pointer-events-auto", "translate-y-0");
+
+      // Calculate scroll fraction to scale opacity (0.6 subtle -> 1.0 full clear at the bottom)
+      const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+      const scrollRange = maxScroll - 300;
+      let opacity = 0.6; // Start with 60% opacity at threshold
+
+      if (scrollRange > 0) {
+        const fraction = (currentScroll - 300) / scrollRange;
+        opacity = 0.6 + fraction * 0.4;
+      }
+
+      backToTopBtn.style.opacity = Math.min(1.0, Math.max(0.6, opacity));
+    } else {
+      backToTopBtn.classList.add("opacity-0", "pointer-events-none", "translate-y-4");
+      backToTopBtn.classList.remove("pointer-events-auto", "translate-y-0");
+      backToTopBtn.style.opacity = ""; // Clear inline style
+    }
+  };
+
+  window.addEventListener("scroll", toggleBackToTop);
+  window.addEventListener("resize", toggleBackToTop);
+  setTimeout(toggleBackToTop, 200);
 });
 
 /* ==========================================================================

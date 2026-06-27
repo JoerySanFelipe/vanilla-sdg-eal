@@ -9,6 +9,7 @@
 
 const IMPACT_FEED_STYLES = `
   <style>
+    .filter-btn { width: 100%; display: inline-flex; justify-content: center; align-items: center; }
     .sdg-hover-btn:hover { border-color: var(--sdg-color); color: var(--sdg-color); background-color: color-mix(in srgb, var(--sdg-color) 5%, white); }
     .sdg-hover-btn[data-active="true"] { background-color: var(--sdg-color); border-color: var(--sdg-color); color: white; }
   </style>
@@ -44,7 +45,7 @@ class UcuEventsPreview extends HTMLElement {
       return `
         <button data-modal-trigger="${ev.id}" class="reveal-card opacity-0 translate-y-12 transition-all duration-[800ms] ease-[cubic-bezier(0.16,1,0.3,1)] group flex flex-col text-left border border-gray-200 rounded-[1.5rem] overflow-hidden hover:shadow-xl hover:border-gray-300 hover:-translate-y-2 bg-white focus:outline-none" style="transition-delay: ${delay}ms;">
           <div class="relative aspect-video w-full overflow-hidden bg-gray-100 border-b border-gray-100 shrink-0">
-            <img src="${base}${ev.img}" alt="${ev.title}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" onerror="this.style.display='none'">
+            <img src="${base}${ev.img}" alt="${ev.title}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" onerror="window.ucuHandleImageError(this)">
             <div class="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
           </div>
           <div class="flex flex-col flex-1 p-6 md:p-8">
@@ -103,9 +104,9 @@ class UcuImpactFeed extends HTMLElement {
     this.recents = this.pageEvents.filter((ev) => ev.isHighlights !== true);
 
     const generateFilters = () => {
-      let btns = `<button data-filter="all" class="filter-btn px-5 py-2.5 rounded-full text-xs font-bold border border-ucu-blue-dark/20 bg-white shadow-sm transition-all hover:bg-gray-50 data-[active=true]:bg-ucu-blue-dark data-[active=true]:text-white data-[active=true]:border-ucu-blue-dark text-main2" data-active="true">All Engagements</button>`;
+      let btns = `<button data-filter="all" class="filter-btn w-full text-center px-2 py-2.5 rounded-full text-xs font-bold border border-ucu-blue-dark/20 bg-white shadow-sm transition-all hover:bg-gray-50 data-[active=true]:bg-ucu-blue-dark data-[active=true]:text-white data-[active=true]:border-ucu-blue-dark text-main2" data-active="true">All Engagements</button>`;
       for (let i = 1; i <= 17; i++) {
-        btns += `<button data-filter="${i}" style="--sdg-color: ${colors[i]};" class="filter-btn sdg-hover-btn px-4 py-2.5 rounded-full text-xs font-bold border border-gray-200 bg-white shadow-sm transition-all text-main2" data-active="false">SDG ${i}</button>`;
+        btns += `<button data-filter="${i}" style="--sdg-color: ${colors[i]};" class="filter-btn sdg-hover-btn w-full text-center px-2 py-2.5 rounded-full text-xs font-bold border border-gray-200 bg-white shadow-sm transition-all text-main2" data-active="false">SDG ${i}</button>`;
       }
       return btns;
     };
@@ -118,7 +119,7 @@ class UcuImpactFeed extends HTMLElement {
       return `
         <button data-modal-trigger="${ev.id}" class="event-card group text-left w-full flex flex-col focus:outline-none reveal-card opacity-0 translate-y-12 transition-all duration-[600ms] bg-white border border-gray-200 rounded-[1.5rem] overflow-hidden hover:shadow-lg hover:border-gray-300">
           <div class="w-full aspect-video md:aspect-[21/9] overflow-hidden relative bg-gray-100 border-b border-gray-100">
-            <img src="${base}${ev.img}" alt="${ev.title}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy">
+            <img src="${base}${ev.img}" alt="${ev.title}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" onerror="window.ucuHandleImageError(this)">
           </div>
           <div class="flex flex-col p-6 md:p-8">
             <div class="flex items-center justify-between gap-4 mb-4">
@@ -143,7 +144,7 @@ class UcuImpactFeed extends HTMLElement {
       return `
         <button data-modal-trigger="${ev.id}" class="event-card group text-left w-full flex items-start gap-5 py-5 focus:outline-none hover:bg-gray-50/50 transition-colors px-6 -mx-6">
           <div class="w-24 h-24 shrink-0 rounded-xl overflow-hidden border border-gray-100 bg-gray-100">
-             <img src="${base}${ev.img}" alt="${ev.title}" class="w-full h-full object-cover" loading="lazy">
+             <img src="${base}${ev.img}" alt="${ev.title}" class="w-full h-full object-cover" loading="lazy" onerror="window.ucuHandleImageError(this)">
           </div>
           <div class="flex flex-col h-full justify-center flex-grow">
             <p class="text-[9px] font-bold text-ucu-red uppercase tracking-[0.2em] mb-1">${ev.date}</p>
@@ -162,7 +163,7 @@ class UcuImpactFeed extends HTMLElement {
       ${IMPACT_FEED_STYLES}
       <section class="sticky top-[70px] md:top-[80px] z-40 bg-[#f8fafc] pt-5 pb-4 mb-8 reveal-card opacity-0 translate-y-8 transition-all duration-[800ms] ease-[cubic-bezier(0.16,1,0.3,1)]">
         <div class="flex items-center justify-between mb-4"><h2 class="text-xs font-black uppercase tracking-[0.2em] text-muted">Filter by Alignment</h2></div>
-        <div class="flex flex-wrap gap-3 pb-6" id="filter-group">${generateFilters()}</div>
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 lg:grid-cols-[max-content_repeat(8,_1fr)] gap-3 pb-6 w-full" id="filter-group">${generateFilters()}</div>
         <div id="desktop-headers-wrapper" class="hidden lg:grid grid-cols-1 gap-10 xl:gap-12 w-full transition-opacity duration-300">
           <div class="flex items-center w-full gap-4">
             <div class="w-1.5 h-6 bg-ucu-red rounded-full shadow-sm flex-shrink-0"></div>
@@ -285,9 +286,9 @@ class UcuResearchFeed extends HTMLElement {
     const colors = window.UCU_SDG_COLORS || {};
 
     const generateFilters = () => {
-      let btns = `<button data-filter="all" class="filter-btn px-5 py-2.5 rounded-full text-xs font-bold border border-ucu-blue-dark/20 bg-white shadow-sm transition-all hover:bg-gray-50 data-[active=true]:bg-ucu-blue-dark data-[active=true]:text-white data-[active=true]:border-ucu-blue-dark text-main2" data-active="true">All Research</button>`;
+      let btns = `<button data-filter="all" class="filter-btn w-full text-center px-2 py-2.5 rounded-full text-xs font-bold border border-ucu-blue-dark/20 bg-white shadow-sm transition-all hover:bg-gray-50 data-[active=true]:bg-ucu-blue-dark data-[active=true]:text-white data-[active=true]:border-ucu-blue-dark text-main2" data-active="true">All Research</button>`;
       for (let i = 1; i <= 17; i++) {
-        btns += `<button data-filter="${i}" style="--sdg-color: ${colors[i]};" class="filter-btn sdg-hover-btn px-4 py-2.5 rounded-full text-xs font-bold border border-gray-200 bg-white shadow-sm transition-all text-main2" data-active="false">SDG ${i}</button>`;
+        btns += `<button data-filter="${i}" style="--sdg-color: ${colors[i]};" class="filter-btn sdg-hover-btn w-full text-center px-2 py-2.5 rounded-full text-xs font-bold border border-gray-200 bg-white shadow-sm transition-all text-main2" data-active="false">SDG ${i}</button>`;
       }
       return btns;
     };
@@ -327,8 +328,10 @@ class UcuResearchFeed extends HTMLElement {
     this.innerHTML = `
       ${IMPACT_FEED_STYLES}
       <section class="sticky top-[70px] md:top-[80px] z-30 bg-canvas/90 backdrop-blur-md py-5 mb-8 -mx-4 px-4 sm:mx-0 sm:px-0 border-b border-gray-200/50 shadow-[0_4px_20px_rgba(0,0,0,0.02)] reveal-card opacity-0 translate-y-8 transition-all duration-[800ms] ease-[cubic-bezier(0.16,1,0.3,1)]">
-        <div class="flex items-center justify-between mb-4"><h2 class="text-xs font-black uppercase tracking-[0.2em] text-muted">Filter by Alignment</h2></div>
-        <div class="flex flex-wrap gap-3" id="filter-group">${generateFilters()}</div>
+        <div class="max-w-4xl w-full">
+          <div class="flex items-center justify-between mb-4"><h2 class="text-xs font-black uppercase tracking-[0.2em] text-muted">Filter by Alignment</h2></div>
+          <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 lg:grid-cols-[max-content_repeat(8,_1fr)] gap-3 w-full" id="filter-group">${generateFilters()}</div>
+        </div>
       </section>
       <section class="max-w-4xl w-full">
         <div class="flex flex-col gap-6" id="research-feed">

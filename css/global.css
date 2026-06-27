@@ -1,16 +1,12 @@
-@import "tailwindcss";
-
-/* 
- * 1. CONFIGURATION & SOURCES
- * Tells Tailwind where to scan for class names to keep the bundle lean.
- */
-@source "../"; 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 /* 
  * 2. UCU BRAND DESIGN SYSTEM
  * Centralized theme variables for consistent institutional branding.
  */
-@theme {
+:root {
   /* Core Brand Colors */
   --color-ucu-blue: #394a8a;
   --color-ucu-blue-dark: #24305e;

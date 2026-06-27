@@ -204,12 +204,6 @@ class UcuSdgRibbon extends HTMLElement {
           <div class="flex items-center w-full gap-2.5 lg:gap-0 lg:justify-between overflow-x-auto py-4 px-3 scroll-smooth [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
             ${boxesHtml}
           </div>
-          <div class="flex justify-center mt-8 w-full">
-            <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="group flex items-center gap-2 px-5 py-2 rounded-full bg-white border border-gray-200 shadow-sm text-xs font-bold text-ucu-blue-dark hover:text-ucu-red hover:shadow-md hover:-translate-y-1 transition-all duration-300 cursor-pointer">
-              Back to Top
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="transform group-hover:-translate-y-1 transition-transform duration-300"><path d="m18 15-6-6-6 6"/></svg>
-            </button>
-          </div>
         </div>
       </div>
     `;
@@ -306,7 +300,7 @@ class UcuSdgLayout extends HTMLElement {
         <button class="ucu-event-trigger group block relative w-full text-left overflow-hidden rounded-2xl bg-white border border-slate-200 shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] flex flex-col cursor-pointer" data-event-id="${ev.id}">
           <span class="absolute bottom-0 left-0 w-full h-[6px] bg-gradient-to-r from-ucu-blue-dark to-ucu-red origin-left scale-x-0 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-x-100 z-20"></span>
           <div class="w-full aspect-video overflow-hidden relative bg-slate-100 shrink-0">
-            <img src="${base}${ev.img}" alt="${ev.title}" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-[0.8s] ease-[cubic-bezier(0.25,1,0.5,1)]" loading="lazy" />
+            <img src="${base}${ev.img}" alt="${ev.title}" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-[0.8s] ease-[cubic-bezier(0.25,1,0.5,1)]" loading="lazy" onerror="window.ucuHandleImageError(this)" />
             <div class="absolute top-2.5 right-2.5 bg-ucu-red/85 backdrop-blur-md border border-white/20 text-white text-[8px] font-black px-2 py-1 rounded shadow-sm flex items-center gap-1 uppercase tracking-widest z-10">EVENT</div>
           </div>
           <div class="p-4 pb-5 flex flex-col gap-1.5 relative z-10 bg-white flex-grow w-full">
@@ -440,7 +434,7 @@ class UcuSdgLayout extends HTMLElement {
             return `
               <button class="ucu-event-trigger group block relative w-full text-left overflow-hidden rounded-xl bg-slate-50 border border-slate-200/80 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col cursor-pointer max-w-[280px]" data-event-id="${ev.id}">
                 <div class="w-full aspect-video overflow-hidden relative bg-slate-100 shrink-0">
-                  <img src="${base}${ev.img}" alt="${ev.title}" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-[0.6s]" loading="lazy" />
+                  <img src="${base}${ev.img}" alt="${ev.title}" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-[0.6s]" loading="lazy" onerror="window.ucuHandleImageError(this)" />
                   <div class="absolute top-2 right-2 bg-ucu-red/90 backdrop-blur-md border border-white/10 text-white text-[8px] font-black px-1.5 py-0.5 rounded shadow-sm uppercase tracking-widest">EVENT</div>
                 </div>
                 <div class="p-3.5 flex flex-col gap-1 relative bg-white flex-grow w-full">

@@ -211,7 +211,7 @@ class UcuHeroBanner extends HTMLElement {
     `;
 
     const descriptionMarkup = description
-      ? `<div class="hero-fade-el"><p class="text-white/85 text-base md:text-lg font-normal leading-relaxed mt-4 max-w-4xl text-balance ucu-hero-reveal" style="animation-delay: 400ms;">${description}</p></div>`
+      ? `<div class="hero-fade-el"><p class="text-white/85 text-lg md:text-xl font-normal leading-relaxed mt-4 max-w-4xl text-balance ucu-hero-reveal" style="animation-delay: 400ms;">${description}</p></div>`
       : "";
 
     let carouselMarkup = "";

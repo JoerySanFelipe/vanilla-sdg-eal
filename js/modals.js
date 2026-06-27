@@ -195,7 +195,29 @@ class UcuModalShell extends HTMLElement {
   }
 
   async loadContent() {
-    if (this.isLoaded || !this.contentSrc) return;
+    if (this.isLoaded) return;
+
+    const isBaseDir = !this.contentSrc || 
+                      this.contentSrc.endsWith('/') || 
+                      this.contentSrc === '.' || 
+                      this.contentSrc === '..' || 
+                      this.contentSrc.endsWith('/.') || 
+                      this.contentSrc.endsWith('/..') ||
+                      this.contentSrc.split('/').pop() === '';
+
+    if (isBaseDir) {
+      this.contentContainer.innerHTML = `
+        <div class="p-8 text-center flex flex-col items-center justify-center gap-3">
+          <svg class="w-12 h-12 text-slate-300 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+          </svg>
+          <h4 class="text-sm font-bold text-ucu-blue-dark">Documentation Pending</h4>
+          <p class="text-xs text-[var(--color-muted)] max-w-sm leading-relaxed mx-auto">Official coverage and full documentation for this event are currently being compiled by the External Affairs and Linkages Office.</p>
+        </div>
+      `;
+      this.isLoaded = true;
+      return;
+    }
 
     this.contentContainer.innerHTML = `
       <div class="w-full flex flex-col items-center justify-center py-16 gap-4">
