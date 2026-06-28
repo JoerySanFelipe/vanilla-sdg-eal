@@ -20,11 +20,30 @@ class UcuModalShell extends HTMLElement {
       try {
         const sdgs = JSON.parse(this.sdgsData).sort((a, b) => a - b);
         const SDG_COLORS = ['#E5243B', '#DDA63A', '#4C9F38', '#C5192D', '#FF3A21', '#26BDE2', '#FCC30B', '#A21942', '#FD6925', '#DD1367', '#FD9D24', '#BF8B2E', '#3F7E44', '#0A97D9', '#56C02B', '#00689D', '#19486A'];
+        const SDG_NAMES = [
+          "No Poverty",
+          "Zero Hunger",
+          "Good Health and Well-being",
+          "Quality Education",
+          "Gender Equality",
+          "Clean Water and Sanitation",
+          "Affordable and Clean Energy",
+          "Decent Work and Economic Growth",
+          "Industry, Innovation and Infrastructure",
+          "Reduced Inequalities",
+          "Sustainable Cities and Communities",
+          "Responsible Consumption and Production",
+          "Climate Action",
+          "Life Below Water",
+          "Life on Land",
+          "Peace, Justice and Strong Institutions",
+          "Partnerships for the Goals"
+        ];
         
         const basePath = window.ucuGetBasePath ? window.ucuGetBasePath() : './';
 
         tagsHtml = sdgs.map(num => `
-          <a href="${basePath}sdg-reports/2025/sdg${num}.html" class="flex items-center justify-center w-8 h-8 rounded-md text-white text-xs font-black shadow-sm transition-transform hover:-translate-y-0.5 no-underline hover:text-white" style="background-color: ${SDG_COLORS[num-1] || '#24305e'};" title="SDG ${num}">${num}</a>
+          <a href="${basePath}sdg-reports/2025/sdg${num}.html" class="flex items-center justify-center w-8 h-8 rounded-md text-white text-xs font-black shadow-sm transition-transform hover:-translate-y-0.5 no-underline hover:text-white" style="background-color: ${SDG_COLORS[num-1] || '#24305e'};" title="SDG ${num} : ${SDG_NAMES[num-1] || ''}">${num}</a>
         `).join('');
         this.hasSdgs = true;
       } catch (e) {
