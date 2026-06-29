@@ -115,5 +115,5 @@ window.UCU_COUNTRIES = [
   "Philippines", "Turkey", "Bangladesh", "Indonesia", "Japan", "Oman", "South Korea", 
   "Thailand", "Taiwan", "Vietnam", "Malaysia", "China", 
   "Bosnia and Herzegovina", "United Kingdom", "Switzerland", "Poland", 
-  "USA", "Canada"
+  "USA", "Canada", "India", "France", "Spain"
 ];

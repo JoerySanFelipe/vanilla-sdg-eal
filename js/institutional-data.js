@@ -376,7 +376,7 @@ class UcuCountryGrid extends HTMLElement {
     this.hasRendered = true;
     const countries = window.UCU_COUNTRIES || [];
     if (countries.length === 0) { this.innerHTML = `<p class="text-muted text-sm italic text-center w-full">Country data currently initializing...</p>`; return; }
-    const flagMap = { Philippines: "ph", Turkey: "tr", Bangladesh: "bd", Indonesia: "id", Japan: "jp", Oman: "om", "South Korea": "kr", Thailand: "th", Taiwan: "tw", Vietnam: "vn", Malaysia: "my", China: "cn", "Bosnia and Herzegovina": "ba", "United Kingdom": "gb", Switzerland: "ch", Poland: "pl", USA: "us", Canada: "ca" };
+    const flagMap = { Philippines: "ph", Turkey: "tr", Bangladesh: "bd", Indonesia: "id", Japan: "jp", Oman: "om", "South Korea": "kr", Thailand: "th", Taiwan: "tw", Vietnam: "vn", Malaysia: "my", China: "cn", "Bosnia and Herzegovina": "ba", "United Kingdom": "gb", Switzerland: "ch", Poland: "pl", USA: "us", Canada: "ca", India: "in", France: "fr", Spain: "es" };
     const pillsHtml = countries.map((country) => {
       const isoCode = flagMap[country] || "un"; 
       return `

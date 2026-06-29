@@ -246,7 +246,8 @@ class UcuModalShell extends HTMLElement {
     `;
 
     try {
-      const response = await fetch(this.contentSrc);
+      // Add a cache-busting query parameter to prevent browser caching of fetched HTML fragments
+      const response = await fetch(this.contentSrc + '?t=' + Date.now());
       if (response.ok) {
         this.contentContainer.innerHTML = await response.text();
         // Rewrite relative image/media paths: evidence files use paths relative to

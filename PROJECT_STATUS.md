@@ -18,7 +18,7 @@ Convert reference `.docx` files containing SDG evidence for **Urdaneta City Univ
 - [x] **6.14** `evidence/education/6_14.html` (University Sustainability Program(s) with International Collaborations) - Converted and formatted.
 - [x] **6.15** `evidence/education/6_15.html` (Number of Sustainability Community Services Projects Involving Students) - Converted and formatted.
 - [x] **6.3** `evidence/education/6_3.html` (Total Number of Study Programs Related to Sustainability) - Converted and formatted.
-- [/] **6.12** `evidence/education/6_12.html` (Number of Activities Organized by Student Organizations Related to Sustainability) - **IN PROGRESS**. The source document `document_files/University_Country_6_12_Number_of_activities_organized_by_student_organizations_related_to_sustainability_per_year.docx` has been placed in `document_files/` but the HTML fragment `evidence/education/6_12.html` is not fully aligned/finalized. This is the next indicator that needs to be updated.
+- [x] **6.12** `evidence/education/6_12.html` (Number of Activities Organized by Student Organizations Related to Sustainability) - Converted and formatted.
 - [ ] **Other SDG 6/Education indicators**: Need to be verified for word-for-word accuracy and visual styles (clean rounded shadow tables, biomechanical paragraph classes, bolded keywords).
 
 ---
