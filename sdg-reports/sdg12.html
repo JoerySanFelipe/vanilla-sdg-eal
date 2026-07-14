@@ -12,20 +12,20 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   
-  <link rel="stylesheet" href="../../css/style.css">
+  <link rel="stylesheet" href="../css/style.css">
   
-  <script src="../../js/events-data.js" defer></script>
-  <script src="../../js/core-ui.js" defer></script>
-  <script src="../../js/visual-media.js" defer></script>
-  <script src="../../js/impact-feeds.js" defer></script>
-  <script src="../../js/institutional-data.js" defer></script>
-  <script src="../../js/modals.js" defer></script>
-  <script src="../../js/sdg-components.js" defer></script>
-  <script src="../../js/global-charts.js" defer></script>
+  <script src="../js/events-data.js" defer></script>
+  <script src="../js/core-ui.js" defer></script>
+  <script src="../js/visual-media.js" defer></script>
+  <script src="../js/impact-feeds.js" defer></script>
+  <script src="../js/institutional-data.js" defer></script>
+  <script src="../js/modals.js" defer></script>
+  <script src="../js/sdg-components.js" defer></script>
+  <script src="../js/global-charts.js" defer></script>
 </head>
 <body class="bg-slate-50 text-muted font-sans antialiased min-h-screen flex flex-col">
 
-  <ucu-header base-path="../../"></ucu-header>
+  <ucu-header base-path="../"></ucu-header>
 
   <ucu-sdg-page-hero 
     class="block w-full reveal-on-scroll"
@@ -33,11 +33,11 @@
     title="Responsible Consumption and Production" 
     subtitle="Ensure sustainable consumption and production patterns." 
     hex="#BF8B2E" 
-    bg-image="../../images/sdg-banner/sdg12.jpg" 
-    icon-image="../../images/sdg/sdg12.png">
+    bg-image="../images/sdg-banner/sdg12.jpg" 
+    icon-image="../images/sdg/sdg12.png">
   </ucu-sdg-page-hero>
 
-  <ucu-sdg-layout sdg="12" year="2025">
+  <ucu-sdg-layout sdg="12" year="2025" years="2025,2024,2023">
     
     <div slot="description" class="flex flex-col gap-2">
       
@@ -79,7 +79,7 @@
   </ucu-sdg-layout>
 
   <ucu-sdg-ribbon class="block w-full reveal-on-scroll" active="12"></ucu-sdg-ribbon>
-  <ucu-footer base-path="../../" class="reveal-on-scroll"></ucu-footer>
+  <ucu-footer base-path="../" class="reveal-on-scroll"></ucu-footer>
 
 </body>
 </html>

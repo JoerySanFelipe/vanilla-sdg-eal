@@ -39,6 +39,22 @@
   /* ── Structural Essentials ── */
   :not(:defined) { opacity: 0; visibility: hidden; } /* Prevents Flash of Unstyled Components */
 
+  /* ── Premium Glassmorphism ── */
+  .ucu-glass {
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 4px 16px 0 rgba(36, 48, 94, 0.05);
+  }
+  .ucu-glass-dark {
+    background: rgba(36, 48, 94, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 10px 40px 0 rgba(0, 0, 0, 0.2);
+  }
+
   /* ── Premium Scrollbar Branding ── */
   .custom-scrollbar {
     scrollbar-width: thin;
@@ -192,10 +208,10 @@
 /* Premium Standardized Global Scroll Reveal */
   .reveal-on-scroll {
     opacity: 0;
-    transform: translateY(50px) scale(0.98);
+    transform: translateY(30px) scale(0.99);
     transition: 
-      opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), 
-      transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+      opacity 1.5s cubic-bezier(0.16, 1, 0.3, 1), 
+      transform 1.5s cubic-bezier(0.16, 1, 0.3, 1);
     will-change: opacity, transform;
   }
   
